@@ -595,7 +595,7 @@
 
     <div class="header">
         <h1>الابتدائية الأولى للبنات بالمدينة المنورة</h1>
-        <div>إعداد المعلمة: فلانة بنت فلان</div>
+        <div>إعداد المعلمة: تهاني مهنا الحجيلي</div>
         <p>لوحة تحكم معلمة مادة العلوم الابتدائي (وفق المنهج السعودي)</p>
         <div class="subscription-badge">⏳ نهاية الاشتراك: 2027/07/01</div>
 
@@ -717,7 +717,7 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                 </select>
-                <input type="text" id="studentClassCustom" placeholder="أو كتابة شعبة/صف آخر..." style="max-width: 160px;">
+                <input type="text" id="studentClassCustom" placeholder="أو كتابة صف آخر..." style="max-width: 160px;">
                 <input type="tel" id="studentPhone" placeholder="رقم جوال ولي الأمر (مثال: 05xxxxxxx)">
                 <button onclick="addStudent()">➕ إضافة طالبه</button>
             </div>
@@ -967,7 +967,7 @@
     <div id="toast" class="toast">✅ تم حفظ البيانات تلقائياً!</div>
 
     <script>
-        const TEACHER_NAME = "فلانة بنت فلان";
+        const TEACHER_NAME = "تهاني مهنا الحجيلي";
         const SCHOOL_NAME = "الابتدائية الأولى للبنات بالمدينة المنورة";
 
         let currentGrade = localStorage.getItem('awwal_current_grade_v3') || 'الرابع';
@@ -1025,31 +1025,19 @@
                 { chapter: "الوحدة الأولى: النباتات والمخلوقات الحية", title: "الفصل الأول: مملكة المخلوقات الحية", desc: "دراسة خصائص المخلوقات الحية وتصنيفها." },
                 { chapter: "الوحدة الأولى: النباتات والمخلوقات الحية", title: "الفصل الثاني: النباتات وتصنيفها", desc: "التعرف على النباتات البذرية واللابذرية وأجزائها." },
                 { chapter: "الوحدة الثانية: الحيوانات", title: "الفصل الثالث: المجموعات الحيوانية", desc: "دراسة الفقاريات واللافقاريات وخصائصها." },
-                { chapter: "الوحدة الثالثة: الأرض ومواردها", title: "الفصل الرابع: أرضنا المتغيرة", desc: "التجوية والتعرية والتشكيلات الأرضية." },
-                { chapter: "الوحدة الرابعة: النظام البيئي", title: "الفصل الخامس: السلاسل والشبكات الغذائية", desc: "استكشاف التفاعلات بين المخلوقات الحية في بيئتها." },
-                { chapter: "الوحدة الخامسة: المادة", title: "الفصل السادس: قياس المادة", desc: "الخواص الفيزيائية للمادة ووحدات القياس." },
-                { chapter: "الوحدة السادسة: القوى والطاقة", title: "الفصل السابع: القوى والحركة", desc: "مفهوم القوة، الاحتكاك، وأنواع الحركة." },
-                { chapter: "الوحدة السابعة: الطاقة", title: "الفصل الثامن: الطاقة وتهيئة الصوت والضوء", desc: "أشكال الطاقة وطرق انتقالها." }
+                { chapter: "الوحدة الثالثة: الأرض ومواردها", title: "الفصل الرابع: أرضنا المتغيرة", desc: "التجوية والتعرية والتشكيلات الأرضية." }
             ],
             "الخامس": [
                 { chapter: "الوحدة الأولى: تنوع المخلوقات الحية", title: "الفصل الأول: الخلايا لبنات الحياة", desc: "تركيب الخلية النباتية والحيوانية." },
                 { chapter: "الوحدة الأولى: تنوع المخلوقات الحية", title: "الفصل الثاني: تصنيف المخلوقات الحية", desc: "الممالك وخاصة الفطريات والبكتيريا." },
                 { chapter: "الوحدة الثانية: الأنظمة البيئية", title: "الفصل الثالث: التفاعلات في الأنظمة البيئية", desc: "السلاسل والشبكات الغذائية والتوازن البيئي." },
-                { chapter: "الوحدة الثالثة: الأرض ومواردها", title: "الفصل الرابع: دورة الماء والمعالم", desc: "حالة الغلاف الجوي ودورة الماء في الطبيعة." },
-                { chapter: "الوحدة الرابعة: الطقس والمناخ", title: "الفصل الخامس: الطقس وتقلباته", desc: "العوامل المؤثرة في الطقس وعناصر المناخ." },
-                { chapter: "الوحدة الخامسة: المادة والطاقة", title: "الفصل السادس: المخلوقات الحية تنمو وتتغير", desc: "الوراثة والتكاثر ودورات الحياة." },
-                { chapter: "الوحدة السادسة: القوى والفضاء", title: "الفصل السابع: القوى ودرجة الحرارة", desc: "التأثيرات الحرارية وقياسها." },
-                { chapter: "الوحدة السابعة: الفضاء", title: "الفصل الثامن: النظام الشمسي والأرض والفضاء", desc: "الكواكب، النجوم، وحركة الأرض والقمر." }
+                { chapter: "الوحدة الثالثة: الأرض ومواردها", title: "الفصل الرابع: دورة الماء والمعالم", desc: "حالة الغلاف الجوي ودورة الماء في الطبيعة." }
             ],
             "السادس": [
                 { chapter: "الوحدة الأولى: تنوع الحياة", title: "الفصل الأول: العمليات الحيوية في الخلايا", desc: "دراسة العمليات الحيوية والتبادل الخلوي والتنفس." },
                 { chapter: "الوحدة الأولى: تنوع الحياة", title: "الفصل الثاني: تصنيف المخلوقات الحية", desc: "استكشاف الممالك الخمس والنباتات والحيوانات." },
                 { chapter: "الوحدة الثانية: العمليات المؤثرة في سطح الأرض", title: "الفصل الثالث: العمليات الداخلية والخارجية", desc: "الزلازل والبراكين والتجوية والتعرية." },
-                { chapter: "الوحدة الثالثة: المادة والطاقة", title: "الفصل الرابع: المادة والتفاعلات الكيميائية", desc: "الذرات والعناصر والتغيرات الفيزيائية والكيميائية." },
-                { chapter: "الوحدة الرابعة: الطاقة الحرارية والكهرباء", title: "الفصل الخامس: الكهرباء والمغناطيسية", desc: "الدوائر الكهربائية، التيار، والمغناطيس الكهربائي." },
-                { chapter: "الوحدة الخامسة: القوى والحركة", title: "الفصل السادس: الحركة والقوى", desc: "قوانين السرعة والتسارع وقوانين الحركة." },
-                { chapter: "الوحدة السادسة: البيئة ومواردها", title: "الفصل السابع: موارد البيئة والحفاظ عليها", desc: "الموارد المتجددة وغير المتجددة وتلوث البيئة." },
-                { chapter: "الوحدة السابعة: الوراثة والتكاثر", title: "الفصل الثامن: التوراث والجينات", desc: "الصفات الوراثية والجينات وسلوكيات الحيوانات." }
+                { chapter: "الوحدة الثالثة: المادة والطاقة", title: "الفصل الرابع: المادة والتفاعلات الكيميائية", desc: "الذرات والعناصر والتغيرات الفيزيائية والكيميائية." }
             ]
         };
 
@@ -1137,7 +1125,7 @@
             }
 
             const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-            const msg = `${headerInfo}📋 **نتيجة اختبارات مادة العلوم - الصف ${currentGrade}**\nالطالبه: ${st.name} (شعبة/رقم ${st.studentClass || ''})\n\n` +
+            const msg = `${headerInfo}📋 **نتيجة اختبارات مادة العلوم - الصف ${currentGrade}**\nالطالبه: ${st.name} (الصف/رقم ${st.studentClass || ''})\n\n` +
                           `📝 اختبار الفترة الأولى: **${st.exam1 !== undefined ? st.exam1 : '-'} / 20**\n` +
                           `📝 اختبار الفترة الثانية: **${st.exam2 !== undefined ? st.exam2 : '-'} / 20**\n\n` +
                           `شكراً لمتابعتكم المستمرة ودعمكم الدائم لمسيرة ابنتنا التعليمية.`;
@@ -1155,7 +1143,7 @@
             const printBtn = document.getElementById('printExamsBtn');
 
             if (!selectedCls) {
-                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الشعبة/الصف من القائمة أعلاه لعرض رصد واختبارات الطالبات.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الصف الدراسي من القائمة أعلاه لعرض رصد واختبارات الطالبات.</td></tr>`;
                 analysisBox.style.display = 'none';
                 printBtn.style.display = 'none';
                 return;
@@ -1164,7 +1152,7 @@
             const classStudents = students.map((st, idx) => ({ st, originalIndex: idx })).filter(item => (item.st.studentClass || '1') === selectedCls);
 
             if (classStudents.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">لا توجد طالبات مسجلات في هذه الشعبة حالياً.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">لا توجد طالبات مسجلات في هذا الصف حالياً.</td></tr>`;
                 analysisBox.style.display = 'none';
                 printBtn.style.display = 'none';
                 return;
@@ -1256,7 +1244,7 @@
                     <h2>المملكة العربية السعودية</h2>
                     <h3>وزارة التعليم</h3>
                     <h3 style="color: #059669;">${SCHOOL_NAME}</h3>
-                    <h4 style="margin-top: 5px;">تقرير تحليل نتائج اختبارات الفترة الأولى والفترة الثانية - الصف ${currentGrade} (شعبة: ${selectedCls})</h4>
+                    <h4 style="margin-top: 5px;">تقرير تحليل نتائج اختبارات الفترة الأولى والفترة الثانية - الصف ${currentGrade} (الصف: ${selectedCls})</h4>
                     <p style="margin: 5px 0 0 0; font-size: 14px;">مادة العلوم</p>
                 </div>
 
@@ -1416,7 +1404,7 @@
                     else if (percentage >= 60) mediumCount++;
                     else {
                         atRiskCount++;
-                        atRiskDropdown.innerHTML += `<option value="${idx}">${st.name} (شعبة: ${st.studentClass || '1'}) - الدرجة: ${score1}/20</option>`;
+                        atRiskDropdown.innerHTML += `<option value="${idx}">${st.name} (الصف: ${st.studentClass || '1'}) - الدرجة: ${score1}/20</option>`;
                     }
                 }
             });
@@ -1569,11 +1557,11 @@
             
             const count = students.filter(s => (s.studentClass || '1') === className).length;
             if (count === 0) {
-                alert(`لا توجد طالبات مسجلات في هذه الشعبة (${className}) حالياً.`);
+                alert(`لا توجد طالبات مسجلات في هذا الصف (${className}) حالياً.`);
                 return;
             }
 
-            if (confirm(`⚠️ تحذير: هل أنت متأكد من حذف جميع طالبات الشعبة (${className}) وعددهم (${count}) طالبه؟ لا يمكن التراجع عن هذا الإجراء.`)) {
+            if (confirm(`⚠️ تحذير: هل أنت متأكد من حذف جميع طالبات الصف (${className}) وعددهم (${count}) طالبه؟ لا يمكن التراجع عن هذا الإجراء.`)) {
                 students = students.filter(s => (s.studentClass || '1') !== className);
                 if (activeQueryClass === className) {
                     activeQueryClass = '';
@@ -1582,7 +1570,7 @@
                 document.getElementById('studentSearchInput').value = '';
                 currentPage = 1;
                 saveAndRefresh();
-                showToast(`🗑️ تم حذف جميع طالبات الشعبة (${className}) بنجاح!`);
+                showToast(`🗑️ تم حذف جميع طالبات الصف (${className}) بنجاح!`);
             }
         }
 
@@ -1619,7 +1607,7 @@
                     <h3>وزارة التعليم</h3>
                     <h3 style="color: #059669;">${SCHOOL_NAME}</h3>
                     <h4 style="margin-top: 5px;">تقرير متابعة أداء الطالبه: ${st.name}</h4>
-                    <p style="margin: 5px 0 0 0; font-size: 14px;">الصف ${currentGrade} الابتدائي (شعبة: ${st.studentClass || '1'}) - مادة العلوم</p>
+                    <p style="margin: 5px 0 0 0; font-size: 14px;">الصف ${currentGrade} الابتدائي (الصف: ${st.studentClass || '1'}) - مادة العلوم</p>
                 </div>
 
                 <div class="meta-row">
@@ -1667,13 +1655,13 @@
             if (event) event.stopPropagation();
 
             if (!className || className === 'ALL') {
-                alert('يرجى اختيار شعبة محددة لطباعة تقريرها الرسمي.');
+                alert('يرجى اختيار صف محدد لطباعة تقريره الرسمي.');
                 return;
             }
 
             const classStudents = students.filter(s => (s.studentClass || '1') === className);
             if (classStudents.length === 0) {
-                alert(`لا توجد طالبات مسجلات في الشعبة (${className}) لطباعة تقريرهن.`);
+                alert(`لا توجد طالبات مسجلات في الصف (${className}) لطباعة تقريرهن.`);
                 return;
             }
 
@@ -1682,7 +1670,7 @@
 
             var printWindow = window.open('', '_blank', 'height=750,width=1000');
             
-            printWindow.document.write('<html><head><title>تقرير طالبات الشعبة الرسمي</title>');
+            printWindow.document.write('<html><head><title>تقرير طالبات الصف الرسمي</title>');
             printWindow.document.write('<style>');
             printWindow.document.write('body { font-family: Tahoma, Arial, sans-serif; direction: rtl; text-align: right; color: #000; background: #fff; padding: 25px; margin: 0; }');
             printWindow.document.write('.header-box { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #333; padding-bottom: 15px; }');
@@ -1701,7 +1689,7 @@
                     <h2>المملكة العربية السعودية</h2>
                     <h3>وزارة التعليم</h3>
                     <h3 style="color: #059669;">${SCHOOL_NAME}</h3>
-                    <h4 style="margin-top: 5px;">تقرير متابعة أداء طالبات الصف ${currentGrade} (شعبة: ${className})</h4>
+                    <h4 style="margin-top: 5px;">تقرير متابعة أداء طالبات الصف ${currentGrade} (الصف: ${className})</h4>
                     <p style="margin: 5px 0 0 0; font-size: 14px;">مادة العلوم</p>
                 </div>
 
@@ -1851,7 +1839,7 @@
                                 showToast('📂 تم استيراد ملف الإكسل وتصفية البيانات بنجاح!');
                             }
                         } else {
-                            alert('لم يتم العثور على بيانات طالبات صالحة أو فصول محددة في الملف.');
+                            alert('لم يتم العثور على بيانات طالبات صالحة أو صفوف محددة في الملف.');
                         }
                     } else {
                         alert('ملف الإكسل فارغ أو غير مطابق للهيكلية المطلوبة.');
@@ -1960,13 +1948,13 @@
             const allClasses = [...new Set([...defaultClasses, ...existingClasses])].filter(c => c && c.trim() !== "");
             
             queryContainer.innerHTML = '';
-            bulkTargetSelect.innerHTML = '<option value="ALL">جميع الشعب</option>';
+            bulkTargetSelect.innerHTML = '<option value="ALL">جميع الصفوف</option>';
 
             const isEmptyActive = (activeQueryClass === '') ? 'active' : '';
             queryContainer.innerHTML += `
                 <div class="class-btn-wrapper ${isEmptyActive}" style="flex: 2; min-width: 140px;">
                     <button class="class-query-btn" style="text-align: center;" onclick="selectQueryClass('')">
-                        ⬜ (اختر شعبة)
+                        ⬜ (اختر صفاً)
                     </button>
                 </div>
             `;
@@ -1975,7 +1963,7 @@
             queryContainer.innerHTML += `
                 <div class="class-btn-wrapper ${isAllActive}" style="flex: 2; min-width: 160px;">
                     <button class="class-query-btn" style="text-align: center;" onclick="selectQueryClass('ALL')">
-                        🏫 جميع الشعب <span style="font-size: 11px; opacity: 0.8;">(${students.length})</span>
+                        🏫 جميع الصفوف <span style="font-size: 11px; opacity: 0.8;">(${students.length})</span>
                     </button>
                 </div>
             `;
@@ -1987,18 +1975,18 @@
                 queryContainer.innerHTML += `
                     <div class="class-btn-wrapper ${isActive}">
                         <button class="class-query-btn" onclick="selectQueryClass('${cls}')">
-                            🏫 شعبة ${cls} <span style="font-size: 11px; opacity: 0.8;">(${count})</span>
+                            🏫 صف ${cls} <span style="font-size: 11px; opacity: 0.8;">(${count})</span>
                         </button>
-                        <button class="btn-info btn-action" onclick="printClassReport('${cls}', event)" title="طباعة تقرير الشعبة الرسمي" style="padding: 0 8px; font-size: 13px; border-radius: 0;">
+                        <button class="btn-info btn-action" onclick="printClassReport('${cls}', event)" title="طباعة تقرير الصف الرسمي" style="padding: 0 8px; font-size: 13px; border-radius: 0;">
                             🖨️
                         </button>
-                        <button class="class-delete-btn" onclick="deleteClassStudents('${cls}', event)" title="حذف جميع طالبات الشعبة ${cls}">
+                        <button class="class-delete-btn" onclick="deleteClassStudents('${cls}', event)" title="حذف جميع طالبات الصف ${cls}">
                             🗑️
                         </button>
                     </div>
                 `;
 
-                bulkTargetSelect.innerHTML += `<option value="${cls}">شعبة ${cls}</option>`;
+                bulkTargetSelect.innerHTML += `<option value="${cls}">صف ${cls}</option>`;
             });
 
             bulkTargetSelect.value = currentBulkTarget;
@@ -2042,7 +2030,7 @@
                 filtered.forEach(item => {
                     const div = document.createElement('div');
                     div.className = 'searchable-item';
-                    div.innerHTML = `<strong>${item.st.name}</strong> <span style="font-size: 12px; opacity: 0.7; float: left;">(شعبة: ${item.st.studentClass || ''})</span>`;
+                    div.innerHTML = `<strong>${item.st.name}</strong> <span style="font-size: 12px; opacity: 0.7; float: left;">(الصف: ${item.st.studentClass || ''})</span>`;
                     div.onclick = function() {
                         selectStudentFromDropdown(item.index, item.st.name, item.st.studentClass || '');
                     };
@@ -2054,7 +2042,7 @@
 
         function selectStudentFromDropdown(index, name, className) {
             selectedStudentIndex = index;
-            document.getElementById('studentSearchInput').value = `${name} (شعبة: ${className})`;
+            document.getElementById('studentSearchInput').value = `${name} (الصف: ${className})`;
             document.getElementById('studentDropdownList').style.display = 'none';
             loadStudentDetails();
         }
@@ -2145,8 +2133,8 @@
 
             if (tbody.innerHTML === '') {
                 const emptyMsg = (activeQueryClass === '' && searchInputVal === '') ? 
-                    'يرجى النقر على إحدى الشعب أو زر "جميع الشعب" بالأعلى لعرض بيانات الطالبات.' : 
-                    'لا توجد نتائج مطابقة لعملية البحث أو الشعبة فارغة.';
+                    'يرجى النقر على أحد الصفوف أو زر "جميع الصفوف" بالأعلى لعرض بيانات الطالبات.' : 
+                    'لا توجد نتائج مطابقة لعملية البحث أو الصف فارغ.';
                 tbody.innerHTML = `<tr><td colspan="10" style="padding: 25px; opacity: 0.7;">${emptyMsg}</td></tr>`;
             }
 
@@ -2210,7 +2198,7 @@
 
             const st = students[stIndex];
             const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-            const reportMsg = `${headerInfo}📋 **التقرير الشامل لأداء الطالبه:** ${st.name} (الصف ${currentGrade} - شعبة: ${st.studentClass || ''})\n\n` +
+            const reportMsg = `${headerInfo}📋 **التقرير الشامل لأداء الطالبه:** ${st.name} (الصف ${currentGrade} - الصف: ${st.studentClass || ''})\n\n` +
                               `✋ المشاركات: ${st.participation || 0}\n` +
                               `📚 الواجبات: ${st.homework || 0}\n` +
                               `🔴 أيام الغياب: ${st.absence || 0}\n` +
@@ -2383,4 +2371,3 @@
     </script>
 </body>
 </html>
-```[cite: 1]
