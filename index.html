@@ -2370,11 +2370,11 @@
             });
 
             if (targetStudents.length === 0) {
-                alert('لا توجد طالبات لديهن أرقام جوالات مسجلة في الفئة المستهدفة.');
+                alert('لا توجد طالبات لديهن أرقام جوالات صالحة في النطاق المحدد.');
                 return;
             }
 
-            if (!confirm(`سيتم فتح روابط واتساب لـ (${targetStudents.length}) طالبه على التوالي. هل تريد المتابعة؟`)) {
+            if (!confirm(`سيتم إرسال الرسالة إلى (${targetStudents.length}) ولي أمر بالتتابع. هل تريد المتابعة؟`)) {
                 return;
             }
 
@@ -2382,34 +2382,39 @@
             let noteSection = extraNote ? `\n📌 ملاحظات وتوجيهات للمعلمة: ${extraNote}` : '';
 
             targetStudents.forEach((st, idx) => {
-                const phone = getCleanPhone(st.phone);
-                let msg = '';
-
+                let msgContent = "";
                 if (selectedVal.startsWith('lesson-')) {
                     const lIndex = parseInt(selectedVal.replace('lesson-', ''));
                     const l = lessons[lIndex];
-                    msg = `${headerInfo}عزيزي وليّ أمر الطالبه: ${st.name} (الصف ${currentGrade})\nنحيطكم علماً بأن الواجب/المهمة الخاصة بمادة العلوم هي:\n📘 ${l.chapter} - ${l.title}\n📝 التفاصيل المطلوبة: ${l.desc}${noteSection}\nنرجو الاهتمام والمتابعة وحث البطلة على إنجاز المهمة في موعدها.\nشكراً لتعاونكم المستمر.`;
+                    if (l) {
+                        msgContent = `${headerInfo}عزيزي وليّ أمر البطلة: ${st.name} (الصف ${currentGrade} - شعبة ${st.studentClass || '1'}),\nنحيطكم علماً بأن الواجب/المهمة الخاصة بمادة العلوم هي:\n📘 ${l.chapter} - ${l.title}\n📝 التفاصيل المطلوبة: ${l.desc}${noteSection}\nنرجو الاهتمام والمتابعة وحث ابنتنا على إنجاز المهمة في موعدها.\nشكراً لتعاونكم المستمر.`;
+                    }
                 } else if (selectedVal.startsWith('motiv-')) {
                     const mIndex = parseInt(selectedVal.replace('motiv-', ''));
                     const m = customMotivations[mIndex];
-                    msg = `${headerInfo}عزيزي وليّ أمر الطالبه: ${st.name} (الصف ${currentGrade})\n\n${m.text}${noteSection}\n\nشكراً لتعاونكم المستمر ودعمكم الدائم لمسيرة ابنتنا التعليمية.`;
+                    if (m) {
+                        msgContent = `${headerInfo}عزيزي وليّ أمر البطلة: ${st.name} (الصف ${currentGrade} - شعبة ${st.studentClass || '1'}),\n\n${m.text}${noteSection}\n\nشكراً لتعاونكم المستمر ودعمكم الدائم.`;
+                    }
                 }
 
-                setTimeout(() => {
-                    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+                const phone = getCleanPhone(st.phone);
+                if (phone && msgContent) {
+                    setTimeout(() => {
+                        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msgContent)}`, '_blank');
+                    }, idx * 1200);
                     st.messages = (st.messages || 0) + 1;
-                    if (idx === targetStudents.length - 1) {
-                        saveAndRefresh();
-                    }
-                }, idx * 1200);
+                }
             });
+
+            saveAndRefresh();
+            showToast(`🚀 تم بدء فتح روابط الإرسال الجماعي لـ (${targetStudents.length}) ولي أمر بنجاح!`);
         }
 
         window.onload = function() {
-            document.getElementById('curriculumTitle').textContent = `📚 دليل مقرر العلوم - الصف ${currentGrade} الابتدائي (المنهج السعودي المعتمد) وتتبع التنفيذ`;
-            renderMotivationDropdown();
             renderLessons();
+            renderMotivationDropdown();
             render();
+            renderExamsTable();
             initCharts();
         };
     </script>
