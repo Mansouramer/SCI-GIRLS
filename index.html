@@ -590,7 +590,7 @@
 
     <div class="top-banner">
         ﴿ هذا الجهد استغرق وقتاً وعناية، ولا أحلل نقله تجارياً أو نسخه دون إذن ﴾<br>
-        للتواصل والاتصال عبر واتساب: <a href="https://wa.me/966581015002" target="_blank" style="color: #ffff00; text-decoration: underline;">0581015002</a>
+        للتواصل والاتصال عبر واتساب: <a href="https://wa.me/966581015002" target="_blank" style="color: #ffff00; text-decoration: underline;">0581015002</a>[cite: 1]
     </div>
 
     <div class="header">
@@ -715,7 +715,6 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7">7</option>
-                    <option value="8">8</option>
                 </select>
                 <input type="text" id="studentClassCustom" placeholder="أو كتابة صف آخر..." style="max-width: 160px;">
                 <input type="tel" id="studentPhone" placeholder="رقم جوال ولي الأمر (مثال: 05xxxxxxx)">
@@ -786,7 +785,6 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7">7</option>
-                    <option value="8">8</option>
                 </select>
                 <button class="btn-print" onclick="printExamsAnalysisReport()" style="display: none;" id="printExamsBtn">🖨️ طباعة تقرير تحليل النتائج</button>
             </div>
@@ -886,28 +884,9 @@
                     <h5>✨ إرسال رسائل تشجيعية وشكر وتقدير</h5>
                     <div class="form-row">
                         <select id="selectMotivation" onchange="updateMotivationMsg()">
-                            <optgroup label="🌟 التميز العلمي والمشاركة الفعالة">
-                                <option value="1">1. عالمة المستقبل / باحثة متميزة</option>
-                                <option value="2">2. تفوق ملحوظ في التجارب العلمية والاستقصاء</option>
-                                <option value="3">3. دقة وإتقان في المفاهيم والمصطلحات العلمية</option>
-                                <option value="4">4. مشاركة نشطة وفعالة في حصة العلوم</option>
-                                <option value="5">5. حصيلة علمية واستكشافية ممتازة</option>
-                            </optgroup>
-                            <optgroup label="📚 الواجبات والأنظمة الصفية">
-                                <option value="6">6. تنظيم رائع للبيانات العلمية وواجبات مرتبة بدقة</option>
-                                <option value="7">7. حل ممتاز للتمارين والأنشطة العلمية</option>
-                                <option value="8">8. اهتمام رائع بالملاحظة والاستنتاج العلمي</option>
-                                <option value="9">9. مشروع علمي متميز ومبتكر ومتقن</option>
-                                <option value="10">10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم</option>
-                            </optgroup>
-                            <optgroup label="🤝 شراكة ولي الأمر والتقدير">
-                                <option value="11">11. شراكة منزلية مثمرة ومباركة</option>
-                                <option value="12">12. متابعة منزلية واعية ومتميزة</option>
-                                <option value="13">13. أخلاق عالية وأدب جم وتركيز متميز</option>
-                                <option value="14">14. دعم مستمر وجهد مشكور من البيت</option>
-                                <option value="15">15. مستقبل واعد وطالبه مجتهدة بإذن الله</option>
-                            </optgroup>
+                            <option value="">-- اختر أو أضف رسالة تشجيعية --</option>
                         </select>
+                        <button class="btn-info" type="button" onclick="addNewMotivationModal()">➕ إضافة رسالة جديدة</button>
                     </div>
                     <div id="motivationMsgPreview" class="preview-msg">اختر الرسالة لعرض نص الشكر والتحفيز...</div>
                     <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
@@ -952,8 +931,8 @@
         </div>
 
         <div class="footer-note">
-            ﴿ هذا الجهد استغرق وقتاً وعناية، ولا أحلل نقله تجارياً أو نسخه دون إذن ﴾<br>
-            للتواصل واتساب: <a href="https://wa.me/966581015002" target="_blank" style="color: inherit; text-decoration: underline;">0581015002</a>
+            ﴿ هذا الجهد استغرق وقتاً وعناية، ولا أحلل نقله تجارياً أو نسخه دون إذن ﴾[cite: 1]<br>
+            للتواصل واتساب: <a href="https://wa.me/966581015002" target="_blank" style="color: inherit; text-decoration: underline;">0581015002</a>[cite: 1]
         </div>
 
     </div>
@@ -1041,6 +1020,24 @@
             ]
         };
 
+        const defaultMotivationTemplates = {
+            "1": "🌟 **عالمة المستقبل المتميزة** 🌟\nعزيزي وليّ الأمر، نفخر اليوم بتميز ابنتكم وتألقها في حصة العلوم بمشاركتها الفعالة واستقصائها العلمي الرائع. بوركت جهودكم!",
+            "2": "🔬 **تفوق ملحوظ في التجارب العلمية** 🔬\nعزيزي وليّ الأمر، أظهرت ابنتكم اليوم مهارات استكشافية ممتازة وتفكيراً علمياً عميقاً أثناء تنفيذ التجارب. أحسنت صنعاً!",
+            "3": "📊 **دقة وإتقان في المفاهيم والمصطلحات** 📊\nعزيزي وليّ الأمر، تميزت ابنتكم اليوم بمهارات علمية دقيقة وفهم عميق للأنظمة والمفاهيم. بارك الله في جهودها!",
+            "4": "✋ **مشاركة نشطة وتفاعل علمي متميز** ✋\nعزيزي وليّ الأمر، تميزت ابنتكم اليوم بحرصها العالي ومشاركتها النشطة وإجاباتها الموفقة داخل المعمل والفصل.",
+            "5": "🧠 **حصيلة علمية واستكشافية ممتازة** 🧠\nعزيزي وليّ الأمر، أبدعت ابنتكم اليوم في التفكير الناقد وتوظيف المصطلحات العلمية بشكل دقيق. مبروك لها!",
+            "6": "📝 **تنظيم رائع للبيانات وواجبات مرتبة** 📝\nعزيزي وليّ الأمر، نشكر لكم متابعتكم المنزلية الواعية. لقد كان واجب ابنتكم اليوم منظماً، دقيقاً، وخطها في غاية الجمال والترتيب.",
+            "7": "✍️ **حل ممتاز للتمارين والأنشطة العلمية** ⑦\nعزيزي وليّ الأمر، تميز أداء ابنتكم اليوم بحل التدريبات العلمية بدقة عالية وفهم عميق. دمتِ ممتازة يا بطلة!",
+            "8": "📚 **اهتمام رائع بالملاحظة والاستنتاج** ⑧\nعزيزي وليّ الأمر، أظهرت ابنتكم اليوم شغفاً واهتماماً لافتاً بالملاحظة العلمية واستنباط النتائج.",
+            "9": "🛠️ **مشروع علمي متميز ومبتكر ومتقن** ⑨\nعزيزي وليّ الأمر، قدمت ابنتكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية.",
+            "10": "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم** ⑩\nعزيزي وليّ الأمر، إن حرص ابنتكم المستمر على التميز والتعلم في مادة العلوم محل تقديرنا الدائم.",
+            "11": "🤝 **شراكة منزلية مثمرة ومباركة** ⑪\nعزيزي وليّ الأمر، شكراً لتعاونكم المستمر ومتابعتكم الرائعة التي تظهر جلياً في تفوق ابنتكم وتألقها.",
+            "12": "🏡 **متابعة منزلية واعية ومتميزة** ⑫\nعزيزي وليّ الأمر، إن اهتمامكم الدائم بمراجعة الدروس لابنتكم يثمر يوماً بعد يوم عن نتائج رائعة ومشرقة.",
+            "13": "🏅 **أخلاق عالية وأدب جم وتركيز متميز** ⑬\nعزيزي وليّ الأمر، ابنتكم نموذج مشرف في حسن الخلق، والهدوء، والتركيز العالي، واحترام المعلمة والزميلات.",
+            "14": "🌱 **جهد مبارك ودعم مستمر** ⑭\nعزيزي وليّ الأمر، نشكر لكم تشجيعكم المستمر لابنتكم، معاً نصنع لها مستقبلاً مشرقاً في مسار العلوم.",
+            "15": "🚀 **مستقبل واعد وطالبه مجتهدة** ⑮\nعزيزي وليّ الأمر، بمثل هذا الاجتهاد والأدب الرفيع، نتوقع لابنتكم مستقبلاً باهراً بإذن الله!"
+        };
+
         function getStorageKeyForLessons() {
             return 'awwal_custom_lessons_science_' + currentGrade + '_v3';
         }
@@ -1053,9 +1050,37 @@
             return 'awwal_lesson_status_science_' + currentGrade + '_v3';
         }
 
+        function getStorageKeyForMotivations() {
+            return 'awwal_custom_motivations_v1';
+        }
+
         let lessons = JSON.parse(localStorage.getItem(getStorageKeyForLessons())) || gradeLessonsData[currentGrade];
         let students = JSON.parse(localStorage.getItem(getStorageKeyForStudents())) || [];
         let lessonStatus = JSON.parse(localStorage.getItem(getStorageKeyForStatus())) || {};
+        let motivationTemplates = JSON.parse(localStorage.getItem(getStorageKeyForMotivations())) || defaultMotivationTemplates;
+
+        function renderMotivationDropdown() {
+            const select = document.getElementById('selectMotivation');
+            select.innerHTML = '<option value="">-- اختر رسالة التشجيع المناسبة --</option>';
+            for (const [key, val] of Object.entries(motivationTemplates)) {
+                // استخراج العنوان الأول للرسالة كعنوان في القائمة المنسدلة
+                const firstLine = val.split('\n')[0].replace(/\*\*/g, '');
+                select.innerHTML += `<option value="${key}">${firstLine}</option>`;
+            }
+        }
+
+        function addNewMotivationModal() {
+            const customTitle = prompt("أدخل عنوان رسالة التشجيع (مثلاً: 🌟 تشجيع خاص بالتميز):");
+            if (!customTitle) return;
+            const customBody = prompt("أدخل نص الرسالة التشجيعية:");
+            if (!customBody) return;
+
+            const newKey = 'custom_' + Date.now();
+            motivationTemplates[newKey] = `${customTitle}\n${customBody}`;
+            localStorage.setItem(getStorageKeyForMotivations(), JSON.stringify(motivationTemplates));
+            renderMotivationDropdown();
+            showToast('✨ تم إضافة رسالة التشجيع بنجاح!');
+        }
 
         function changeGradeLevel(grade) {
             currentGrade = grade;
@@ -1943,7 +1968,7 @@
             
             const currentBulkTarget = bulkTargetSelect.value;
             
-            const defaultClasses = ["1", "2", "3", "4", "5", "6", "7", "8"];
+            const defaultClasses = ["1", "2", "3", "4", "5", "6", "7"];
             const existingClasses = students.map(s => s.studentClass || '1');
             const allClasses = [...new Set([...defaultClasses, ...existingClasses])].filter(c => c && c.trim() !== "");
             
@@ -2346,27 +2371,10 @@
 
         window.onload = function() {
             document.getElementById('curriculumTitle').textContent = `📚 دليل مقرر العلوم - الصف ${currentGrade} الابتدائي (المنهج السعودي المعتمد) وتتبع التنفيذ`;
+            renderMotivationDropdown();
             renderLessons();
             render();
             initCharts();
-        };
-
-        const motivationTemplates = {
-            "1": "🌟 **عالمة المستقبل المتميزة** 🌟\nعزيزي وليّ الأمر، نفخر اليوم بتميز ابنتكم وتألقها في حصة العلوم بمشاركتها الفعالة واستقصائها العلمي الرائع. بوركت جهودكم!",
-            "2": "🔬 **تفوق ملحوظ في التجارب العلمية** 🔬\nعزيزي وليّ الأمر، أظهرت ابنتكم اليوم مهارات استكشافية ممتازة وتفكيراً علمياً عميقاً أثناء تنفيذ التجارب. أحسنت صنعاً!",
-            "3": "📊 **دقة وإتقان في المفاهيم والمصطلحات** 📊\nعزيزي وليّ الأمر، تميزت ابنتكم اليوم بمهارات علمية دقيقة وفهم عميق للأنظمة والمفاهيم. بارك الله في جهودها!",
-            "4": "✋ **مشاركة نشطة وتفاعل علمي متميز** ✋\nعزيزي وليّ الأمر، تميزت ابنتكم اليوم بحرصها العالي ومشاركتها النشطة وإجاباتها الموفقة داخل المعمل والفصل.",
-            "5": "🧠 **حصيلة علمية واستكشافية ممتازة** 🧠\nعزيزي وليّ الأمر، أبدعت ابنتكم اليوم في التفكير الناقد وتوظيف المصطلحات العلمية بشكل دقيق. مبروك لها!",
-            "6": "📝 **تنظيم رائع للبيانات وواجبات مرتبة** 📝\nعزيزي وليّ الأمر، نشكر لكم متابعتكم المنزلية الواعية. لقد كان واجب ابنتكم اليوم منظماً، دقيقاً، وخطها في غاية الجمال والترتيب.",
-            "7": "✍️ **حل ممتاز للتمارين والأنشطة العلمية** ⑦\nعزيزي وليّ الأمر، تميز أداء ابنتكم اليوم بحل التدريبات العلمية بدقة عالية وفهم عميق. دمتِ ممتازة يا بطلة!",
-            "8": "📚 **اهتمام رائع بالملاحظة والاستنتاج** ⑧\nعزيزي وليّ الأمر، أظهرت ابنتكم اليوم شغفاً واهتماماً لافتاً بالملاحظة العلمية واستنباط النتائج.",
-            "9": "🛠️ **مشروع علمي متميز ومبتكر ومتقن** ⑨\nعزيزي وليّ الأمر، قدمت ابنتكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية.",
-            "10": "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم** ⑩\nعزيزي وليّ الأمر، إن حرص ابنتكم المستمر على التميز والتعلم في مادة العلوم محل تقديرنا الدائم.",
-            "11": "🤝 **شراكة منزلية مثمرة ومباركة** ⑪\nعزيزي وليّ الأمر، شكراً لتعاونكم المستمر ومتابعتكم الرائعة التي تظهر جلياً في تفوق ابنتكم وتألقها.",
-            "12": "🏡 **متابعة منزلية واعية ومتميزة** ⑫\nعزيزي وليّ الأمر، إن اهتمامكم الدائم بمراجعة الدروس لابنتكم يثمر يوماً بعد يوم عن نتائج رائعة ومشرقة.",
-            "13": "🏅 **أخلاق عالية وأدب جم وتركيز متميز** ⑬\nعزيزي وليّ الأمر، ابنتكم نموذج مشرف في حسن الخلق، والهدوء، والتركيز العالي، واحترام المعلمة والزميلات.",
-            "14": "🌱 **جهد مبارك ودعم مستمر** ⑭\nعزيزي وليّ الأمر، نشكر لكم تشجيعكم المستمر لابنتكم، معاً نصنع لها مستقبلاً مشرقاً في مسار العلوم.",
-            "15": "🚀 **مستقبل واعد وطالبه مجتهدة** ⑮\nعزيزي وليّ الأمر، بمثل هذا الاجتهاد والأدب الرفيع، نتوقع لابنتكم مستقبلاً باهراً بإذن الله!"
         };
     </script>
 </body>
