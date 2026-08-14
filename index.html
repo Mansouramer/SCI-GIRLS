@@ -138,11 +138,6 @@
         }
 
         .theme-btn:hover { transform: scale(1.2); }
-        .btn-theme-default { background: linear-gradient(135deg, #34d399, #059669); border-color: #065f46; }
-        .btn-theme-royal { background: linear-gradient(135deg, #7e22ce, #581c87); border-color: #f3e8ff; }
-        .btn-theme-emerald { background: linear-gradient(135deg, #064e3b, #047857); border-color: #d1fae5; }
-        .btn-theme-amber { background: linear-gradient(135deg, #fbbf24, #d97706); border-color: #fffbeb; }
-        .btn-theme-blue { background: linear-gradient(135deg, #60a5fa, #2563eb); border-color: #1e3a8a; }
 
         .container { max-width: 1200px; margin: 0 auto; }
 
@@ -543,7 +538,6 @@
             line-height: 1.8;
         }
 
-        /* تنسيقات زر العودة للأعلى والدعم الفني السريع */
         .floating-action-buttons {
             position: fixed;
             bottom: 25px;
@@ -576,14 +570,8 @@
             opacity: 1;
         }
 
-        .float-whatsapp {
-            background: #25D366;
-        }
-
-        .float-top {
-            background: var(--primary);
-            display: none;
-        }
+        .float-whatsapp { background: #25D366; }
+        .float-top { background: var(--primary); display: none; }
     </style>
 </head>
 <body class="theme-default">
@@ -610,7 +598,7 @@
     </div>
 
     <div class="container">
-        <!-- القائمة المنسدلة لاختيار المرحلة/الصف الدراسي -->
+        <!-- اختيار الصف الدراسي -->
         <div class="section-card" style="background: linear-gradient(135deg, rgba(5,150,105,0.05), rgba(4,120,87,0.1)); border: 2px solid var(--secondary);">
             <h3 style="margin-bottom: 10px;">📌 اختر الصف الدراسي للمتابعة</h3>
             <div class="form-row" style="margin-bottom: 0;">
@@ -658,12 +646,13 @@
             </div>
         </div>
 
-        <!-- قسم التحليل الذكي ومؤشرات الأداء المتقدمة -->
+        <!-- لوحة التحليل الذكي مع زر الطباعة -->
         <div class="section-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
                 <h3 style="margin: 0; border: none; padding: 0;">🧠 لوحة التحليل الذكي ومؤشرات الأداء الأكاديمي</h3>
-                <button class="btn-print" onclick="printIntelligenceAnalysisReport()">🖨️ طباعة تقرير التحليل الذكي</button>
+                <button class="btn-print" onclick="printAnalyticsReport()">🖨️ طباعة تقرير التحليل الذكي الشامل</button>
             </div>
+
             <div class="student-details" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 20px;">
                 <div class="detail-item">
                     <span>🏆 نسبة إنجاز المنهج العام</span>
@@ -683,7 +672,6 @@
                 </div>
             </div>
 
-            <!-- قائمة منسدلة خاصة بالطالبات بحاجة لدعم عاجل -->
             <div class="sub-box" style="margin-top: 15px; border-color: var(--danger);">
                 <h5 style="color: var(--danger);">⚠️ قائمة طالبات بحاجة لدعم عاجل (أقل من 60% أو تحصيل منخفض)</h5>
                 <div class="form-row" style="margin-bottom: 0;">
@@ -703,24 +691,21 @@
             </div>
         </div>
 
-        <!-- تسجيل الطالبات والصفوف والجدول -->
+        <!-- تسجيل الطالبات والصفوف والجدول (إضافة وتحكم المعلمة الكاملة بالصفوف) -->
         <div class="section-card">
-            <h3>✏️ تسجيل طالبات الصفوف الدراسية ومتابعتهن</h3>
+            <h3>✏️ تسجيل طالبات الصفوف ومتابعتهن</h3>
             
             <div class="form-row">
                 <input type="text" id="studentName" placeholder="اسم الطالبه (Student Name)">
-                <select id="studentClassSelect">
-                    <option value="">-- اختر الصف/الشعبة --</option>
-                    <option value="1">1</option>
-                </select>
-                <input type="text" id="studentClassCustom" placeholder="أو كتابة صف/شعبة جديدة..." style="max-width: 180px;">
+                <div style="display: flex; gap: 5px; flex: 1; min-width: 220px;">
+                    <input type="text" id="studentClassCustom" placeholder="اكتب الصف/الشعبة (مثال: أول ابتدائي أ)">
+                </div>
                 <input type="tel" id="studentPhone" placeholder="رقم جوال ولي الأمر (مثال: 05xxxxxxx)">
                 <button onclick="addStudent()">➕ إضافة طالبه</button>
             </div>
 
-            <!-- أزرار استعلام الصفوف التفاعلية مع زر الطباعة وزر الحذف المخصص لكل صف -->
             <div style="margin-top: 20px;">
-                <span style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 8px;">🏫 استعلام الصفوف (اضغط على الصف لعرضه، أو استخدم زر الطباعة 🖨️ لطباعة تقرير الصف شامل بيانات المدرسة والمعلمة):</span>
+                <span style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 8px;">🏫 تصفح الصفوف (اضغط على الصف لعرضه، أو استخدم زر الطباعة 🖨️ لطباعة تقرير الصف شامل بيانات المدرسة والمعلمة):</span>
                 <div id="classesQueryContainer" class="classes-query-grid"></div>
             </div>
 
@@ -734,7 +719,7 @@
                     <thead>
                         <tr>
                             <th>اسم الطالبه</th>
-                            <th>🏫 الصف</th>
+                            <th>🏫 الصف/الشعبة</th>
                             <th>📱 رقم الجوال</th>
                             <th>🔴 الغياب</th>
                             <th>✋ المشاركة</th>
@@ -774,8 +759,7 @@
             <h3>📊 رصد وتحليل اختبارات الفترة الأولى والفترة الثانية (من ٢٠) 📝</h3>
             <div class="form-row">
                 <select id="examClassSelect" onchange="renderExamsTable()">
-                    <option value="">-- اختر الصف الدراسي لعرض وسجل الاختبارات --</option>
-                    <option value="1">1</option>
+                    <option value="">-- اختر الصف/الشعبة لعرض وسجل الاختبارات --</option>
                 </select>
                 <button class="btn-print" onclick="printExamsAnalysisReport()" style="display: none;" id="printExamsBtn">🖨️ طباعة تقرير تحليل النتائج</button>
             </div>
@@ -799,14 +783,14 @@
                     <thead>
                         <tr>
                             <th>اسم الطالبه</th>
-                            <th>🏫 الصف</th>
+                            <th>🏫 الصف/الشعبة</th>
                             <th>📝 اختبار الفترة الأولى (من 20)</th>
                             <th>📝 اختبار الفترة الثانية (من 20)</th>
                             <th>📤 إرسال النتيجة لولي الأمر</th>
                         </tr>
                     </thead>
                     <tbody id="examsTbody">
-                        <tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الصف الدراسي من القائمة أعلاه لعرض رصد وااختبارات الطالبات.</td></tr>
+                        <tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الصف الدراسي من القائمة أعلاه لعرض رصد واختبارات الطالبات.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -853,10 +837,9 @@
                     </div>
                 </div>
 
-                <!-- أزرار الإجراءات والطباعة السريعة -->
                 <div class="form-row" style="margin-top: 15px;">
                     <button class="btn-print" onclick="printStudentReport()">🖨️ طباعة تقرير الطالبه الرسمي</button>
-                    <button class="whatsapp-btn" onclick="sendFullReportWhatsApp()" style="border: none; cursor: pointer; margin-top: 0;">📤 إرسال التقرير الشامل لولي الأمر عبر واتساب 📱</button>
+                    <button class="whatsapp-btn" onclick="sendFullReportWhatsApp()" style="border: none; cursor: pointer; margin-top: 0;">📤 إرسال التقرير الشامل لولي الأمر عبر واتساب</button>
                 </div>
 
                 <div class="sub-box">
@@ -868,7 +851,7 @@
                         </select>
                     </div>
                     <div id="lessonMsgPreview" class="preview-msg">اختر موضوع الدرس والمهارة أعلاه لتوليد نص الرسالة تلقائياً...</div>
-                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn" onclick="incrementMessageCount()">📲 إرسال مباشر لولي الأمر 📱</a>
+                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn" onclick="incrementMessageCount()">📲 إرسال مباشر لولي الأمر</a>
                 </div>
 
                 <div class="sub-box">
@@ -879,7 +862,6 @@
                         </select>
                     </div>
                     
-                    <!-- إضافة رسالة تشجيعية جديدة بواسطة المعلمة -->
                     <div class="form-row" style="margin-top: 10px; background: rgba(5, 150, 105, 0.05); padding: 10px; border-radius: 6px;">
                         <input type="text" id="newMotivationTitle" placeholder="عنوان الرسالة (مثال: تفوق عالي)..." style="max-width: 220px;">
                         <input type="text" id="newMotivationText" placeholder="اكتب نص الرسالة التشجيعية الجديدة هنا...">
@@ -887,7 +869,7 @@
                     </div>
 
                     <div id="motivationMsgPreview" class="preview-msg">اختر الرسالة لعرض نص الشكر والتحفيز...</div>
-                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع المختارة لولي الأمر 📱</a>
+                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
                 </div>
             </div>
         </div>
@@ -898,7 +880,7 @@
             <div class="sub-box" style="margin-top: 0;">
                 <div class="form-row">
                     <select id="bulkTargetClass">
-                        <option value="ALL">جميع الصفوف</option>
+                        <option value="ALL">جميع الصفوف والشعب</option>
                     </select>
                     <select id="bulkSelectLesson" onchange="updateBulkMsgPreview()">
                         <option value="">-- اختر الدرس أو الرسالة التشجيعية المراد إرسالها --</option>
@@ -908,7 +890,7 @@
                     <input type="text" id="bulkExtraNote" placeholder="اكتب ملاحظات إضافية هنا (مثل: إحضار أدوات التجربة، أو حل التمارين صفحة...)" oninput="updateBulkMsgPreview()">
                 </div>
                 <div id="bulkMsgPreview" class="preview-msg">اختر الصف والدرس أو الرسالة التشجيعية وأدخل الملاحظات لعرض نموذج الرسالة الجماعية...</div>
-                <button class="whatsapp-btn" onclick="sendBulkWhatsApp()" style="border: none; cursor: pointer; font-size: 15px;">🚀 إرسال جماعي عبر واتساب (فتح الروابط بالتتابع) 📱</button>
+                <button class="whatsapp-btn" onclick="sendBulkWhatsApp()" style="border: none; cursor: pointer; font-size: 15px;">🚀 إرسال جماعي عبر واتساب (فتح الروابط بالتتابع)</button>
             </div>
         </div>
 
@@ -935,7 +917,7 @@
 
     </div>
 
-    <!-- الأزرار العائمة (العودة للأعلى وتواصل الدعم السريع) -->
+    <!-- الأزرار العائمة -->
     <div class="floating-action-buttons">
         <a href="https://wa.me/966581015002" target="_blank" class="float-btn float-whatsapp" title="تواصل الدعم الفني عبر واتساب">💬</a>
         <button id="scrollToTopBtn" class="float-btn float-top" onclick="scrollToTop()" title="العودة إلى أعلى الصفحة">⬆️</button>
@@ -968,12 +950,7 @@
             { id: "7", title: "7. حل ممتاز للتمارين والأنشطة العلمية", text: "✍️ **حل ممتاز للتمارين والأنشطة العلمية**\nعزيزي وليّ الأمر، تميز أداء ابنتكم اليوم بحل التدريبات العلمية بدقة عالية وفهم عميق. دمتِ ممتازة يا بطلة!" },
             { id: "8", title: "8. اهتمام رائع بالملاحظة والاستنتاج العلمي", text: "📚 **اهتمام رائع بالملاحظة والاستنتاج**\nعزيزي وليّ الأمر، أظهرت ابنتكم اليوم شغفاً واهتماماً لافتاً بالملاحظة العلمية واستنباط النتائج." },
             { id: "9", title: "9. مشروع علمي متميز ومبتكر ومتقن", text: "🛠️ **مشروع علمي متميز ومبتكر ومتقن**\nعزيزي وليّ الأمر، قدمت ابنتكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية." },
-            { id: "10", title: "10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم", text: "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم**\nعزيزي وليّ الأمر، إن حرص ابنتكم المستمر على التميز والتعلم في مادة العلوم محل تقديرنا الدائم." },
-            { id: "11", title: "11. شراكة منزلية مثمرة ومباركة", text: "🤝 **شراكة منزلية مثمرة ومباركة**\nعزيزي وليّ الأمر، شكراً لتعاونكم المستمر ومتابعتكم الرائعة التي تظهر جلياً في تفوق ابنتكم وتألقها." },
-            { id: "12", title: "12. متابعة منزلية واعية ومتميزة", text: "🏡 **متابعة منزلية واعية ومتميزة**\nعزيزي وليّ الأمر، إن اهتمامكم الدائم بمراجعة الدروس لابنتكم يثمر يوماً بعد يوم عن نتائج رائعة ومشرقة." },
-            { id: "13", title: "13. أخلاق عالية وأدب جم وتركيز متميز", text: "🏅 **أخلاق عالية وأدب جم وتركيز متميز**\nعزيزي وليّ الأمر، ابنتكم نموذج مشرف في حسن الخلق، والهدوء، والتركيز العالي، واحترام المعلمة والزميلات." },
-            { id: "14", title: "14. دعم مستمر وجهد مشكور من البيت", text: "🌱 **جهد مبارك ودعم مستمر**\nعزيزي وليّ الأمر، نشكر لكم تشجيعكم المستمر لابنتكم، معاً نصنع لها مستقبلاً مشرقاً في مسار العلوم." },
-            { id: "15", title: "15. مستقبل واعد وطالبه مجتهدة بإذن الله", text: "🚀 **مستقبل واعد وطالبه مجتهدة**\nعزيزي وليّ الأمر، بمثل هذا الاجتهاد والأدب الرفيع، نتوقع لابنتكم مستقبلاً باهراً بإذن الله!" }
+            { id: "10", title: "10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم", text: "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم**\nعزيزي وليّ الأمر، إن حرص ابنتكم المستمر على التميز والتعلم في مادة العلوم محل تقديرنا الدائم." }
         ];
 
         let customMotivations = JSON.parse(localStorage.getItem('awwal_custom_motivations_v3')) || defaultMotivations;
@@ -1038,17 +1015,9 @@
             ]
         };
 
-        function getStorageKeyForLessons() {
-            return 'awwal_custom_lessons_science_' + currentGrade + '_v3';
-        }
-
-        function getStorageKeyForStudents() {
-            return 'awwal_students_science_' + currentGrade + '_v3';
-        }
-
-        function getStorageKeyForStatus() {
-            return 'awwal_lesson_status_science_' + currentGrade + '_v3';
-        }
+        function getStorageKeyForLessons() { return 'awwal_custom_lessons_science_' + currentGrade + '_v3'; }
+        function getStorageKeyForStudents() { return 'awwal_students_science_' + currentGrade + '_v3'; }
+        function getStorageKeyForStatus() { return 'awwal_lesson_status_science_' + currentGrade + '_v3'; }
 
         let lessons = JSON.parse(localStorage.getItem(getStorageKeyForLessons())) || gradeLessonsData[currentGrade];
         let students = JSON.parse(localStorage.getItem(getStorageKeyForStudents())) || [];
@@ -1088,13 +1057,9 @@
             students[index][field] = Math.max(0, (students[index][field] || 0) + value);
             
             const cellElement = document.getElementById(`val-${index}-${field}`);
-            if (cellElement) {
-                cellElement.textContent = students[index][field];
-            }
+            if (cellElement) cellElement.textContent = students[index][field];
 
-            if (String(selectedStudentIndex) === String(index)) {
-                loadStudentDetails();
-            }
+            if (String(selectedStudentIndex) === String(index)) loadStudentDetails();
 
             updateHeaderStats();
             updateCharts();
@@ -1122,7 +1087,7 @@
             }
 
             const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-            const msg = `${headerInfo}📋 **نتيجة اختبارات مادة العلوم - الصف ${currentGrade}**\nالطالبه: ${st.name} (شعبة/رقم ${st.studentClass || ''})\n\n` +
+            const msg = `${headerInfo}📋 **نتيجة اختبارات مادة العلوم - الصف ${currentGrade}**\n👧 الطالبه: ${st.name} (الصف/الشعبة: ${st.studentClass || ''})\n\n` +
                           `📝 اختبار الفترة الأولى: **${st.exam1 !== undefined ? st.exam1 : '-'} / 20**\n` +
                           `📝 اختبار الفترة الثانية: **${st.exam2 !== undefined ? st.exam2 : '-'} / 20**\n\n` +
                           `شكراً لمتابعتكم المستمرة ودعمكم الدائم لمسيرة ابنتنا التعليمية.`;
@@ -1140,16 +1105,16 @@
             const printBtn = document.getElementById('printExamsBtn');
 
             if (!selectedCls) {
-                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الشعبة/الصف من القائمة أعلاه لعرض رصد واختبارات الطالبات.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الصف/الشعبة من القائمة أعلاه لعرض رصد واختبارات الطالبات.</td></tr>`;
                 analysisBox.style.display = 'none';
                 printBtn.style.display = 'none';
                 return;
             }
 
-            const classStudents = students.map((st, idx) => ({ st, originalIndex: idx })).filter(item => (item.st.studentClass || '1') === selectedCls);
+            const classStudents = students.map((st, idx) => ({ st, originalIndex: idx })).filter(item => (item.st.studentClass || 'الشعبة الأولى') === selectedCls);
 
             if (classStudents.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">لا توجد طالبات مسجلات في هذه الشعبة حالياً.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; opacity: 0.7;">لا توجد طالبات مسجلات في هذا الصف/الشعبة حالياً.</td></tr>`;
                 analysisBox.style.display = 'none';
                 printBtn.style.display = 'none';
                 return;
@@ -1164,26 +1129,16 @@
                 const e1 = st.exam1 !== undefined ? st.exam1 : '';
                 const e2 = st.exam2 !== undefined ? st.exam2 : '';
 
-                if (st.exam1 !== undefined && st.exam1 !== '') {
-                    sum1 += Number(st.exam1);
-                    count1++;
-                }
-                if (st.exam2 !== undefined && st.exam2 !== '') {
-                    sum2 += Number(st.exam2);
-                    count2++;
-                }
+                if (st.exam1 !== undefined && st.exam1 !== '') { sum1 += Number(st.exam1); count1++; }
+                if (st.exam2 !== undefined && st.exam2 !== '') { sum2 += Number(st.exam2); count2++; }
 
                 tbody.innerHTML += `
                     <tr>
-                        <td><strong>${st.name}</strong></td>
+                        <td><strong>👧 ${st.name}</strong></td>
                         <td><span class="class-badge">${selectedCls}</span></td>
-                        <td>
-                            <input type="number" step="0.5" max="20" min="0" value="${e1}" onchange="updateExamScore(${i}, 'exam1', this.value)" style="width: 90px; text-align: center; display: block; margin: 0 auto;" placeholder="من 20">
-                        </td>
-                        <td>
-                            <input type="number" step="0.5" max="20" min="0" value="${e2}" onchange="updateExamScore(${i}, 'exam2', this.value)" style="width: 90px; text-align: center; display: block; margin: 0 auto;" placeholder="من 20">
-                        </td>
-                        <td><button class="whatsapp-btn" style="padding: 6px 12px; margin: 0; font-size: 13px;" onclick="sendExamWhatsApp(${i})">📤 إرسال النتيجة 📱</button></td>
+                        <td><input type="number" step="0.5" max="20" min="0" value="${e1}" onchange="updateExamScore(${i}, 'exam1', this.value)" style="width: 90px; text-align: center; display: block; margin: 0 auto;" placeholder="من 20"></td>
+                        <td><input type="number" step="0.5" max="20" min="0" value="${e2}" onchange="updateExamScore(${i}, 'exam2', this.value)" style="width: 90px; text-align: center; display: block; margin: 0 auto;" placeholder="من 20"></td>
+                        <td><button class="whatsapp-btn" style="padding: 6px 12px; margin: 0; font-size: 13px;" onclick="sendExamWhatsApp(${i})">📤 إرسال النتيجة</button></td>
                     </tr>
                 `;
             });
@@ -1200,19 +1155,13 @@
             const selectedCls = select.value;
             if (!selectedCls) return;
 
-            const classStudents = students.filter(s => (s.studentClass || '1') === selectedCls);
+            const classStudents = students.filter(s => (s.studentClass || 'الشعبة الأولى') === selectedCls);
             if (classStudents.length === 0) return;
 
             let sum1 = 0, sum2 = 0, count1 = 0, count2 = 0;
             classStudents.forEach(st => {
-                if (st.exam1 !== undefined && st.exam1 !== '') {
-                    sum1 += Number(st.exam1);
-                    count1++;
-                }
-                if (st.exam2 !== undefined && st.exam2 !== '') {
-                    sum2 += Number(st.exam2);
-                    count2++;
-                }
+                if (st.exam1 !== undefined && st.exam1 !== '') { sum1 += Number(st.exam1); count1++; }
+                if (st.exam2 !== undefined && st.exam2 !== '') { sum2 += Number(st.exam2); count2++; }
             });
 
             const avg1 = count1 > 0 ? (sum1 / count1).toFixed(1) + ' / 20' : '0 / 20';
@@ -1241,20 +1190,17 @@
                     <h2>المملكة العربية السعودية</h2>
                     <h3>وزارة التعليم</h3>
                     <h3 style="color: #059669;">${SCHOOL_NAME}</h3>
-                    <h4 style="margin-top: 5px;">تقرير تحليل نتائج اختبارات الفترة الأولى والفترة الثانية - الصف ${currentGrade} (شعبة: ${selectedCls})</h4>
+                    <h4 style="margin-top: 5px;">تقرير تحليل نتائج اختبارات الفترة الأولى والفترة الثانية - الصف ${currentGrade} (الشعبة/الصف: ${selectedCls})</h4>
                     <p style="margin: 5px 0 0 0; font-size: 14px;">مادة العلوم</p>
                 </div>
-
                 <div class="meta-row">
                     <div><strong>معلمة المادة:</strong> ${TEACHER_NAME}</div>
                     <div><strong>تاريخ التقرير:</strong> ${dateStr}</div>
                 </div>
-
                 <div class="stats-box">
                     <div><strong>متوسط الفترة الأولى:</strong><br>${avg1}</div>
                     <div><strong>متوسط الفترة الثانية:</strong><br>${avg2}</div>
                 </div>
-
                 <table>
                     <thead>
                         <tr>
@@ -1270,74 +1216,18 @@
             classStudents.forEach((st, idx) => {
                 const e1Str = st.exam1 !== undefined && st.exam1 !== '' ? st.exam1 + ' / 20' : '-';
                 const e2Str = st.exam2 !== undefined && st.exam2 !== '' ? st.exam2 + ' / 20' : '-';
-
-                printWindow.document.write(`
-                    <tr>
-                        <td>${idx + 1}</td>
-                        <td class="text-right"><strong>${st.name}</strong></td>
-                        <td>${e1Str}</td>
-                        <td>${e2Str}</td>
-                    </tr>
-                `);
+                printWindow.document.write(`<tr><td>${idx + 1}</td><td class="text-right"><strong>👧 ${st.name}</strong></td><td>${e1Str}</td><td>${e2Str}</td></tr>`);
             });
 
-            printWindow.document.write(`
-                    </tbody>
-                </table>
-
-                <div class="signatures">
-                    <div>
-                        <p><strong>معلمة المادة:</strong> ${TEACHER_NAME}</p>
-                        <p><strong>التوقيع:</strong> ....................................</p>
-                    </div>
-                    <div style="text-align: left;">
-                        <p><strong>مديرة المدرسة:</strong> ....................................</p>
-                        <p><strong>التوقيع والختم:</strong> ....................................</p>
-                    </div>
-                </div>
-            `);
-
-            printWindow.document.write('</body></html>');
+            printWindow.document.write(`</tbody></table><div class="signatures"><div><p><strong>معلمة المادة:</strong> ${TEACHER_NAME}</p><p><strong>التوقيع:</strong> ....................................</p></div><div style="text-align: left;"><p><strong>مديرة المدرسة:</strong> ....................................</p><p><strong>التوقيع والختم:</strong> ....................................</p></div></div></body></html>`);
             printWindow.document.close();
             printWindow.focus();
             setTimeout(function () { printWindow.print(); }, 1000);
         }
 
-        function printIntelligenceAnalysisReport() {
+        function printAnalyticsReport() {
             const now = new Date();
             const dateStr = now.toLocaleDateString('ar-SA') + ' هـ';
-
-            let excellentCount = 0, mediumCount = 0, atRiskCount = 0;
-            let sumExam1 = 0, countExam1 = 0, sumExam2 = 0, countExam2 = 0;
-
-            students.forEach((st) => {
-                if (st.exam1 !== undefined && st.exam1 !== '') {
-                    sumExam1 += Number(st.exam1);
-                    countExam1++;
-                }
-                if (st.exam2 !== undefined && st.exam2 !== '') {
-                    sumExam2 += Number(st.exam2);
-                    countExam2++;
-                }
-
-                const score1 = st.exam2 !== undefined && st.exam2 !== '' ? Number(st.exam2) : (st.exam1 !== undefined && st.exam1 !== '' ? Number(st.exam1) : null);
-                if (score1 !== null) {
-                    const percentage = (score1 / 20) * 100;
-                    if (percentage >= 85) excellentCount++;
-                    else if (percentage >= 60) mediumCount++;
-                    else {
-                        atRiskCount++;
-                    }
-                }
-            });
-
-            const avg1Val = countExam1 > 0 ? (sumExam1 / countExam1) : 0;
-            const avg2Val = countExam2 > 0 ? (sumExam2 / countExam2) : 0;
-            const executedLessonsCount = Object.values(lessonStatus).filter(val => val === true).length;
-            const curriculumProgressPercent = lessons.length > 0 ? Math.round((executedLessonsCount / lessons.length) * 100) : 0;
-            const totalEvaluated = excellentCount + mediumCount + atRiskCount;
-            const excellenceRateVal = totalEvaluated > 0 ? Math.round((excellentCount / totalEvaluated) * 100) : 0;
-            const generalAvgVal = (countExam1 > 0 || countExam2 > 0) ? ((avg1Val + avg2Val) / (countExam1 > 0 && countExam2 > 0 ? 2 : 1)).toFixed(1) + ' / 20' : '- / 20';
 
             var printWindow = window.open('', '_blank', 'height=750,width=1000');
             printWindow.document.write('<html><head><title>تقرير التحليل الذكي ومؤشرات الأداء</title>');
@@ -1346,8 +1236,7 @@
             printWindow.document.write('.header-box { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #333; padding-bottom: 15px; }');
             printWindow.document.write('h2, h3, h4 { margin: 5px 0; }');
             printWindow.document.write('.meta-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; }');
-            printWindow.document.write('.stats-box { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; background: #f3f4f6; padding: 20px; border-radius: 8px; margin-bottom: 25px; }');
-            printWindow.document.write('.stat-item { background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #ccc; text-align: center; }');
+            printWindow.document.write('.kpi-grid { display: flex; justify-content: space-around; background: #f3f4f6; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; }');
             printWindow.document.write('.signatures { margin-top: 40px; display: flex; justify-content: space-between; font-size: 14px; }');
             printWindow.document.write('</style>');
             printWindow.document.write('</head><body>');
@@ -1360,31 +1249,16 @@
                     <h4 style="margin-top: 5px;">تقرير التحليل الذكي ومؤشرات الأداء الأكاديمي - الصف ${currentGrade}</h4>
                     <p style="margin: 5px 0 0 0; font-size: 14px;">مادة العلوم</p>
                 </div>
-
                 <div class="meta-row">
                     <div><strong>معلمة المادة:</strong> ${TEACHER_NAME}</div>
                     <div><strong>تاريخ التقرير:</strong> ${dateStr}</div>
                 </div>
-
-                <div class="stats-box">
-                    <div class="stat-item">
-                        <span>🏆 نسبة إنجاز المنهج العام</span>
-                        <h3 style="color: #059669; margin: 5px 0 0 0;">${curriculumProgressPercent}%</h3>
-                    </div>
-                    <div class="stat-item">
-                        <span>🌟 نسبة الطالبات المتفوقات (أعلى من 85%)</span>
-                        <h3 style="color: #059669; margin: 5px 0 0 0;">${excellenceRateVal}%</h3>
-                    </div>
-                    <div class="stat-item">
-                        <span>⚠️ طالبات بحاجة لدعم عاجل</span>
-                        <h3 style="color: #ef4444; margin: 5px 0 0 0;">${atRiskCount} طالبة</h3>
-                    </div>
-                    <div class="stat-item">
-                        <span>📈 متوسط تحصيل اختبارات الفترات</span>
-                        <h3 style="color: #059669; margin: 5px 0 0 0;">${generalAvgVal}</h3>
-                    </div>
+                <div class="kpi-grid">
+                    <div><strong>نسبة إنجاز المنهج:</strong><br>${document.getElementById('kpiCurriculumProgress').textContent}</div>
+                    <div><strong>نسبة المتفوقات:</strong><br>${document.getElementById('kpiExcellenceRate').textContent}</div>
+                    <div><strong>طالبات بحاجة لدعم:</strong><br>${document.getElementById('kpiAtRiskCount').textContent}</div>
+                    <div><strong>متوسط التحصيل:</strong><br>${document.getElementById('kpiGeneralAvg').textContent}</div>
                 </div>
-
                 <div class="signatures">
                     <div>
                         <p><strong>معلمة المادة:</strong> ${TEACHER_NAME}</p>
@@ -1395,9 +1269,7 @@
                         <p><strong>التوقيع والختم:</strong> ....................................</p>
                     </div>
                 </div>
-            `);
-
-            printWindow.document.write('</body></html>');
+            </body></html>`);
             printWindow.document.close();
             printWindow.focus();
             setTimeout(function () { printWindow.print(); }, 1000);
@@ -1430,10 +1302,7 @@
                 type: 'pie',
                 data: {
                     labels: ['متفوقات (85%+)', 'متوسطات (60%-84%)', 'بحاجة لدعم (<60%)'],
-                    datasets: [{
-                        data: [0, 0, 0],
-                        backgroundColor: ['#10b981', '#3b82f6', '#ef4444']
-                    }]
+                    datasets: [{ data: [0, 0, 0], backgroundColor: ['#10b981', '#3b82f6', '#ef4444'] }]
                 },
                 options: {
                     responsive: true,
@@ -1449,25 +1318,13 @@
                 type: 'line',
                 data: {
                     labels: ['الفترة الأولى', 'الفترة الثانية'],
-                    datasets: [{
-                        label: 'متوسط درجات الصفوف',
-                        data: [0, 0],
-                        borderColor: '#059669',
-                        backgroundColor: 'rgba(5, 150, 105, 0.1)',
-                        fill: true,
-                        tension: 0.3
-                    }]
+                    datasets: [{ label: 'متوسط درجات الصفوف', data: [0, 0], borderColor: '#059669', backgroundColor: 'rgba(5, 150, 105, 0.1)', fill: true, tension: 0.3 }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        title: { display: true, text: 'مقارنة متوسط الفترات الدراسية', font: { family: 'Segoe UI', size: 14 } },
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, max: 20 }
-                    }
+                    plugins: { title: { display: true, text: 'مقارنة متوسط الفترات الدراسية', font: { family: 'Segoe UI', size: 14 } }, legend: { display: false } },
+                    scales: { y: { beginAtZero: true, max: 20 } }
                 }
             });
 
@@ -1485,14 +1342,8 @@
             atRiskDropdown.innerHTML = '<option value="">-- اختر طالبة من قائمة الدعم العاجل لعرض ملفها --</option>';
 
             students.forEach((st, idx) => {
-                if (st.exam1 !== undefined && st.exam1 !== '') {
-                    sumExam1 += Number(st.exam1);
-                    countExam1++;
-                }
-                if (st.exam2 !== undefined && st.exam2 !== '') {
-                    sumExam2 += Number(st.exam2);
-                    countExam2++;
-                }
+                if (st.exam1 !== undefined && st.exam1 !== '') { sumExam1 += Number(st.exam1); countExam1++; }
+                if (st.exam2 !== undefined && st.exam2 !== '') { sumExam2 += Number(st.exam2); countExam2++; }
 
                 const score1 = st.exam2 !== undefined && st.exam2 !== '' ? Number(st.exam2) : (st.exam1 !== undefined && st.exam1 !== '' ? Number(st.exam1) : null);
                 if (score1 !== null) {
@@ -1501,7 +1352,7 @@
                     else if (percentage >= 60) mediumCount++;
                     else {
                         atRiskCount++;
-                        atRiskDropdown.innerHTML += `<option value="${idx}">${st.name} (شعبة: ${st.studentClass || '1'}) - الدرجة: ${score1}/20</option>`;
+                        atRiskDropdown.innerHTML += `<option value="${idx}">👧 ${st.name} (الصف/الشعبة: ${st.studentClass || 'الشعبة الأولى'}) - الدرجة: ${score1}/20</option>`;
                     }
                 }
             });
@@ -1538,14 +1389,11 @@
                 selectedStudentIndex = index;
                 document.getElementById('studentSearchInput').value = `${students[index].name} (${students[index].studentClass || ''})`;
                 loadStudentDetails();
-                
                 document.getElementById('studentCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
 
-        function updateChartsTheme() {
-            updateCharts();
-        }
+        function updateChartsTheme() { updateCharts(); }
 
         function toggleLessonStatus(index) {
             lessonStatus[index] = !lessonStatus[index];
@@ -1558,11 +1406,7 @@
         function addNewLesson() {
             const title = document.getElementById('newLessonTitle').value.trim();
             const desc = document.getElementById('newLessonDesc').value.trim();
-
-            if (!title) {
-                alert('يرجى كتابة عنوان الوحدة أو الدرس');
-                return;
-            }
+            if (!title) { alert('يرجى كتابة عنوان الوحدة أو الدرس'); return; }
 
             lessons.push({ chapter: "إضافات المعلمة", title: title, desc: desc || 'لا توجد تفاصيل إضافية' });
             localStorage.setItem(getStorageKeyForLessons(), JSON.stringify(lessons));
@@ -1595,15 +1439,10 @@
         function addStudent() {
             const name = document.getElementById('studentName').value.trim();
             const phone = document.getElementById('studentPhone').value.trim();
-            const classSelect = document.getElementById('studentClassSelect').value;
             const classCustom = document.getElementById('studentClassCustom').value.trim();
+            const studentClass = classCustom || 'الشعبة الأولى';
 
-            const studentClass = classCustom || classSelect || '1';
-
-            if (!name) {
-                alert('الرجاء إدخال اسم الطالبه');
-                return;
-            }
+            if (!name) { alert('الرجاء إدخال اسم الطالبه'); return; }
 
             students.push({
                 id: Date.now(),
@@ -1623,7 +1462,6 @@
             document.getElementById('studentName').value = '';
             document.getElementById('studentPhone').value = '';
             document.getElementById('studentClassCustom').value = '';
-            document.getElementById('studentClassSelect').value = '';
 
             activeQueryClass = studentClass;
             currentPage = 1;
@@ -1651,39 +1489,28 @@
 
         function deleteClassStudents(className, event) {
             if (event) event.stopPropagation();
-            
-            const count = students.filter(s => (s.studentClass || '1') === className).length;
-            if (count === 0) {
-                alert(`لا توجد طالبات مسجلات في هذه الشعبة (${className}) حالياً.`);
-                return;
-            }
+            const count = students.filter(s => (s.studentClass || 'الشعبة الأولى') === className).length;
+            if (count === 0) { alert(`لا توجد طالبات مسجلات في هذا الصف/الشعبة (${className}) حالياً.`); return; }
 
-            if (confirm(`⚠️ تحذير: هل أنت متأكد من حذف جميع طالبات الشعبة (${className}) وعددهم (${count}) طالبه؟ لا يمكن التراجع عن هذا الإجراء.`)) {
-                students = students.filter(s => (s.studentClass || '1') !== className);
-                if (activeQueryClass === className) {
-                    activeQueryClass = '';
-                }
+            if (confirm(`⚠️ تحذير: هل أنت متأكد من حذف جميع طالبات الصف/الشعبة (${className}) وعددهم (${count}) طالبه؟ لا يمكن التراجع.`)) {
+                students = students.filter(s => (s.studentClass || 'الشعبة الأولى') !== className);
+                if (activeQueryClass === className) activeQueryClass = '';
                 selectedStudentIndex = '';
                 document.getElementById('studentSearchInput').value = '';
                 currentPage = 1;
                 saveAndRefresh();
-                showToast(`🗑️ تم حذف جميع طالبات الشعبة (${className}) بنجاح!`);
+                showToast(`🗑️ تم حذف الصف/الشعبة (${className}) بنجاح!`);
             }
         }
 
         function printStudentReport() {
             const stIndex = selectedStudentIndex;
-            if (stIndex === '' || !students[stIndex]) {
-                alert('يرجى اختيار طالبه أولاً من قسم الاستعلام والتتبع لطباعة تقريرها.');
-                return;
-            }
-
+            if (stIndex === '' || !students[stIndex]) { alert('يرجى اختيار طالبه أولاً لطباعة تقريرها.'); return; }
             const st = students[stIndex];
             const now = new Date();
             const dateStr = now.toLocaleDateString('ar-SA') + ' هـ';
 
             var printWindow = window.open('', '_blank', 'height=700,width=900');
-            
             printWindow.document.write('<html><head><title>تقرير متابعة الطالبه الرسمي</title>');
             printWindow.document.write('<style>');
             printWindow.document.write('body { font-family: Tahoma, Arial, sans-serif; direction: rtl; text-align: right; color: #000; background: #fff; padding: 25px; margin: 0; }');
@@ -1703,22 +1530,15 @@
                     <h2>المملكة العربية السعودية</h2>
                     <h3>وزارة التعليم</h3>
                     <h3 style="color: #059669;">${SCHOOL_NAME}</h3>
-                    <h4 style="margin-top: 5px;">تقرير متابعة أداء الطالبه: ${st.name}</h4>
-                    <p style="margin: 5px 0 0 0; font-size: 14px;">الصف ${currentGrade} الابتدائي (شعبة: ${st.studentClass || '1'}) - مادة العلوم</p>
+                    <h4 style="margin-top: 5px;">تقرير متابعة أداء الطالبه: 👧 ${st.name}</h4>
+                    <p style="margin: 5px 0 0 0; font-size: 14px;">الصف ${currentGrade} (الصف/الشعبة: ${st.studentClass || 'الشعبة الأولى'}) - مادة العلوم</p>
                 </div>
-
                 <div class="meta-row">
                     <div><strong>معلمة المادة:</strong> ${TEACHER_NAME}</div>
                     <div><strong>تاريخ التقرير:</strong> ${dateStr}</div>
                 </div>
-
                 <table>
-                    <thead>
-                        <tr>
-                            <th>عنصر المتابعة والتقييم</th>
-                            <th>الدرجة أو المجموع التراكمي</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>عنصر المتابعة والتقييم</th><th>الدرجة أو المجموع التراكمي</th></tr></thead>
                     <tbody>
                         <tr><td class="text-right">✋ المشاركات الصفية الفعالة</td><td><strong>${st.participation || 0}</strong></td></tr>
                         <tr><td class="text-right">📚 الواجبات المنزلية والأنشطة</td><td><strong>${st.homework || 0}</strong></td></tr>
@@ -1729,20 +1549,11 @@
                         <tr><td class="text-right">📝 اختبار الفترة الثانية (من 20)</td><td><strong>${st.exam2 !== undefined ? st.exam2 + ' / 20' : '-'}</strong></td></tr>
                     </tbody>
                 </table>
-
                 <div class="signatures">
-                    <div>
-                        <p><strong>معلمة المادة:</strong> ${TEACHER_NAME}</p>
-                        <p><strong>التوقيع:</strong> ....................................</p>
-                    </div>
-                    <div style="text-align: left;">
-                        <p><strong>مديرة المدرسة:</strong> ....................................</p>
-                        <p><strong>التوقيع والختم:</strong> ....................................</p>
-                    </div>
+                    <div><p><strong>معلمة المادة:</strong> ${TEACHER_NAME}</p><p><strong>التوقيع:</strong> ....................................</p></div>
+                    <div style="text-align: left;"><p><strong>مديرة المدرسة:</strong> ....................................</p><p><strong>التوقيع والختم:</strong> ....................................</p></div>
                 </div>
-            `);
-
-            printWindow.document.write('</body></html>');
+            </body></html>`);
             printWindow.document.close();
             printWindow.focus();
             setTimeout(function () { printWindow.print(); }, 1000);
@@ -1750,24 +1561,16 @@
 
         function printClassReport(className, event) {
             if (event) event.stopPropagation();
+            if (!className || className === 'ALL') { alert('يرجى اختيار صف/شعبة محددة لطباعة تقريرها.'); return; }
 
-            if (!className || className === 'ALL') {
-                alert('يرجى اختيار شعبة محددة لطباعة تقريرها الرسمي.');
-                return;
-            }
-
-            const classStudents = students.filter(s => (s.studentClass || '1') === className);
-            if (classStudents.length === 0) {
-                alert(`لا توجد طالبات مسجلات في الشعبة (${className}) لطباعة تقريرهن.`);
-                return;
-            }
+            const classStudents = students.filter(s => (s.studentClass || 'الشعبة الأولى') === className);
+            if (classStudents.length === 0) { alert(`لا توجد طالبات في (${className}).`); return; }
 
             const now = new Date();
             const dateStr = now.toLocaleDateString('ar-SA') + ' هـ';
 
             var printWindow = window.open('', '_blank', 'height=750,width=1000');
-            
-            printWindow.document.write('<html><head><title>تقرير طالبات الشعبة الرسمي</title>');
+            printWindow.document.write('<html><head><title>تقرير الصف/الشعبة الرسمي</title>');
             printWindow.document.write('<style>');
             printWindow.document.write('body { font-family: Tahoma, Arial, sans-serif; direction: rtl; text-align: right; color: #000; background: #fff; padding: 25px; margin: 0; }');
             printWindow.document.write('.header-box { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #333; padding-bottom: 15px; }');
@@ -1778,91 +1581,43 @@
             printWindow.document.write('th { background-color: #f3f4f6; }');
             printWindow.document.write('td.text-right { text-align: right; }');
             printWindow.document.write('.signatures { margin-top: 40px; display: flex; justify-content: space-between; font-size: 14px; }');
-            printWindow.document.write('</style>');
-            printWindow.document.write('</head><body>');
+            printWindow.document.write('</style></head><body>');
 
             printWindow.document.write(`
                 <div class="header-box">
                     <h2>المملكة العربية السعودية</h2>
                     <h3>وزارة التعليم</h3>
                     <h3 style="color: #059669;">${SCHOOL_NAME}</h3>
-                    <h4 style="margin-top: 5px;">تقرير متابعة أداء طالبات الصف ${currentGrade} (شعبة: ${className})</h4>
+                    <h4 style="margin-top: 5px;">تقرير متابعة أداء طالبات الصف ${currentGrade} (الصف/الشعبة: ${className})</h4>
                     <p style="margin: 5px 0 0 0; font-size: 14px;">مادة العلوم</p>
                 </div>
-
                 <div class="meta-row">
                     <div><strong>معلمة المادة:</strong> ${TEACHER_NAME}</div>
                     <div><strong>تاريخ التقرير:</strong> ${dateStr}</div>
                 </div>
-
                 <table>
-                    <thead>
-                        <tr>
-                            <th>م</th>
-                            <th>اسم الطالبه</th>
-                            <th>رقم الجوال</th>
-                            <th>الغياب</th>
-                            <th>المشاركة</th>
-                            <th>الواجبات</th>
-                            <th>المهارات</th>
-                            <th>فترة 1 (من 20)</th>
-                            <th>فترة 2 (من 20)</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>م</th><th>اسم الطالبه</th><th>رقم الجوال</th><th>الغياب</th><th>المشاركة</th><th>الواجبات</th><th>المهارات</th><th>فترة 1</th><th>فترة 2</th></tr></thead>
                     <tbody>
             `);
 
             classStudents.forEach((st, idx) => {
-                const e1Str = st.exam1 !== undefined ? st.exam1 + ' / 20' : '-';
-                const e2Str = st.exam2 !== undefined ? st.exam2 + ' / 20' : '-';
-
-                printWindow.document.write(`
-                    <tr>
-                        <td>${idx + 1}</td>
-                        <td class="text-right"><strong>${st.name}</strong></td>
-                        <td dir="ltr">${st.phone || '-'}</td>
-                        <td>${st.absence || 0}</td>
-                        <td>${st.participation || 0}</td>
-                        <td>${st.homework || 0}</td>
-                        <td>${st.skills || 0}</td>
-                        <td>${e1Str}</td>
-                        <td>${e2Str}</td>
-                    </tr>
-                `);
+                const e1Str = st.exam1 !== undefined ? st.exam1 : '-';
+                const e2Str = st.exam2 !== undefined ? st.exam2 : '-';
+                printWindow.document.write(`<tr><td>${idx + 1}</td><td class="text-right"><strong>👧 ${st.name}</strong></td><td dir="ltr">${st.phone || '-'}</td><td>${st.absence || 0}</td><td>${st.participation || 0}</td><td>${st.homework || 0}</td><td>${st.skills || 0}</td><td>${e1Str}</td><td>${e2Str}</td></tr>`);
             });
 
-            printWindow.document.write(`
-                    </tbody>
-                </table>
-
-                <div class="signatures">
-                    <div>
-                        <p><strong>معلمة المادة:</strong> ${TEACHER_NAME}</p>
-                        <p><strong>التوقيع:</strong> ....................................</p>
-                    </div>
-                    <div style="text-align: left;">
-                        <p><strong>مديرة المدرسة:</strong> ....................................</p>
-                        <p><strong>التوقيع والختم:</strong> ....................................</p>
-                    </div>
-                </div>
-            `);
-
-            printWindow.document.write('</body></html>');
+            printWindow.document.write(`</tbody></table><div class="signatures"><div><p><strong>معلمة المادة:</strong> ${TEACHER_NAME}</p><p><strong>التوقيع:</strong> ....................................</p></div><div style="text-align: left;"><p><strong>مديرة المدرسة:</strong> ....................................</p><p><strong>التوقيع والختم:</strong> ....................................</p></div></div></body></html>`);
             printWindow.document.close();
             printWindow.focus();
             setTimeout(function () { printWindow.print(); }, 1000);
         }
 
         function exportExcel() {
-            if (students.length === 0) {
-                alert('لا توجد بيانات طالبات للتصدير!');
-                return;
-            }
-
+            if (students.length === 0) { alert('لا توجد بيانات طالبات للتصدير!'); return; }
             const excelData = students.map((st, idx) => ({
                 "No.": idx + 1,
                 "Student Name": st.name,
-                "Class": st.studentClass || '1',
+                "Class": st.studentClass || 'الشعبة الأولى',
                 "Phone": st.phone || '',
                 "Absence": st.absence || 0,
                 "Participation": st.participation || 0,
@@ -1877,7 +1632,6 @@
             const worksheet = XLSX.utils.json_to_sheet(excelData);
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "Science Students");
-
             if(!workbook.Workbook) workbook.Workbook = {};
             if(!workbook.Workbook.Views) workbook.Workbook.Views = [];
             workbook.Workbook.Views[0] = { RTL: true };
@@ -1896,68 +1650,55 @@
                 try {
                     const data = new Uint8Array(e.target.result);
                     const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[firstSheetName];
+                    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
                     const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
 
                     if (jsonData.length > 0) {
                         let importedCount = 0;
                         jsonData.forEach(row => {
                             const name = String(row["Student Name"] || row["اسم الطالبه"] || row["Name"] || "").trim();
-                            const rawClass = String(row["Class"] || row["الصف"] || row["الفصل"] || "").trim();
+                            const rawClass = String(row["Class"] || row["الصف"] || row["الفصل"] || "").trim() || 'الشعبة الأولى';
+                            if (!name) return;
 
-                            if (!name || name === "" || name === "undefined" || name === "null") return;
-                            if (!rawClass || rawClass === "" || rawClass === "undefined" || rawClass === "null") return;
-
-                            const valExam1 = row["Exam 1 (Out of 20)"] !== undefined && row["Exam 1 (Out of 20)"] !== "" ? Number(row["Exam 1 (Out of 20)"]) : (row["Exam 1"] !== undefined && row["Exam 1"] !== "" ? Number(row["Exam 1"]) : undefined);
-                            const valExam2 = row["Exam 2 (Out of 20)"] !== undefined && row["Exam 2 (Out of 20)"] !== "" ? Number(row["Exam 2 (Out of 20)"]) : (row["Exam 2"] !== undefined && row["Exam 2"] !== "" ? Number(row["Exam 2"]) : undefined);
+                            const valExam1 = row["Exam 1 (Out of 20)"] !== undefined && row["Exam 1 (Out of 20)"] !== "" ? Number(row["Exam 1 (Out of 20)"]) : undefined;
+                            const valExam2 = row["Exam 2 (Out of 20)"] !== undefined && row["Exam 2 (Out of 20)"] !== "" ? Number(row["Exam 2 (Out of 20)"]) : undefined;
 
                             students.push({
                                 id: Date.now() + Math.random(),
                                 name: name,
                                 studentClass: rawClass,
-                                phone: String(row["Phone"] || row["رقم الجوال"] || row["الجوال"] || "").trim(),
-                                absence: Number(row["Absence"] || row["الغياب"] || 0),
-                                participation: Number(row["Participation"] || row["المشاركة"] || 0),
-                                homework: Number(row["Homework"] || row["الواجبات"] || 0),
-                                skills: Number(row["Skills"] || row["المهارات"] || 0),
-                                projects: Number(row["Projects"] || row["المشاريع"] || 0),
+                                phone: String(row["Phone"] || row["رقم الجوال"] || "").trim(),
+                                absence: Number(row["Absence"] || 0),
+                                participation: Number(row["Participation"] || 0),
+                                homework: Number(row["Homework"] || 0),
+                                skills: Number(row["Skills"] || 0),
+                                projects: Number(row["Projects"] || 0),
                                 exam1: valExam1 !== undefined ? Math.min(20, Math.max(0, valExam1)) : undefined,
                                 exam2: valExam2 !== undefined ? Math.min(20, Math.max(0, valExam2)) : undefined,
-                                messages: Number(row["Messages Sent"] || row["الرسائل"] || 0)
+                                messages: Number(row["Messages Sent"] || 0)
                             });
                             importedCount++;
                         });
 
                         if (importedCount > 0) {
-                            if (confirm(`تم استيراد (${importedCount}) طالبة بنجاح وتجاهل الصفوف الفارغة. هل تريد حفظ التغييرات؟`)) {
+                            if (confirm(`تم استيراد (${importedCount}) طالبة بنجاح. هل تريد حفظ التغييرات؟`)) {
                                 currentPage = 1;
                                 saveAndRefresh();
-                                showToast('📂 تم استيراد ملف الإكسل وتصفية البيانات بنجاح!');
+                                showToast('📂 تم استيراد ملف الإكسل بنجاح!');
                             }
-                        } else {
-                            alert('لم يتم العثور على بيانات طالبات صالحة أو فصول محددة في الملف.');
-                        }
-                    } else {
-                        alert('ملف الإكسل فارغ أو غير مطابق للهيكلية المطلوبة.');
-                    }
-                } catch (err) {
-                    alert('حدث خطأ أثناء قراءة ملف الإكسل.');
-                }
+                        } else { alert('لم يتم العثور على بيانات طالبات صالحة في الملف.'); }
+                    } else { alert('ملف الإكسل فارغ.'); }
+                } catch (err) { alert('حدث خطأ أثناء قراءة ملف الإكسل.'); }
             };
             reader.readAsArrayBuffer(file);
         }
 
         function exportData() {
-            if (students.length === 0) {
-                alert('لا توجد بيانات لتصديرها!');
-                return;
-            }
+            if (students.length === 0) { alert('لا توجد بيانات لتصديرها!'); return; }
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(students, null, 2));
             const downloadAnchor = document.createElement('a');
-            const dateStr = new Date().toISOString().slice(0,10);
             downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `Awwal_School_Science_${currentGrade}_Backup_${dateStr}.json`);
+            downloadAnchor.setAttribute("download", `Awwal_School_Science_${currentGrade}_Backup.json`);
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
             downloadAnchor.remove();
@@ -1967,7 +1708,6 @@
         function importData(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
@@ -1979,12 +1719,8 @@
                             saveAndRefresh();
                             showToast('📂 تم استرجاع البيانات بنجاح!');
                         }
-                    } else {
-                        alert('الملف المحدد غير صالح!');
-                    }
-                } catch (err) {
-                    alert('حدث خطأ أثناء قراءة الملف.');
-                }
+                    } else { alert('الملف المحدد غير صالح!'); }
+                } catch (err) { alert('حدث خطأ أثناء قراءة الملف.'); }
             };
             reader.readAsText(file);
         }
@@ -1992,34 +1728,22 @@
         function renderMotivationDropdown() {
             const select = document.getElementById('selectMotivation');
             select.innerHTML = '<option value="">-- اختر الرسالة التشجيعية --</option>';
-            customMotivations.forEach((item, idx) => {
-                select.innerHTML += `<option value="${idx}">${item.title}</option>`;
-            });
+            customMotivations.forEach((item, idx) => { select.innerHTML += `<option value="${idx}">${item.title}</option>`; });
             updateMotivationMsg();
         }
 
         function addNewMotivation() {
             const titleInput = document.getElementById('newMotivationTitle').value.trim();
             const textInput = document.getElementById('newMotivationText').value.trim();
-
-            if (!textInput) {
-                alert('يرجى إدخال نص الرسالة التشجيعية أولاً.');
-                return;
-            }
+            if (!textInput) { alert('يرجى إدخال نص الرسالة التشجيعية أولاً.'); return; }
 
             const title = titleInput ? `${customMotivations.length + 1}. ${titleInput}` : `${customMotivations.length + 1}. رسالة تشجيعية جديدة`;
-            customMotivations.push({
-                id: String(Date.now()),
-                title: title,
-                text: textInput
-            });
+            customMotivations.push({ id: String(Date.now()), title: title, text: textInput });
 
             localStorage.setItem('awwal_custom_motivations_v3', JSON.stringify(customMotivations));
             document.getElementById('newMotivationTitle').value = '';
             document.getElementById('newMotivationText').value = '';
-
             renderMotivationDropdown();
-            renderLessons();
             showToast('➕ تم إضافة الرسالة التشجيعية بنجاح!');
         }
 
@@ -2031,28 +1755,22 @@
             bulkSelectLesson.innerHTML = '<option value="">-- اختر الدرس أو الرسالة التشجيعية المراد إرسالها --</option>';
 
             let lessonsGroup = '<optgroup label="📚 دروس ومهمات المنهج">';
-            lessons.forEach((l, idx) => {
-                lessonsGroup += `<option value="lesson-${idx}">[${l.chapter}] ${l.title}</option>`;
-            });
+            lessons.forEach((l, idx) => { lessonsGroup += `<option value="lesson-${idx}">[${l.chapter}] ${l.title}</option>`; });
             lessonsGroup += '</optgroup>';
 
             let motivGroup = '<optgroup label="🌟 الرسائل التشجيعية والتحفيزية">';
-            customMotivations.forEach((m, idx) => {
-                motivGroup += `<option value="motiv-${idx}">${m.title}</option>`;
-            });
+            customMotivations.forEach((m, idx) => { motivGroup += `<option value="motiv-${idx}">${m.title}</option>`; });
             motivGroup += '</optgroup>';
 
             bulkSelectLesson.innerHTML += lessonsGroup + motivGroup;
             
             const mainLessonsContainer = document.getElementById('mainLessonsContainer');
             mainLessonsContainer.innerHTML = '';
-
             let executedCount = 0;
 
             lessons.forEach((l, idx) => {
                 const isExecuted = !!lessonStatus[idx];
                 if (isExecuted) executedCount++;
-
                 const statusLabel = isExecuted ? '✅ منجز' : '⏳ قيد الانتظار';
                 const statusClass = isExecuted ? 'done' : 'pending';
                 const cardClass = isExecuted ? 'executed' : 'not-executed';
@@ -2067,9 +1785,7 @@
                             <p>${l.desc}</p>
                         </div>
                         <div class="lesson-actions">
-                            <button class="status-toggle-btn ${statusClass}" onclick="toggleLessonStatus(${idx})">
-                                ${statusLabel}
-                            </button>
+                            <button class="status-toggle-btn ${statusClass}" onclick="toggleLessonStatus(${idx})">${statusLabel}</button>
                             <button class="btn-danger btn-action" onclick="deleteLesson(${idx})" title="حذف الدرس">🗑️</button>
                         </div>
                     </div>
@@ -2084,59 +1800,45 @@
         function updateClassQueryButtons() {
             const queryContainer = document.getElementById('classesQueryContainer');
             const bulkTargetSelect = document.getElementById('bulkTargetClass');
-            const studentClassSelect = document.getElementById('studentClassSelect');
             const examClassSelect = document.getElementById('examClassSelect');
             
             const currentBulkTarget = bulkTargetSelect.value;
             const currentExamClass = examClassSelect.value;
             
-            const defaultClasses = ["1"];
-            const existingClasses = students.map(s => s.studentClass || '1');
-            const allClasses = [...new Set([...defaultClasses, ...existingClasses])].filter(c => c && c.trim() !== "");
+            const existingClasses = students.map(s => s.studentClass || 'الشعبة الأولى');
+            const allClasses = [...new Set(existingClasses)].filter(c => c && c.trim() !== "");
             
             queryContainer.innerHTML = '';
-            bulkTargetSelect.innerHTML = '<option value="ALL">جميع الشعب</option>';
-            studentClassSelect.innerHTML = '<option value="">-- اختر الصف/الشعبة --</option>';
-            examClassSelect.innerHTML = '<option value="">-- اختر الصف الدراسي لعرض وسجل الاختبارات --</option>';
+            bulkTargetSelect.innerHTML = '<option value="ALL">جميع الصفوف والشعب</option>';
+            examClassSelect.innerHTML = '<option value="">-- اختر الصف/الشعبة لعرض وسجل الاختبارات --</option>';
 
             const isEmptyActive = (activeQueryClass === '') ? 'active' : '';
             queryContainer.innerHTML += `
                 <div class="class-btn-wrapper ${isEmptyActive}" style="flex: 2; min-width: 140px;">
-                    <button class="class-query-btn" style="text-align: center;" onclick="selectQueryClass('')">
-                        ⬜ (اختر شعبة)
-                    </button>
+                    <button class="class-query-btn" style="text-align: center;" onclick="selectQueryClass('')">⬜ (اختر الصف)</button>
                 </div>
             `;
 
             const isAllActive = (activeQueryClass === 'ALL') ? 'active' : '';
             queryContainer.innerHTML += `
                 <div class="class-btn-wrapper ${isAllActive}" style="flex: 2; min-width: 160px;">
-                    <button class="class-query-btn" style="text-align: center;" onclick="selectQueryClass('ALL')">
-                        🏫 جميع الشعب <span style="font-size: 11px; opacity: 0.8;">(${students.length})</span>
-                    </button>
+                    <button class="class-query-btn" style="text-align: center;" onclick="selectQueryClass('ALL')">🏫 جميع الصفوف <span style="font-size: 11px; opacity: 0.8;">(${students.length})</span></button>
                 </div>
             `;
 
             allClasses.forEach(cls => {
-                const count = students.filter(s => (s.studentClass || '') === cls).length;
+                const count = students.filter(s => (s.studentClass || 'الشعبة الأولى') === cls).length;
                 const isActive = (activeQueryClass === cls) ? 'active' : '';
 
                 queryContainer.innerHTML += `
                     <div class="class-btn-wrapper ${isActive}">
-                        <button class="class-query-btn" onclick="selectQueryClass('${cls}')">
-                            🏫 شعبة ${cls} <span style="font-size: 11px; opacity: 0.8;">(${count})</span>
-                        </button>
-                        <button class="btn-info btn-action" onclick="printClassReport('${cls}', event)" title="طباعة تقرير الشعبة الرسمي" style="padding: 0 8px; font-size: 13px; border-radius: 0;">
-                            🖨️
-                        </button>
-                        <button class="class-delete-btn" onclick="deleteClassStudents('${cls}', event)" title="حذف جميع طالبات الشعبة ${cls}">
-                            🗑️
-                        </button>
+                        <button class="class-query-btn" onclick="selectQueryClass('${cls}')">🏫 ${cls} <span style="font-size: 11px; opacity: 0.8;">(${count})</span></button>
+                        <button class="btn-info btn-action" onclick="printClassReport('${cls}', event)" title="طباعة تقرير الصف الرسمي" style="padding: 0 8px; font-size: 13px; border-radius: 0;">🖨️</button>
+                        <button class="class-delete-btn" onclick="deleteClassStudents('${cls}', event)" title="حذف الصف ${cls}">🗑️</button>
                     </div>
                 `;
 
-                bulkTargetSelect.innerHTML += `<option value="${cls}">شعبة ${cls}</option>`;
-                studentClassSelect.innerHTML += `<option value="${cls}">${cls}</option>`;
+                bulkTargetSelect.innerHTML += `<option value="${cls}">${cls}</option>`;
                 examClassSelect.innerHTML += `<option value="${cls}">${cls}</option>`;
             });
 
@@ -2161,14 +1863,11 @@
             render();
         }
 
-        function showStudentDropdown() {
-            filterStudentDropdown();
-        }
+        function showStudentDropdown() { filterStudentDropdown(); }
 
         function filterStudentDropdown() {
             const inputVal = document.getElementById('studentSearchInput').value.trim().toLowerCase();
             const listContainer = document.getElementById('studentDropdownList');
-            
             listContainer.innerHTML = '';
             
             const filtered = students.map((st, index) => ({ st, index })).filter(item => {
@@ -2182,10 +1881,8 @@
                 filtered.forEach(item => {
                     const div = document.createElement('div');
                     div.className = 'searchable-item';
-                    div.innerHTML = `<strong>${item.st.name}</strong> <span style="font-size: 12px; opacity: 0.7; float: left;">(شعبة: ${item.st.studentClass || ''})</span>`;
-                    div.onclick = function() {
-                        selectStudentFromDropdown(item.index, item.st.name, item.st.studentClass || '');
-                    };
+                    div.innerHTML = `<strong>👧 ${item.st.name}</strong> <span style="font-size: 12px; opacity: 0.7; float: left;">(${item.st.studentClass || ''})</span>`;
+                    div.onclick = function() { selectStudentFromDropdown(item.index, item.st.name, item.st.studentClass || ''); };
                     listContainer.appendChild(div);
                 });
             }
@@ -2194,19 +1891,17 @@
 
         function selectStudentFromDropdown(index, name, className) {
             selectedStudentIndex = index;
-            document.getElementById('studentSearchInput').value = `${name} (شعبة: ${className})`;
+            document.getElementById('studentSearchInput').value = `👧 ${name} (${className})`;
             document.getElementById('studentDropdownList').style.display = 'none';
             loadStudentDetails();
         }
 
         function render() {
             updateClassQueryButtons();
-
             const tbody = document.getElementById('studentsTbody');
             tbody.innerHTML = '';
 
             const searchInputVal = document.getElementById('filterStudentNameInput').value.trim().toLowerCase();
-
             let totals = { skills: 0, participation: 0, homework: 0, absence: 0, projects: 0, messages: 0 };
 
             students.forEach(st => {
@@ -2219,13 +1914,10 @@
             });
 
             let filteredStudents = students.map((st, idx) => ({ st, originalIndex: idx })).filter(item => {
-                if (activeQueryClass === '' && searchInputVal === '') {
-                    return false;
-                }
-                if (searchInputVal !== '') {
-                    return item.st.name.toLowerCase().includes(searchInputVal);
-                } else {
-                    const stClass = item.st.studentClass || '';
+                if (activeQueryClass === '' && searchInputVal === '') return false;
+                if (searchInputVal !== '') return item.st.name.toLowerCase().includes(searchInputVal);
+                else {
+                    const stClass = item.st.studentClass || 'الشعبة الأولى';
                     if (activeQueryClass === 'ALL') return true;
                     return stClass === activeQueryClass;
                 }
@@ -2243,50 +1935,26 @@
             paginatedItems.forEach(item => {
                 const st = item.st;
                 const i = item.originalIndex;
-                const stClass = st.studentClass || '';
+                const stClass = st.studentClass || 'الشعبة الأولى';
 
                 tbody.innerHTML += `
                     <tr>
-                        <td><strong>${st.name}</strong></td>
+                        <td><strong>👧 ${st.name}</strong></td>
                         <td><span class="class-badge">${stClass}</span></td>
                         <td>${st.phone || '-'}</td>
-                        <td>
-                            <button class="btn-action" onclick="updateScore(${i}, 'absence', 1)">+</button>
-                            <span id="val-${i}-absence">${st.absence || 0}</span>
-                            <button class="btn-action" onclick="updateScore(${i}, 'absence', -1)">-</button>
-                        </td>
-                        <td>
-                            <button class="btn-action" onclick="updateScore(${i}, 'participation', 1)">+</button>
-                            <span id="val-${i}-participation">${st.participation || 0}</span>
-                            <button class="btn-action" onclick="updateScore(${i}, 'participation', -1)">-</button>
-                        </td>
-                        <td>
-                            <button class="btn-action" onclick="updateScore(${i}, 'homework', 1)">+</button>
-                            <span id="val-${i}-homework">${st.homework || 0}</span>
-                            <button class="btn-action" onclick="updateScore(${i}, 'homework', -1)">-</button>
-                        </td>
-                        <td>
-                            <button class="btn-action" onclick="updateScore(${i}, 'skills', 1)">+</button>
-                            <span id="val-${i}-skills">${st.skills || 0}</span>
-                            <button class="btn-action" onclick="updateScore(${i}, 'skills', -1)">-</button>
-                        </td>
-                        <td>
-                            <button class="btn-action" onclick="updateScore(${i}, 'projects', 1)">+</button>
-                            <span id="val-${i}-projects">${st.projects || 0}</span>
-                            <button class="btn-action" onclick="updateScore(${i}, 'projects', -1)">-</button>
-                        </td>
+                        <td><button class="btn-action" onclick="updateScore(${i}, 'absence', 1)">+</button><span id="val-${i}-absence">${st.absence || 0}</span><button class="btn-action" onclick="updateScore(${i}, 'absence', -1)">-</button></td>
+                        <td><button class="btn-action" onclick="updateScore(${i}, 'participation', 1)">+</button><span id="val-${i}-participation">${st.participation || 0}</span><button class="btn-action" onclick="updateScore(${i}, 'participation', -1)">-</button></td>
+                        <td><button class="btn-action" onclick="updateScore(${i}, 'homework', 1)">+</button><span id="val-${i}-homework">${st.homework || 0}</span><button class="btn-action" onclick="updateScore(${i}, 'homework', -1)">-</button></td>
+                        <td><button class="btn-action" onclick="updateScore(${i}, 'skills', 1)">+</button><span id="val-${i}-skills">${st.skills || 0}</span><button class="btn-action" onclick="updateScore(${i}, 'skills', -1)">-</button></td>
+                        <td><button class="btn-action" onclick="updateScore(${i}, 'projects', 1)">+</button><span id="val-${i}-projects">${st.projects || 0}</span><button class="btn-action" onclick="updateScore(${i}, 'projects', -1)">-</button></td>
                         <td><strong id="val-${i}-messages">${st.messages || 0}</strong></td>
-                        <td>
-                            <button class="btn-danger btn-action" onclick="deleteStudent(${i})">🗑️</button>
-                        </td>
+                        <td><button class="btn-danger btn-action" onclick="deleteStudent(${i})">🗑️</button></td>
                     </tr>
                 `;
             });
 
             if (tbody.innerHTML === '') {
-                const emptyMsg = (activeQueryClass === '' && searchInputVal === '') ? 
-                    'يرجى النقر على إحدى الشعب أو زر "جميع الشعب" بالأعلى لعرض بيانات الطالبات.' : 
-                    'لا توجد نتائج مطابقة لعملية البحث أو الشعبة فارغة.';
+                const emptyMsg = (activeQueryClass === '' && searchInputVal === '') ? 'يرجى النقر على صف/شعبة أو زر "جميع الصفوف" بالأعلى لعرض بيانات الطالبات.' : 'لا توجد نتائج مطابقة.';
                 tbody.innerHTML = `<tr><td colspan="10" style="padding: 25px; opacity: 0.7;">${emptyMsg}</td></tr>`;
             }
 
@@ -2303,11 +1971,8 @@
             document.getElementById('totalProjects').textContent = totals.projects;
             document.getElementById('totalMessagesSent').textContent = totals.messages;
 
-            if (selectedStudentIndex !== '' && students[selectedStudentIndex]) {
-                loadStudentDetails();
-            } else {
-                document.getElementById('studentCard').style.display = 'none';
-            }
+            if (selectedStudentIndex !== '' && students[selectedStudentIndex]) loadStudentDetails();
+            else document.getElementById('studentCard').style.display = 'none';
 
             updateBulkMsgPreview();
         }
@@ -2315,11 +1980,7 @@
         function loadStudentDetails() {
             const index = selectedStudentIndex;
             const card = document.getElementById('studentCard');
-
-            if (index === '' || !students[index]) {
-                card.style.display = 'none';
-                return;
-            }
+            if (index === '' || !students[index]) { card.style.display = 'none'; return; }
 
             const st = students[index];
             document.getElementById('selectedName').textContent = st.name;
@@ -2347,10 +2008,9 @@
         function sendFullReportWhatsApp() {
             const stIndex = selectedStudentIndex;
             if (stIndex === '' || !students[stIndex]) return;
-
             const st = students[stIndex];
             const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-            const reportMsg = `${headerInfo}📋 **التقرير الشامل لأداء الطالبه:** ${st.name} (الصف ${currentGrade} - شعبة: ${st.studentClass || ''})\n\n` +
+            const reportMsg = `${headerInfo}📋 **التقرير الشامل لأداء الطالبه:** 👧 ${st.name} (الصف ${currentGrade} - الصف/الشعبة: ${st.studentClass || ''})\n\n` +
                               `✋ المشاركات: ${st.participation || 0}\n` +
                               `📚 الواجبات: ${st.homework || 0}\n` +
                               `🔴 أيام الغياب: ${st.absence || 0}\n` +
@@ -2358,16 +2018,14 @@
                               `🛠️ المشاريع: ${st.projects || 0}\n` +
                               `📝 اختبار الفترة 1: ${st.exam1 !== undefined ? st.exam1 + ' / 20' : '-'}\n` +
                               `📝 اختبار الفترة 2: ${st.exam2 !== undefined ? st.exam2 + ' / 20' : '-'}\n\n` +
-                              `شكراً لمتابعتكم المستمرة ودعمكم الدائم لمسيرة ابنتنا التعليمية.`;
+                              `شكراً لمتابعتكم المستمرة ودعمكم ودائم مسيرة ابنتنا التعليمية.`;
 
             const phone = getCleanPhone(st.phone);
             if (phone) {
                 window.open(`https://wa.me/${phone}?text=${encodeURIComponent(reportMsg)}`, '_blank');
                 st.messages = (st.messages || 0) + 1;
                 saveAndRefresh();
-            } else {
-                alert('رقم جوال ولي الأمر غير متوفر أو غير صالح.');
-            }
+            } else { alert('رقم جوال ولي الأمر غير متوفر أو غير صالح.'); }
         }
 
         function updateLessonMsg() {
@@ -2385,18 +2043,12 @@
             const st = students[stIndex];
             const l = lessons[lIndex];
             const statusLabel = lessonStatus[lIndex] ? '✅ منجز' : '⏳ قيد الانتظار';
-
             const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-            const msg = `${headerInfo}عزيزي وليّ أمر الطالبه: ${st.name} (الصف ${currentGrade})\nنحيطكم علماً بما تم إنجازه في درس اليوم لمادة العلوم:\n📘 ${l.chapter} - ${l.title}\n📌 حالة الدرس: ${statusLabel}\n📝 المفاهيم والمهارات المدروسة: ${l.desc}\n⭐ المهارات المكتسبة: ${st.skills || 0}\n\nشكراً لتعاونكم المستمر ومتابعتكم الرائعة.`;
+            const msg = `${headerInfo}عزيزي وليّ أمر الطالبه: 👧 ${st.name} (الصف ${currentGrade})\nنحيطكم علماً بما تم إنجازه في درس اليوم لمادة العلوم:\n📘 ${l.chapter} - ${l.title}\n📌 حالة الدرس: ${statusLabel}\n📝 المفاهيم والمهارات المدروسة: ${l.desc}\n⭐ المهارات المكتسبة: ${st.skills || 0}\n\nشكراً لتعاونكم المستمر ومتابعتكم الرائعة.`;
 
             preview.textContent = msg;
-
             const phone = getCleanPhone(st.phone);
-            if (phone) {
-                btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-            } else {
-                btn.href = '#';
-            }
+            btn.href = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}` : '#';
         }
 
         function updateMotivationMsg() {
@@ -2416,16 +2068,11 @@
             if (!mItem) return;
 
             const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-            const msg = `${headerInfo}${mItem.text}\n\nالطالبه: ${st.name} (الصف ${currentGrade})`;
+            const msg = `${headerInfo}${mItem.text}\n\n👧 الطالبه: ${st.name} (الصف ${currentGrade})`;
 
             preview.textContent = msg;
-
             const phone = getCleanPhone(st.phone);
-            if (phone) {
-                btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-            } else {
-                btn.href = '#';
-            }
+            btn.href = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}` : '#';
         }
 
         function updateBulkMsgPreview() {
@@ -2434,26 +2081,28 @@
             const preview = document.getElementById('bulkMsgPreview');
 
             if (!selectedVal) {
-                preview.textContent = 'اختر الدرس أو الرسالة التشجيعية لعرض نموذج الرسالة الجماعية...';
+                preview.textContent = 'اختر الدرس أو الرسالة التشجيعية أعلاه لعرض النموذج الجماعي...';
                 return;
             }
 
-            const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-            let noteSection = extraNote ? `\n📌 ملاحظات وتوجيهات للمعلمة: ${extraNote}` : '';
-
+            let contentText = '';
             if (selectedVal.startsWith('lesson-')) {
-                const lIndex = parseInt(selectedVal.replace('lesson-', ''));
-                const l = lessons[lIndex];
+                const lIdx = selectedVal.split('-')[1];
+                const l = lessons[lIdx];
                 if (l) {
-                    preview.textContent = `${headerInfo}عزيزي وليّ الأمر (الصف ${currentGrade}),\nنحيطكم علماً بأن الواجب/المهمة الخاصة بمادة العلوم هي:\n📘 ${l.chapter} - ${l.title}\n📝 التفاصيل المطلوبة: ${l.desc}${noteSection}\nنرجو الاهتمام والمتابعة وحث البطلة على إنجاز المهمة في موعدها.\nشكراً لتعاونكم المستمر.`;
+                    contentText = `📚 إشعار بدرس اليوم لمادة العلوم:\n📘 ${l.chapter} - ${l.title}\n📌 ${l.desc}`;
                 }
             } else if (selectedVal.startsWith('motiv-')) {
-                const mIndex = parseInt(selectedVal.replace('motiv-', ''));
-                const m = customMotivations[mIndex];
+                const mIdx = selectedVal.split('-')[1];
+                const m = customMotivations[mIdx];
                 if (m) {
-                    preview.textContent = `${headerInfo}عزيزي وليّ الأمر (الصف ${currentGrade}),\n\n${m.text}${noteSection}\n\nشكراً لتعاونكم المستمر ودعمكم الدائم.`;
+                    contentText = m.text;
                 }
             }
+
+            let msg = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n${contentText}`;
+            if (extraNote) msg += `\n\n📌 ملاحظات هامة: ${extraNote}`;
+            preview.textContent = msg;
         }
 
         function sendBulkWhatsApp() {
@@ -2461,61 +2110,49 @@
             const selectedVal = document.getElementById('bulkSelectLesson').value;
             const extraNote = document.getElementById('bulkExtraNote').value.trim();
 
-            if (!selectedVal) {
-                alert('يرجى اختيار الدرس أو الرسالة التشجيعية أولاً.');
-                return;
-            }
+            if (!selectedVal) { alert('يرجى اختيار الدرس أو الرسالة المراد إرسالها.'); return; }
 
             let targetStudents = students.filter(st => {
-                if (!st.phone) return false;
                 if (targetClass === 'ALL') return true;
-                return (st.studentClass || '1') === targetClass;
+                return (st.studentClass || 'الشعبة الأولى') === targetClass;
             });
 
-            if (targetStudents.length === 0) {
-                alert('لا توجد طالبات لديهن أرقام جوالات مسجلة مطابقة للشروط المحددة.');
-                return;
+            targetStudents = targetStudents.filter(st => getCleanPhone(st.phone) !== null);
+
+            if (targetStudents.length === 0) { alert('لا توجد طالبات بأرقام جوالات صحيحة مطابقة للتحديد.'); return; }
+
+            let contentText = '';
+            if (selectedVal.startsWith('lesson-')) {
+                const lIdx = selectedVal.split('-')[1];
+                const l = lessons[lIdx];
+                if (l) contentText = `📚 إشعار بدرس اليوم لمادة العلوم:\n📘 ${l.chapter} - ${l.title}\n📌 ${l.desc}`;
+            } else if (selectedVal.startsWith('motiv-')) {
+                const mIdx = selectedVal.split('-')[1];
+                const m = customMotivations[mIdx];
+                if (m) contentText = m.text;
             }
 
-            if (confirm(`سيتم فتح روابط واتساب لـ (${targetStudents.length}) ولي أمر بالتتابع. هل تريد المتابعة؟`)) {
-                targetStudents.forEach((st, idx) => {
+            if (confirm(`سيتم فتح (${targetStudents.length}) نافذة واتساب تباعاً. هل تريد المتابعة؟`)) {
+                targetStudents.forEach((st, i) => {
+                    const phone = getCleanPhone(st.phone);
+                    const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
+                    let msg = `${headerInfo}عزيزي وليّ أمر الطالبه: 👧 ${st.name}\n\n${contentText}`;
+                    if (extraNote) msg += `\n\n📌 ملاحظات هامة: ${extraNote}`;
+
                     setTimeout(() => {
-                        const phone = getCleanPhone(st.phone);
-                        if (phone) {
-                            let msg = '';
-                            const headerInfo = `🏫 المدرسة: ${SCHOOL_NAME}\n👩‍🏫 معلمة المادة: ${TEACHER_NAME}\n\n`;
-                            let noteSection = extraNote ? `\n📌 ملاحظات وتوجيهات: ${extraNote}` : '';
-
-                            if (selectedVal.startsWith('lesson-')) {
-                                const lIndex = parseInt(selectedVal.replace('lesson-', ''));
-                                const l = lessons[lIndex];
-                                msg = `${headerInfo}عزيزي وليّ أمر البطلة: ${st.name} (الصف ${currentGrade}),\nنحيطكم علماً بمهمة العلوم:\n📘 ${l.chapter} - ${l.title}\n📝 التفاصيل: ${l.desc}${noteSection}\nشكراً لمتابعتكم.`;
-                            } else if (selectedVal.startsWith('motiv-')) {
-                                const mIndex = parseInt(selectedVal.replace('motiv-', ''));
-                                const m = customMotivations[mIndex];
-                                msg = `${headerInfo}${m.text}\n\nالطالبه: ${st.name} (الصف ${currentGrade})${noteSection}`;
-                            }
-
-                            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-                            st.messages = (st.messages || 0) + 1;
-                        }
-                    }, idx * 1200);
+                        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+                        st.messages = (st.messages || 0) + 1;
+                        if (i === targetStudents.length - 1) saveAndRefresh();
+                    }, i * 1500);
                 });
-
-                setTimeout(() => {
-                    saveAndRefresh();
-                    showToast('🚀 تم بدء إرسال الرسائل الجماعية بنجاح!');
-                }, targetStudents.length * 1200);
             }
         }
 
-        window.onload = function() {
-            renderLessons();
-            renderMotivationDropdown();
-            render();
-            initCharts();
-            updateHeaderStats();
-        };
+        // Initialize App on Load
+        renderLessons();
+        renderMotivationDropdown();
+        initCharts();
+        render();
     </script>
 </body>
 </html>
