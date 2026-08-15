@@ -682,7 +682,7 @@
             
             <div class="form-row">
                 <input type="text" id="studentName" placeholder="اسم الطالب (Student Name)">
-                <input type="text" id="studentClassCustom" placeholder="اكتب الصف/الشعبة (مثال: رابع ابتدائي أ)">
+                <input type="text" id="studentClassCustom" placeholder="اكتب الصف (مثال: رابع ابتدائي أ)">
                 <input type="tel" id="studentPhone" placeholder="رقم جوال ولي الأمر (مثال: 05xxxxxxx)">
                 <button onclick="addStudent()">➕ إضافة طالب</button>
             </div>
@@ -702,7 +702,7 @@
                     <thead>
                         <tr>
                             <th>اسم الطالب</th>
-                            <th>🏫 الصف/الشعبة</th>
+                            <th>🏫الصف/</th>
                             <th>📱 رقم الجوال</th>
                             <th>🔴 الغياب</th>
                             <th>✋ المشاركة</th>
@@ -746,7 +746,7 @@
             
             <div class="form-row">
                 <select id="examClassSelect" onchange="renderExamsTable()">
-                    <option value="">-- اختر الصف/الشعبة لعرض وسجل الاختبارات --</option>
+                    <option value="">-- اختر الصف لعرض وسجل الاختبارات --</option>
                 </select>
             </div>
 
@@ -848,7 +848,7 @@
             <div class="sub-box" style="margin-top: 0;">
                 <div class="form-row">
                     <select id="bulkTargetClass">
-                        <option value="ALL">جميع الصفوف والشعب</option>
+                        <option value="جميع الصفوف </option>
                     </select>
                     <select id="bulkSelectLesson" onchange="updateBulkMsgPreview()">
                         <option value="">-- اختر الدرس أو الرسالة التشجيعية المراد إرسالها --</option>
