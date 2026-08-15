@@ -894,7 +894,7 @@
             </div>
         </div>
 
-        <!-- قائمة وحدات ودروس مادة العلوم -->
+        <!-- قائمة وحدات ودروس مادة العلوم (محولة لقائمة منسدلة وعرض تفصيلي) -->
         <div class="section-card">
             <h3 id="curriculumTitle">📚 دليل مقرر العلوم - المرحلة الابتدائية (المنهج السعودي المعتمد) وتتبع التنفيذ</h3>
             
@@ -904,6 +904,19 @@
                     <input type="text" id="newLessonTitle" placeholder="عنوان الوحدة والفصل والدرس...">
                     <input type="text" id="newLessonDesc" placeholder="تفاصيل المهارات العلمية والتجارب والاستقصاء...">
                     <button onclick="addNewLesson()">➕ إضافة الدرس</button>
+                </div>
+            </div>
+
+            <!-- قائمة منسدلة لدليل مقرر العلوم -->
+            <div class="sub-box" style="background: rgba(5,150,105,0.03); border: 1px solid var(--secondary);">
+                <h5 style="color: var(--secondary);">📑 القائمة المنسدلة لدليل مقرر العلوم والوحدات الدراسية</h5>
+                <div class="form-row" style="margin-bottom: 10px;">
+                    <select id="curriculumDropdownSelect" onchange="onCurriculumDropdownChange(this.value)" style="font-weight: bold; font-size: 15px; color: var(--secondary);">
+                        <option value="">-- اختر الدرس أو الوحدة من القائمة المنسدلة للاستعراض --</option>
+                    </select>
+                </div>
+                <div id="selectedLessonDetailsBox" class="preview-msg" style="display: none;">
+                    اختر درساً من القائمة المنسدلة أعلاه لعرض تفاصيله هنا...
                 </div>
             </div>
 
@@ -1732,21 +1745,6 @@
             updateMotivationMsg();
         }
 
-        function addNewMotivation() {
-            const titleInput = document.getElementById('newMotivationTitle').value.trim();
-            const textInput = document.getElementById('newMotivationText').value.trim();
-            if (!textInput) { alert('يرجى إدخال نص الرسالة التشجيعية أولاً.'); return; }
-
-            const title = titleInput ? `${customMotivations.length + 1}. ${titleInput}` : `${customMotivations.length + 1}. رسالة تشجيعية جديدة`;
-            customMotivations.push({ id: String(Date.now()), title: title, text: textInput });
-
-            localStorage.setItem('awwal_custom_motivations_v3', JSON.stringify(customMotivations));
-            document.getElementById('newMotivationTitle').value = '';
-            document.getElementById('newMotivationText').value = '';
-            renderMotivationDropdown();
-            showToast('➕ تم إضافة الرسالة التشجيعية بنجاح!');
-        }
-
         function renderLessons() {
             const selectLesson = document.getElementById('selectLesson');
             selectLesson.innerHTML = '<option value="">-- اختر موضوع الدرس والمهارة --</option>';
@@ -1754,8 +1752,14 @@
             const bulkSelectLesson = document.getElementById('bulkSelectLesson');
             bulkSelectLesson.innerHTML = '<option value="">-- اختر الدرس أو الرسالة التشجيعية المراد إرسالها --</option>';
 
+            const curriculumDropdown = document.getElementById('curriculumDropdownSelect');
+            curriculumDropdown.innerHTML = '<option value="">-- اختر الدرس أو الوحدة من القائمة المنسدلة للاستعراض --</option>';
+
             let lessonsGroup = '<optgroup label="📚 دروس ومهمات المنهج">';
-            lessons.forEach((l, idx) => { lessonsGroup += `<option value="lesson-${idx}">[${l.chapter}] ${l.title}</option>`; });
+            lessons.forEach((l, idx) => { 
+                lessonsGroup += `<option value="lesson-${idx}">[${l.chapter}] ${l.title}</option>`; 
+                curriculumDropdown.innerHTML += `<option value="${idx}">[${l.chapter}] ${l.title}</option>`;
+            });
             lessonsGroup += '</optgroup>';
 
             let motivGroup = '<optgroup label="🌟 الرسائل التشجيعية والتحفيزية">';
@@ -1795,6 +1799,21 @@
             document.getElementById('totalExecutedLessons').textContent = `${executedCount} / ${lessons.length}`;
             updateLessonMsg();
             updateBulkMsgPreview();
+        }
+
+        function onCurriculumDropdownChange(val) {
+            const detailsBox = document.getElementById('selectedLessonDetailsBox');
+            if (val === "") {
+                detailsBox.style.display = 'none';
+                return;
+            }
+            const l = lessons[val];
+            if (l) {
+                const isExecuted = !!lessonStatus[val];
+                const statusText = isExecuted ? '✅ الحالة: منجز' : '⏳ الحالة: قيد الانتظار';
+                detailsBox.innerHTML = `📚 <strong>[${l.chapter}] ${l.title}</strong><br>📌 <strong>التفاصيل:</strong> ${l.desc}<br>${statusText}`;
+                detailsBox.style.display = 'block';
+            }
         }
 
         function updateClassQueryButtons() {
