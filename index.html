@@ -998,6 +998,9 @@
             const selectLesson = document.getElementById('selectLesson');
             selectLesson.innerHTML = '<option value="">-- اختر موضوع الدرس والمهارة --</option>';
 
+            const selectMotivation = document.getElementById('selectMotivation');
+            selectMotivation.innerHTML = '<option value="">-- اختر الرسالة التشجيعية --</option>';
+
             const bulkSelectLesson = document.getElementById('bulkSelectLesson');
             bulkSelectLesson.innerHTML = '<option value="">-- اختر الدرس أو الرسالة التشجيعية المراد إرسالها --</option>';
 
@@ -1037,7 +1040,10 @@
             lessonsGroup += '</optgroup>';
 
             let motivGroup = '<optgroup label="🌟 الرسائل التشجيعية والتحفيزية">';
-            customMotivations.forEach((m, idx) => { motivGroup += `<option value="motiv-${idx}">${m.title}</option>`; });
+            customMotivations.forEach((m, idx) => { 
+                motivGroup += `<option value="motiv-${idx}">${m.title}</option>`; 
+                selectMotivation.innerHTML += `<option value="motiv-${idx}">${m.title}</option>`;
+            });
             motivGroup += '</optgroup>';
 
             bulkSelectLesson.innerHTML += lessonsGroup + motivGroup;
@@ -1619,7 +1625,6 @@
             customMotivations.push({ id: Date.now().toString(), title: title, text: text });
             localStorage.setItem('awwal_custom_motivations_science_v4', JSON.stringify(customMotivations));
             
-            document.getElementById('newMotivationTitle').value.trim();
             document.getElementById('newMotivationTitle').value = '';
             document.getElementById('newMotivationText').value = '';
             
