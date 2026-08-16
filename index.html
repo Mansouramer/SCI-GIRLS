@@ -641,7 +641,7 @@
             <div class="form-row no-print">
                 <input type="text" id="studentName" placeholder="اسم الطالبة (Student Name)">
                 <input type="text" id="studentClassCustom" placeholder="اكتب الصف (مثال: رابع ابتدائي أول)">
-                <input type="tel" id="studentPhone" placeholder="رقم جوال ولي الأمر (مثال: 05xxxxxxx)">
+                <input type="tel" id="studentPhone" maxlength="10" placeholder="رقم جوال ولي الأمر (10 أرقام)">
                 <button onclick="addStudent()">➕ إضافة طالبة</button>
             </div>
 
@@ -1154,6 +1154,7 @@
             const phone = document.getElementById('studentPhone').value.trim();
 
             if(!name) { alert('الرجاء إدخال اسم الطالبة'); return; }
+            if(phone && phone.length !== 10) { alert('رقم جوال ولي الأمر يجب أن يكون مكوناً من 10 أرقام بالضبط'); return; }
 
             students.push({
                 name: name,
@@ -1210,7 +1211,7 @@
                 tr.innerHTML = `
                     <td><strong>${s.name}</strong></td>
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
-                    <td><input type="tel" value="${s.phone || ''}" placeholder="أدخل الجوال" style="width:110px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'phone', this.value)"></td>
+                    <td>${s.phone || '-'}</td>
                     <td><input type="number" value="${s.absence}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'absence', this.value)"></td>
                     <td><input type="number" value="${s.participation}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'participation', this.value)"></td>
                     <td><input type="number" value="${s.homework}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'homework', this.value)"></td>
@@ -1227,11 +1228,7 @@
         }
 
         function updateStudentField(index, field, val) {
-            if (field === 'phone') {
-                students[index][field] = val.trim();
-            } else {
-                students[index][field] = Number(val) || 0;
-            }
+            students[index][field] = Number(val) || 0;
             localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
             render();
         }
@@ -1353,7 +1350,7 @@
                     <td><input type="number" min="0" max="20" value="${s.exam1 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
                     <td><input type="number" min="0" max="20" value="${s.exam2 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
                     <td class="no-print">
-                        <a href="https://wa.me/${s.phone || ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 10px; font-size:12px;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال عبر واتساب</a>
+                        <a href="https://wa.me/966${s.phone ? s.phone.replace(/^0+/, '') : ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 10px; font-size:12px;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال عبر واتساب</a>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -1570,7 +1567,8 @@
             const msg = `عزيزي ولي أمر الطالبة / ${s.name}\nنحيطكم علماً بأننا تناولنا اليوم في مادة العلوم درس:\n📘 (${l.chapter}) - ${l.title}\n💡 المفاهيم والتجارب المرتبطة: ${l.desc}\nنرجو منكم متابعة ابنتكم وتعزيز استكشافاتها العلمية.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             
             preview.textContent = msg;
-            btn.href = `https://wa.me/${s.phone || ''}?text=` + encodeURIComponent(msg);
+            const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
+            btn.href = `https://wa.me/${formattedPhone}?text=` + encodeURIComponent(msg);
         }
 
         function updateMotivationMsg() {
@@ -1594,7 +1592,8 @@
 
             const finalMsg = `إلى ولي أمر الطالبة / ${s.name}\n\n${text}\n\nمع خالص الشكر، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             preview.textContent = finalMsg;
-            btn.href = `https://wa.me/${s.phone || ''}?text=` + encodeURIComponent(finalMsg);
+            const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
+            btn.href = `https://wa.me/${formattedPhone}?text=` + encodeURIComponent(finalMsg);
         }
 
         function sendFullReportWhatsApp() {
@@ -1603,7 +1602,8 @@
             const msg = `عزيزي ولي أمر الطالبة / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنتكم وتقييمها في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- المهارات: ${s.skills || 0}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر ودعمكم الدائم.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             
             incrementMessageCount(selectedStudentIndex);
-            window.open(`https://wa.me/${s.phone || ''}?text=` + encodeURIComponent(msg), '_blank');
+            const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
+            window.open(`https://wa.me/${formattedPhone}?text=` + encodeURIComponent(msg), '_blank');
         }
 
         function addNewMotivation() {
@@ -1676,7 +1676,8 @@
                     if(idx !== -1) {
                         students[idx].messages = (students[idx].messages || 0) + 1;
                     }
-                    window.open(`https://wa.me/${s.phone}?text=` + encodeURIComponent(`عزيزي ولي أمر الطالبة / ${s.name}\n\n` + msg), '_blank');
+                    const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
+                    window.open(`https://wa.me/${formattedPhone}?text=` + encodeURIComponent(`عزيزي ولي أمر الطالبة / ${s.name}\n\n` + msg), '_blank');
                 }, i * 600);
             });
             
