@@ -528,10 +528,25 @@
         .float-top { background: var(--primary); display: none; }
 
         @media print {
-            body * { visibility: hidden; }
-            .print-active-section, .print-active-section * { visibility: visible; }
-            .print-active-section { position: absolute; left: 0; top: 0; width: 100%; background: white !important; }
-            .btn-action, .backup-controls, .pagination-bar, .form-row, .classes-query-grid, .no-print { display: none !important; }
+            body * {
+                visibility: hidden !important;
+            }
+            .printing-section, .printing-section * {
+                visibility: visible !important;
+            }
+            .printing-section {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                background: white !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 10px !important;
+            }
+            .no-print, input, button, select, textarea, .pagination-bar, .backup-controls, .form-row, .classes-query-grid, .floating-action-buttons, .top-banner {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -560,7 +575,7 @@
 
     <div class="container">
         <!-- اختيار الصف الدراسي -->
-        <div class="section-card" style="background: linear-gradient(135deg, rgba(219,39,119,0.05), rgba(190,24,93,0.1)); border: 2px solid var(--secondary);">
+        <div class="section-card no-print" style="background: linear-gradient(135deg, rgba(219,39,119,0.05), rgba(190,24,93,0.1)); border: 2px solid var(--secondary);">
             <h3 style="margin-bottom: 10px;">📌 اختر الصف الدراسي للمتابعة</h3>
             <div class="form-row" style="margin-bottom: 0;">
                 <select id="globalGradeSelect" onchange="changeGradeLevel(this.value)" style="font-weight: bold; font-size: 16px; color: var(--secondary);">
@@ -575,7 +590,7 @@
         </div>
 
         <!-- الإحصائيات -->
-        <div class="stats-grid">
+        <div class="stats-grid no-print">
             <div class="stat-card">
                 <h3>👥 إجمالي الطالبات</h3>
                 <p id="totalStudents">0</p>
@@ -614,22 +629,22 @@
         <div class="section-card" id="studentsTableSection">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
                 <h3 style="margin: 0; border: none; padding: 0;">✏️ تسجيل الطالبات والصفوف ومتابعتهن</h3>
-                <button class="btn-print" onclick="printSection('studentsTableSection')" title="طباعة جدول الطالبات والصفوف">🖨️ طباعة الجدول</button>
+                <button class="btn-print no-print" onclick="printSection('studentsTableSection')" title="طباعة جدول الطالبات والصفوف">🖨️ طباعة الجدول</button>
             </div>
             
-            <div class="form-row">
+            <div class="form-row no-print">
                 <input type="text" id="studentName" placeholder="اسم الطالبة (Student Name)">
                 <input type="text" id="studentClassCustom" placeholder="اكتب الصف (مثال: رابع ابتدائي أول)">
                 <input type="tel" id="studentPhone" placeholder="رقم جوال ولي الأمر (مثال: 05xxxxxxx)">
                 <button onclick="addStudent()">➕ إضافة طالبة</button>
             </div>
 
-            <div style="margin-top: 20px;">
+            <div style="margin-top: 20px;" class="no-print">
                 <span style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 8px;">🏫 تصفح الصفوف (اضغط على الصف لعرضه):</span>
                 <div id="classesQueryContainer" class="classes-query-grid"></div>
             </div>
 
-            <div class="form-row" style="align-items: center; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 6px; margin-top: 15px;">
+            <div class="form-row no-print" style="align-items: center; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 6px; margin-top: 15px;">
                 <span style="font-weight: bold; font-size: 14px;">🔍 بحث عن طالبة محددة بالاسم:</span>
                 <input type="text" id="filterStudentNameInput" placeholder="اكتب اسم الطالبة للبحث..." oninput="filterTableByStudentInput()" style="max-width: 320px;">
             </div>
@@ -654,7 +669,7 @@
                 </table>
             </div>
 
-            <div class="pagination-bar">
+            <div class="pagination-bar no-print">
                 <div id="paginationInfo" style="font-size: 13px; font-weight: bold;">عرض 0 من 0</div>
                 <div class="pagination-btns">
                     <button id="prevPageBtn" onclick="changePage(-1)" class="btn-info">◀ السابق</button>
@@ -663,7 +678,7 @@
                 </div>
             </div>
 
-            <div class="backup-controls">
+            <div class="backup-controls no-print">
                 <button class="btn-excel" onclick="exportExcel()">📊 تصدير إلى إكسل (Excel)</button>
                 <button class="btn-warning" onclick="document.getElementById('importExcelFile').click()">📂 استيراد من إكسل (Excel)</button>
                 <input type="file" id="importExcelFile" accept=".xlsx, .xls" style="display: none;" onchange="importExcel(event)">
@@ -678,10 +693,10 @@
         <div class="section-card" id="examsSection">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
                 <h3 style="margin: 0; border: none; padding: 0;">📊 رصد وتحليل اختبارات الفترة الأولى والفترة الثانية (من ٢٠) 📝</h3>
-                <button class="btn-print" onclick="printSection('examsSection')">🖨️ طباعة تقرير رصد وتحليل الاختبارات</button>
+                <button class="btn-print no-print" onclick="printSection('examsSection')">🖨️ طباعة تقرير رصد وتحليل الاختبارات</button>
             </div>
             
-            <div class="form-row">
+            <div class="form-row no-print">
                 <select id="examClassSelect" onchange="renderExamsTable()">
                     <option value="">-- اختر الصف لعرض وسجل الاختبارات --</option>
                 </select>
@@ -720,9 +735,12 @@
         </div>
 
         <!-- استعلام عن طالبة -->
-        <div class="section-card">
-            <h3>🔍 استعلام وتتبع طالبة محددة</h3>
-            <div class="form-row">
+        <div class="section-card" id="studentReportSection">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                <h3 style="margin: 0; border: none; padding: 0;">🔍 استعلام وتتبع طالبة محددة</h3>
+                <button class="btn-print no-print" onclick="printSection('studentReportSection')">🖨️ طباعة تقرير الطالبة</button>
+            </div>
+            <div class="form-row no-print">
                 <div class="searchable-dropdown-container">
                     <input type="text" id="studentSearchInput" class="searchable-input" placeholder="اكتب اسم الطالبة للبحث الحر بالكيبورد..." oninput="filterStudentDropdown()" onfocus="showStudentDropdown()" autocomplete="off">
                     <div id="studentDropdownList" class="searchable-dropdown-list"></div>
@@ -742,45 +760,45 @@
                     </div>
                 </div>
 
-                <div class="form-row" style="margin-top: 15px;">
+                <div class="form-row no-print" style="margin-top: 15px;">
                     <button class="btn-print" onclick="printStudentReport()">🖨️ طباعة تقرير الطالبة الرسمي</button>
                     <button class="whatsapp-btn" onclick="sendFullReportWhatsApp()" style="border: none; cursor: pointer; margin-top: 0;">📤 إرسال التقرير الشامل لولي الأمر عبر واتساب</button>
                 </div>
 
                 <div class="sub-box">
                     <h5>💬 إشعار ولي الأمر بالدرس والمهارة العلمية عبر الواتساب مباشرة</h5>
-                    <div>📱 رقم الجوال المحدد: <span id="sdPhone">لا يوجد</span></div>
-                    <div class="form-row" style="margin-top: 10px;">
+                    <div class="no-print">📱 رقم الجوال المحدد: <span id="sdPhone">لا يوجد</span></div>
+                    <div class="form-row no-print" style="margin-top: 10px;">
                         <select id="selectLesson" onchange="updateLessonMsg()">
                             <option value="">-- اختر موضوع الدرس والمهارة --</option>
                         </select>
                     </div>
                     <div id="lessonMsgPreview" class="preview-msg">اختر موضوع الدرس والمهارة أعلاه لتوليد نص الرسالة تلقائياً...</div>
-                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn" onclick="incrementMessageCount()">📲 إرسال مباشر لولي الأمر</a>
+                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">📲 إرسال مباشر لولي الأمر</a>
                 </div>
 
                 <div class="sub-box">
                     <h5>✨ إرسال رسائل تشجيعية وشكر وتقدير</h5>
-                    <div class="form-row">
+                    <div class="form-row no-print">
                         <select id="selectMotivation" onchange="updateMotivationMsg()">
                             <option value="">-- اختر الرسالة التشجيعية --</option>
                         </select>
                     </div>
                     
-                    <div class="form-row" style="margin-top: 10px; background: rgba(219, 39, 119, 0.05); padding: 10px; border-radius: 6px;">
+                    <div class="form-row no-print" style="margin-top: 10px; background: rgba(219, 39, 119, 0.05); padding: 10px; border-radius: 6px;">
                         <input type="text" id="newMotivationTitle" placeholder="عنوان الرسالة..." style="max-width: 220px;">
                         <input type="text" id="newMotivationText" placeholder="اكتب نص الرسالة التشجيعية الجديدة هنا...">
                         <button onclick="addNewMotivation()">➕ إضافة رسالة تشجيعية</button>
                     </div>
 
                     <div id="motivationMsgPreview" class="preview-msg">اختر الرسالة لعرض نص الشكر والتحفيز...</div>
-                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
+                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
                 </div>
             </div>
         </div>
 
         <!-- إرسال جماعي لأولياء الأمور -->
-        <div class="section-card">
+        <div class="section-card no-print">
             <h3>📢 إرسال رسالة أو واجب جماعي لأولياء الأمور</h3>
             <div class="sub-box" style="margin-top: 0;">
                 <div class="form-row">
@@ -800,7 +818,7 @@
         </div>
 
         <!-- قائمة وحدات ودروس مادة العلوم -->
-        <div class="section-card">
+        <div class="section-card no-print">
             <h3 id="curriculumTitle">📚 دليل مقرر العلوم - المرحلة الابتدائية (المنهج السعودي المعتمد للفصلين) وتتبع التنفيذ</h3>
             
             <div class="sub-box" style="margin-bottom: 15px; margin-top: 0;">
@@ -836,7 +854,7 @@
             <div class="lessons-grid" id="mainLessonsContainer"></div>
         </div>
 
-        <div class="footer-note">
+        <div class="footer-note no-print">
             ﴿ هذا الجهد استغرق وقتاً وعناية، ولا أحلل نقله تجارياً أو نسخه دون إذن ﴾<br>
             للتواصل واتساب: <a href="https://wa.me/966581015002" target="_blank" style="color: inherit; text-decoration: underline;">0581015002</a>
         </div>
@@ -844,7 +862,7 @@
     </div>
 
     <!-- الأزرار العائمة -->
-    <div class="floating-action-buttons">
+    <div class="floating-action-buttons no-print">
         <a href="https://wa.me/966581015002" target="_blank" class="float-btn float-whatsapp" title="تواصل الدعم الفني عبر واتساب">💬</a>
         <button id="scrollToTopBtn" class="float-btn float-top" onclick="scrollToTop()" title="العودة إلى أعلى الصفحة">⬆️</button>
     </div>
@@ -1099,7 +1117,6 @@
         }
 
         function render() {
-            // حساب الإجماليات الشاملة لتحديث بطاقات الإحصائيات العلوية بشكل فوري
             let sumSkills = 0;
             let sumPart = 0;
             let sumHw = 0;
@@ -1209,7 +1226,7 @@
         function updateStudentField(index, field, val) {
             students[index][field] = Number(val) || 0;
             localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
-            render(); // تحديث الإحصائيات العلوية فوراً مع كل إدخال
+            render();
         }
 
         function deleteStudent(index) {
@@ -1343,6 +1360,22 @@
             students[index][field] = Number(val) || 0;
             localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
             renderExamsTable();
+        }
+
+        function printSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            
+            // إزالة الكلاس printing-section من أي عناصر أخرى
+            document.querySelectorAll('.section-card').forEach(el => el.classList.remove('printing-section'));
+            
+            // إضافة الكلاس للقسم المستهدف فقط للطباعة
+            section.classList.add('printing-section');
+            window.print();
+        }
+
+        function printStudentReport() {
+            printSection('studentReportSection');
         }
 
         function exportExcel() {
