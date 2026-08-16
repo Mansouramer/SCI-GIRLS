@@ -1211,7 +1211,7 @@
                 tr.innerHTML = `
                     <td><strong>${s.name}</strong></td>
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
-                    <td>${s.phone || '-'}</td>
+                    <td><input type="text" maxlength="10" value="${s.phone || ''}" style="width:110px; text-align:center;" oninput="updateStudentPhone(${globalIndex}, this.value)" placeholder="05xxxxxxxx"></td>
                     <td><input type="number" value="${s.absence}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'absence', this.value)"></td>
                     <td><input type="number" value="${s.participation}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'participation', this.value)"></td>
                     <td><input type="number" value="${s.homework}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'homework', this.value)"></td>
@@ -1225,6 +1225,11 @@
 
             document.getElementById('paginationInfo').textContent = `عرض من ${startIdx + 1} إلى ${Math.min(startIdx + rowsPerPage, totalRows)} من أصل ${totalRows} طالبة`;
             document.getElementById('pageIndicator').textContent = `${currentPage} / ${totalPages}`;
+        }
+
+        function updateStudentPhone(index, val) {
+            students[index].phone = val.trim();
+            localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
         }
 
         function updateStudentField(index, field, val) {
@@ -1614,6 +1619,7 @@
             customMotivations.push({ id: Date.now().toString(), title: title, text: text });
             localStorage.setItem('awwal_custom_motivations_science_v4', JSON.stringify(customMotivations));
             
+            document.getElementById('newMotivationTitle').value.trim();
             document.getElementById('newMotivationTitle').value = '';
             document.getElementById('newMotivationText').value = '';
             
