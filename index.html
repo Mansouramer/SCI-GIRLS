@@ -1099,7 +1099,31 @@
         }
 
         function render() {
+            // حساب الإجماليات الشاملة لتحديث بطاقات الإحصائيات العلوية بشكل فوري
+            let sumSkills = 0;
+            let sumPart = 0;
+            let sumHw = 0;
+            let sumAbs = 0;
+            let sumProj = 0;
+            let sumMsg = 0;
+
+            students.forEach(s => {
+                sumSkills += Number(s.skills) || 0;
+                sumPart += Number(s.participation) || 0;
+                sumHw += Number(s.homework) || 0;
+                sumAbs += Number(s.absence) || 0;
+                sumProj += Number(s.projects) || 0;
+                sumMsg += Number(s.messages) || 0;
+            });
+
             document.getElementById('totalStudents').textContent = students.length;
+            document.getElementById('totalSkills').textContent = sumSkills;
+            document.getElementById('totalParticipation').textContent = sumPart;
+            document.getElementById('totalHomework').textContent = sumHw;
+            document.getElementById('totalAbsence').textContent = sumAbs;
+            document.getElementById('totalProjects').textContent = sumProj;
+            document.getElementById('totalMessagesSent').textContent = sumMsg;
+
             renderStudentsTable();
             renderClassesQuery();
         }
@@ -1160,18 +1184,18 @@
                 return;
             }
 
-            pageData.forEach((s, idx) => {
+            pageData.forEach((s) => {
                 const globalIndex = students.indexOf(s);
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td><strong>${s.name}</strong></td>
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
                     <td>${s.phone || '-'}</td>
-                    <td><input type="number" value="${s.absence}" min="0" style="width:50px; text-align:center;" onchange="updateStudentField(${globalIndex}, 'absence', this.value)"></td>
-                    <td><input type="number" value="${s.participation}" min="0" style="width:50px; text-align:center;" onchange="updateStudentField(${globalIndex}, 'participation', this.value)"></td>
-                    <td><input type="number" value="${s.homework}" min="0" style="width:50px; text-align:center;" onchange="updateStudentField(${globalIndex}, 'homework', this.value)"></td>
-                    <td><input type="number" value="${s.skills}" min="0" style="width:50px; text-align:center;" onchange="updateStudentField(${globalIndex}, 'skills', this.value)"></td>
-                    <td><input type="number" value="${s.projects}" min="0" style="width:50px; text-align:center;" onchange="updateStudentField(${globalIndex}, 'projects', this.value)"></td>
+                    <td><input type="number" value="${s.absence}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'absence', this.value)"></td>
+                    <td><input type="number" value="${s.participation}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'participation', this.value)"></td>
+                    <td><input type="number" value="${s.homework}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'homework', this.value)"></td>
+                    <td><input type="number" value="${s.skills}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'skills', this.value)"></td>
+                    <td><input type="number" value="${s.projects}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'projects', this.value)"></td>
                     <td>${s.messages || 0}</td>
                     <td class="no-print"><button class="btn-action btn-danger" onclick="deleteStudent(${globalIndex})">حذف</button></td>
                 `;
@@ -1185,7 +1209,7 @@
         function updateStudentField(index, field, val) {
             students[index][field] = Number(val) || 0;
             localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
-            showToast('✅ تم تحديث بيانات الطالبة وحفظها!');
+            render(); // تحديث الإحصائيات العلوية فوراً مع كل إدخال
         }
 
         function deleteStudent(index) {
@@ -1302,10 +1326,10 @@
                 tr.innerHTML = `
                     <td><strong>${s.name}</strong></td>
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
-                    <td><input type="number" min="0" max="20" value="${s.exam1 || 0}" style="width:70px; text-align:center;" onchange="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
-                    <td><input type="number" min="0" max="20" value="${s.exam2 || 0}" style="width:70px; text-align:center;" onchange="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
+                    <td><input type="number" min="0" max="20" value="${s.exam1 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
+                    <td><input type="number" min="0" max="20" value="${s.exam2 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
                     <td class="no-print">
-                        <a href="https://wa.me/${s.phone || ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 10px; font-size:12px;" onclick="incrementMessageCount()">📤 إرسال عبر واتساب</a>
+                        <a href="https://wa.me/${s.phone || ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 10px; font-size:12px;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال عبر واتساب</a>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -1319,7 +1343,6 @@
             students[index][field] = Number(val) || 0;
             localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
             renderExamsTable();
-            showToast('📊 تم تحديث درجات الاختبارات بنجاح!');
         }
 
         function exportExcel() {
@@ -1552,12 +1575,12 @@
             showToast('🌟 تمت إضافة رسالة التحفيز بنجاح!');
         }
 
-        function incrementMessageCount() {
-            if(selectedStudentIndex !== '') {
-                students[selectedStudentIndex].messages = (students[selectedStudentIndex].messages || 0) + 1;
+        function incrementMessageCount(targetIdx = selectedStudentIndex) {
+            if(targetIdx !== '' && students[targetIdx]) {
+                students[targetIdx].messages = (students[targetIdx].messages || 0) + 1;
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
-                selectStudentForDetails(selectedStudentIndex);
-                renderStudentsTable();
+                render();
+                if(selectedStudentIndex !== '') selectStudentForDetails(selectedStudentIndex);
             }
         }
 
@@ -1603,6 +1626,7 @@
             
             targetStudents.forEach((s, i) => {
                 setTimeout(() => {
+                    incrementMessageCount(students.indexOf(s));
                     window.open(`https://wa.me/${s.phone}?text=` + encodeURIComponent(`عزيزي ولي أمر الطالبة / ${s.name}\n\n` + msg), '_blank');
                 }, i * 600);
             });
