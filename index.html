@@ -347,6 +347,7 @@
             border-radius: 6px;
             font-weight: bold;
             margin-top: 5px;
+            text-align: center;
         }
 
         .lessons-grid {
@@ -768,7 +769,7 @@
 
                 <div class="form-row no-print" style="margin-top: 15px;">
                     <button class="btn-print" onclick="printStudentReport()">🖨️ طباعة تقرير الطالبة الرسمي</button>
-                    <button class="whatsapp-btn" onclick="sendFullReportWhatsApp()" style="border: none; cursor: pointer; margin-top: 0;">📤 إرسال التقرير الشامل لولي الأمر عبر واتساب</button>
+                    <button class="whatsapp-btn" onclick="sendFullReportWhatsApp()" style="border: none; cursor: pointer; margin-top: 0; width: 100%;">📤 إرسال التقرير الشامل لولي الأمر عبر واتساب</button>
                 </div>
 
                 <div class="sub-box">
@@ -780,7 +781,7 @@
                         </select>
                     </div>
                     <div id="lessonMsgPreview" class="preview-msg">اختر موضوع الدرس والمهارة أعلاه لتوليد نص الرسالة تلقائياً...</div>
-                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">📲 إرسال مباشر لولي الأمر</a>
+                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()" style="display: block;">📲 إرسال مباشر لولي الأمر</a>
                 </div>
 
                 <div class="sub-box">
@@ -798,7 +799,7 @@
                     </div>
 
                     <div id="motivationMsgPreview" class="preview-msg">اختر الرسالة لعرض نص الشكر والتحفيز...</div>
-                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
+                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()" style="display: block;">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
                 </div>
             </div>
         </div>
@@ -822,7 +823,14 @@
                     <input type="text" id="bulkHomeworkExtraNote" placeholder="ملاحظات إضافية للواجب (اختياري)..." oninput="updateBulkHomeworkMsgPreview()">
                 </div>
                 <div id="bulkHomeworkMsgPreview" class="preview-msg">اختر الصف والدرس وأدخل تفاصيل الواجب لعرض نموذج رسالة الواجب الجماعية...</div>
-                <button class="whatsapp-btn" onclick="sendBulkHomeworkWhatsApp()" style="border: none; cursor: pointer; font-size: 15px;">🚀 إرسال الواجب الجماعي عبر واتساب</button>
+                
+                <!-- لوحة التحكم الجماعية الجديدة لتفادي حظر المتصفح لفتح النوافذ المنبثقة المتعددة -->
+                <div id="bulkSendPanel" style="display: none; margin-top: 15px; background: rgba(0,0,0,0.04); padding: 15px; border-radius: 8px; border: 1px solid var(--secondary);">
+                    <h5 style="margin-top: 0; color: var(--secondary);">📤 قائمة إرسال الواجب الجماعي (انقر فوق زر كل ولي أمر للإرسال الفردي بأمان):</h5>
+                    <div id="bulkSendListContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; margin-top: 10px;"></div>
+                </div>
+
+                <button class="whatsapp-btn" onclick="prepareBulkHomeworkBatch()" style="border: none; cursor: pointer; font-size: 15px; width: 100%;">🚀 تجهيز روابط إرسال الواجب الجماعي</button>
             </div>
         </div>
 
@@ -978,6 +986,7 @@
             selectedStudentIndex = '';
             currentPage = 1;
             document.getElementById('studentSearchInput').value = '';
+            document.getElementById('bulkSendPanel').style.display = 'none';
 
             document.getElementById('curriculumTitle').textContent = `📚 دليل مقرر العلوم - ${currentGrade} (المنهج السعودي المعتمد) وتتبع التنفيذ`;
 
@@ -1679,7 +1688,8 @@
             preview.textContent = msg;
         }
 
-        function sendBulkHomeworkWhatsApp() {
+        // تم تعديل نظام الإرسال الجماعي لتوليد قائمة أزرار آمنة تمنع حظر المتصفح وتضمن إرسالها لكل أولياء الأمور دون استثناء
+        function prepareBulkHomeworkBatch() {
             const targetClass = document.getElementById('bulkTargetClass').value;
             const val = document.getElementById('bulkSelectHomeworkLesson').value;
             if(!val) { alert('الرجاء اختيار الدرس لتحديد الواجب المراد إرساله'); return; }
@@ -1690,25 +1700,50 @@
             }
 
             targetStudents = targetStudents.filter(s => s.phone && s.phone.trim() !== '');
-            if(targetStudents.length === 0) { alert('لا توجد أرقام جوالات مسجلة للطالبات المستهدفات'); return; }
+            if(targetStudents.length === 0) { 
+                alert('لا توجد أرقام جوالات مسجلة للطالبات المستهدفات في هذا الصف'); 
+                return; 
+            }
 
-            let msg = document.getElementById('bulkHomeworkMsgPreview').textContent;
-            
-            targetStudents.forEach((s, i) => {
-                setTimeout(() => {
-                    const idx = students.indexOf(s);
-                    if(idx !== -1) {
-                        students[idx].messages = (students[idx].messages || 0) + 1;
-                    }
-                    const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
-                    window.open(`https://wa.me/${formattedPhone}?text=` + encodeURIComponent(`عزيزي ولي أمر الطالبة / ${s.name}\n\n` + msg), '_blank');
-                }, i * 600);
+            const baseMsg = document.getElementById('bulkHomeworkMsgPreview').textContent;
+            const panel = document.getElementById('bulkSendPanel');
+            const listContainer = document.getElementById('bulkSendListContainer');
+            listContainer.innerHTML = '';
+
+            targetStudents.forEach(s => {
+                const globalIdx = students.indexOf(s);
+                const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
+                const finalMsg = `عزيزي ولي أمر الطالبة / ${s.name}\n\n` + baseMsg;
+                const link = `https://wa.me/${formattedPhone}?text=` + encodeURIComponent(finalMsg);
+
+                const itemDiv = document.createElement('div');
+                itemDiv.style.display = 'flex';
+                itemDiv.style.justifyContent = 'space-between';
+                itemDiv.style.alignItems = 'center';
+                itemDiv.style.background = 'var(--card-bg)';
+                itemDiv.style.padding = '8px 12px';
+                itemDiv.style.borderRadius = '6px';
+                itemDiv.style.border = '1px solid rgba(0,0,0,0.1)';
+
+                itemDiv.innerHTML = `
+                    <div><strong>${s.name}</strong> <span class="class-badge" style="font-size:10px;">${s.classCustom || currentGrade}</span></div>
+                    <a href="${link}" target="_blank" class="whatsapp-btn" style="margin-top:0; padding:6px 12px; font-size:12px;" onclick="markMessageSentFromBulk(${globalIdx}, this)">📤 إرسال لولي الأمر</a>
+                `;
+                listContainer.appendChild(itemDiv);
             });
-            
-            localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
-            render();
-            if(selectedStudentIndex !== '') selectStudentForDetails(selectedStudentIndex);
-            showToast('🚀 جاري فتح رسائل الواجب الجماعية عبر الواتساب...');
+
+            panel.style.display = 'block';
+            showToast(`🚀 تم تجهيز قائمة إرسال لعدد (${targetStudents.length}) ولي أمر بنجاح!`);
+        }
+
+        function markMessageSentFromBulk(globalIdx, btnElement) {
+            if(students[globalIdx]) {
+                students[globalIdx].messages = (students[globalIdx].messages || 0) + 1;
+                localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
+                render();
+                btnElement.style.background = '#6b7280';
+                btnElement.textContent = '✅ تم الإرسال';
+            }
         }
 
         function setTheme(themeName) {
