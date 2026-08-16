@@ -544,7 +544,6 @@
                 margin: 0 !important;
                 padding: 10px !important;
             }
-            /* ضمان طباعة حقول الإدخال والدرجات بشكل مرئي وواضح في صفحة واحدة */
             .printing-section input {
                 border: none !important;
                 background: transparent !important;
@@ -831,21 +830,18 @@
             <div class="sub-box" style="margin-bottom: 15px; margin-top: 0;">
                 <h5 style="margin-bottom: 10px;">➕ إضافة درس فردي أو مجموعة دروس دفعة واحدة</h5>
                 
-                <!-- إضافة درس فردي -->
                 <div class="form-row">
                     <input type="text" id="newLessonTitle" placeholder="عنوان الوحدة والنص والدرس...">
                     <input type="text" id="newLessonDesc" placeholder="تفاصيل المفاهيم العلمية والتجارب الاستهلالية...">
                     <button onclick="addNewLesson()">➕ إضافة الدرس الفردي</button>
                 </div>
 
-                <!-- إضافة مجموعة دروس دفعة واحدة -->
                 <div class="form-row" style="margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 15px;">
                     <textarea id="bulkLessonsInput" rows="3" placeholder="أدخل مجموعة دروس دفعة واحدة (كل درس في سطر مستقل)، بحيث يكون التنسيق كالتالي:&#10;اسم الوحدة | عنوان الدرس | الوصف والتفاصيل" style="width:100%;"></textarea>
                     <button class="btn-info" onclick="addBatchLessons()" style="width:100%;">📥 إضافة مجموعة الدروس دفعة واحدة</button>
                 </div>
             </div>
 
-            <!-- قائمة منسدلة لدليل مقرر العلوم -->
             <div class="sub-box" style="background: rgba(219,39,119,0.03); border: 1px solid var(--secondary);">
                 <h5 style="color: var(--secondary);">📑 القائمة المنسدلة لدليل مقرر العلوم والوحدات الدراسية</h5>
                 <div class="form-row" style="margin-bottom: 10px;">
@@ -931,7 +927,7 @@
                 { chapter: "الوحدة 3: المخلوقات الحية تنمو وتتغير", title: "أجهزة جسم الإنسان", desc: "التعرف على الجهاز الهيكلي، العضلي، والهضمي والدورة الدموية ووظائفها الأساسية." },
                 { chapter: "الوحدة 3: المخلوقات الحية تنمو وتتغير", title: "الصحة الغذائية والرياضية", desc: "أهمية الغذاء المتوازن وممارسة الرياضة للحفاظ على صحة الأجسام وقوتها." },
                 { chapter: "الوحدة 4: الطاقة والكهرباء والمغناطيسية", title: "الدوائر الكهربائية البسيطة", desc: "كيف يضيء المصباح الكهربائي وتوصيل الدوائر الكهربائية بأمان." },
-                { chapter: "الوحدة 4: الطاقة والكهرباء والمغناطيسية", title: "المغناطيس وقوته", desc: "استكشاف أقطاب المغناطيس وتنافرها وتجاذبها والمواد التي تنجذب إليه." }
+                { chapter: "الوحدة 4: الطاقة والكهرباء والمغناطيسية", title: "المغناطيس وقوته", desc: "استكشاف أقطاب المغناطيس وتنافرها وتجاذبها والم المواد التي تنجذب إليه." }
             ],
             "الرابع الابتدائي": [
                 { chapter: "الوحدة 1: ممالك المخلوقات الحية", title: "الخلايا وتصنيف المخلوقات الحية", desc: "دراسة الخلايا وأساسيات تصنيف المخلوقات الحية في ممالكها." },
@@ -1597,6 +1593,15 @@
             btn.href = `https://wa.me/${s.phone || ''}?text=` + encodeURIComponent(finalMsg);
         }
 
+        function sendFullReportWhatsApp() {
+            if(selectedStudentIndex === '') return;
+            const s = students[selectedStudentIndex];
+            const msg = `عزيزي ولي أمر الطالبة / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنتكم وتقييمها في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- المهارات: ${s.skills || 0}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر ودعمكم الدائم.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            
+            incrementMessageCount(selectedStudentIndex);
+            window.open(`https://wa.me/${s.phone || ''}?text=` + encodeURIComponent(msg), '_blank');
+        }
+
         function addNewMotivation() {
             const title = document.getElementById('newMotivationTitle').value.trim();
             const text = document.getElementById('newMotivationText').value.trim();
@@ -1663,10 +1668,17 @@
             
             targetStudents.forEach((s, i) => {
                 setTimeout(() => {
-                    incrementMessageCount(students.indexOf(s));
+                    const idx = students.indexOf(s);
+                    if(idx !== -1) {
+                        students[idx].messages = (students[idx].messages || 0) + 1;
+                    }
                     window.open(`https://wa.me/${s.phone}?text=` + encodeURIComponent(`عزيزي ولي أمر الطالبة / ${s.name}\n\n` + msg), '_blank');
                 }, i * 600);
             });
+            
+            localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
+            render();
+            if(selectedStudentIndex !== '') selectStudentForDetails(selectedStudentIndex);
             showToast('🚀 جاري فتح رسائل الواتساب الجماعية...');
         }
 
