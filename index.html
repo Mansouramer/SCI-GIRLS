@@ -544,7 +544,14 @@
                 margin: 0 !important;
                 padding: 10px !important;
             }
-            .no-print, input, button, select, textarea, .pagination-bar, .backup-controls, .form-row, .classes-query-grid, .floating-action-buttons, .top-banner {
+            /* ضمان طباعة حقول الإدخال والدرجات بشكل مرئي وواضح في صفحة واحدة */
+            .printing-section input {
+                border: none !important;
+                background: transparent !important;
+                text-align: center !important;
+                font-weight: bold !important;
+            }
+            .no-print, button, select, textarea, .pagination-bar, .backup-controls, .form-row, .classes-query-grid, .floating-action-buttons, .top-banner {
                 display: none !important;
             }
         }
@@ -693,7 +700,7 @@
         <div class="section-card" id="examsSection">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
                 <h3 style="margin: 0; border: none; padding: 0;">📊 رصد وتحليل اختبارات الفترة الأولى والفترة الثانية (من ٢٠) 📝</h3>
-                <button class="btn-print no-print" onclick="printSection('examsSection')">🖨️ طباعة تقرير رصد وتحليل الاختبارات</button>
+                <button class="btn-print" onclick="printSection('examsSection')">🖨️ طباعة تقرير رصد وتحليل الاختبارات</button>
             </div>
             
             <div class="form-row no-print">
@@ -1366,10 +1373,7 @@
             const section = document.getElementById(sectionId);
             if (!section) return;
             
-            // إزالة الكلاس printing-section من أي عناصر أخرى
             document.querySelectorAll('.section-card').forEach(el => el.classList.remove('printing-section'));
-            
-            // إضافة الكلاس للقسم المستهدف فقط للطباعة
             section.classList.add('printing-section');
             window.print();
         }
