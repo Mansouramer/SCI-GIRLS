@@ -803,23 +803,26 @@
             </div>
         </div>
 
-        <!-- إرسال جماعي لأولياء الأمور -->
+        <!-- إرسال جماعي للواجب فقط لأولياء الأمور -->
         <div class="section-card no-print">
-            <h3>📢 إرسال رسالة أو واجب جماعي لأولياء الأمور</h3>
+            <h3>📢 إرسال الواجب المدرسي الجماعي لأولياء الأمور</h3>
             <div class="sub-box" style="margin-top: 0;">
                 <div class="form-row">
                     <select id="bulkTargetClass">
                         <option value="ALL">جميع الصفوف</option>
                     </select>
-                    <select id="bulkSelectLesson" onchange="updateBulkMsgPreview()">
-                        <option value="">-- اختر الدرس أو الرسالة التشجيعية المراد إرسالها --</option>
+                    <select id="bulkSelectHomeworkLesson" onchange="updateBulkHomeworkMsgPreview()">
+                        <option value="">-- اختر الدرس لتحديد الواجب المراد إرساله --</option>
                     </select>
                 </div>
                 <div class="form-row" style="margin-top: 10px;">
-                    <input type="text" id="bulkExtraNote" placeholder="اكتب ملاحظات إضافية هنا..." oninput="updateBulkMsgPreview()">
+                    <input type="text" id="bulkHomeworkDetails" placeholder="تفاصيل الواجب المطلوب حلّه (مثال: حل التمارين ص 45)..." oninput="updateBulkHomeworkMsgPreview()">
                 </div>
-                <div id="bulkMsgPreview" class="preview-msg">اختر الصف والدرس أو الرسالة التشجيعية وأدخل الملاحظات لعرض نموذج الرسالة الجماعية...</div>
-                <button class="whatsapp-btn" onclick="sendBulkWhatsApp()" style="border: none; cursor: pointer; font-size: 15px;">🚀 إرسال جماعي عبر واتساب</button>
+                <div class="form-row" style="margin-top: 10px;">
+                    <input type="text" id="bulkHomeworkExtraNote" placeholder="ملاحظات إضافية للواجب (اختياري)..." oninput="updateBulkHomeworkMsgPreview()">
+                </div>
+                <div id="bulkHomeworkMsgPreview" class="preview-msg">اختر الصف والدرس وأدخل تفاصيل الواجب لعرض نموذج رسالة الواجب الجماعية...</div>
+                <button class="whatsapp-btn" onclick="sendBulkHomeworkWhatsApp()" style="border: none; cursor: pointer; font-size: 15px;">🚀 إرسال الواجب الجماعي عبر واتساب</button>
             </div>
         </div>
 
@@ -1001,13 +1004,13 @@
             const selectMotivation = document.getElementById('selectMotivation');
             selectMotivation.innerHTML = '<option value="">-- اختر الرسالة التشجيعية --</option>';
 
-            const bulkSelectLesson = document.getElementById('bulkSelectLesson');
-            bulkSelectLesson.innerHTML = '<option value="">-- اختر الدرس أو الرسالة التشجيعية المراد إرسالها --</option>';
+            const bulkSelectHomeworkLesson = document.getElementById('bulkSelectHomeworkLesson');
+            bulkSelectHomeworkLesson.innerHTML = '<option value="">-- اختر الدرس لتحديد الواجب المراد إرساله --</option>';
 
             const curriculumDropdown = document.getElementById('curriculumDropdownSelect');
             curriculumDropdown.innerHTML = '<option value="">-- اختر الدرس أو الوحدة من القائمة المنسدلة للاستعراض --</option>';
 
-            let lessonsGroup = '<optgroup label="📚 دروس ومهمات المنهج">';
+            let lessonsGroup = '';
             let executedCount = 0;
             const mainLessonsContainer = document.getElementById('mainLessonsContainer');
             mainLessonsContainer.innerHTML = '';
@@ -1037,7 +1040,8 @@
                 `;
                 mainLessonsContainer.appendChild(card);
             });
-            lessonsGroup += '</optgroup>';
+
+            bulkSelectHomeworkLesson.innerHTML += lessonsGroup;
 
             let motivGroup = '<optgroup label="🌟 الرسائل التشجيعية والتحفيزية">';
             customMotivations.forEach((m, idx) => { 
@@ -1046,7 +1050,6 @@
             });
             motivGroup += '</optgroup>';
 
-            bulkSelectLesson.innerHTML += lessonsGroup + motivGroup;
             document.getElementById('totalExecutedLessons').textContent = `${executedCount} / ${lessons.length}`;
         }
 
@@ -1641,35 +1644,45 @@
             }
         }
 
-        function updateBulkMsgPreview() {
-            const val = document.getElementById('bulkSelectLesson').value;
-            const note = document.getElementById('bulkExtraNote').value.trim();
-            const preview = document.getElementById('bulkMsgPreview');
+        function updateBulkHomeworkMsgPreview() {
+            const val = document.getElementById('bulkSelectHomeworkLesson').value;
+            const details = document.getElementById('bulkHomeworkDetails').value.trim();
+            const note = document.getElementById('bulkHomeworkExtraNote').value.trim();
+            const preview = document.getElementById('bulkHomeworkMsgPreview');
 
             if(!val) {
-                preview.textContent = "اختر الصف والدرس أو الرسالة التشجيعية وأدخل الملاحظات لعرض نموذج الرسالة الجماعية...";
+                preview.textContent = "اختر الصف والدرس وأدخل تفاصيل الواجب لعرض نموذج رسالة الواجب الجماعية...";
                 return;
             }
 
-            let msg = "";
+            let lessonTitle = "";
+            let chapterName = "";
             if(val.startsWith('lesson-')) {
                 const idx = val.split('-')[1];
                 const l = lessons[idx];
-                msg = `أولياء الأمور الأفاضل، نود إحاطتكم بأننا سندرس في مادة العلوم:\n📘 (${l.chapter}) - ${l.title}\nالتفاصيل: ${l.desc}`;
-            } else if(val.startsWith('motiv-')) {
-                const idx = val.split('-')[1];
-                msg = customMotivations[idx].text;
+                chapterName = l.chapter;
+                lessonTitle = l.title;
             }
 
-            if(note) msg += `\n\nملاحظة إضافية: ${note}`;
-            msg += `\n\nمع التحية، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            let msg = `أولياء الأمور الأفاضل، نود إحاطتكم بأن واجب مادة العلوم للدرس:\n📘 (${chapterName}) - ${lessonTitle}\n`;
+            if(details) {
+                msg += `📝 المطلوب حلّه: ${details}\n`;
+            } else {
+                msg += `📝 المطلوب: حل تدريبات وأسئلة الدرس في الكتاب المدرسي.\n`;
+            }
+
+            if(note) {
+                msg += `📌 ملاحظات: ${note}\n`;
+            }
+
+            msg += `\nنرجو الحرص على حل الواجب وإرساله في الموعد المحدد.\nمع خالص الشكر، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             preview.textContent = msg;
         }
 
-        function sendBulkWhatsApp() {
+        function sendBulkHomeworkWhatsApp() {
             const targetClass = document.getElementById('bulkTargetClass').value;
-            const val = document.getElementById('bulkSelectLesson').value;
-            if(!val) { alert('الرجاء اختيار الدرس أو الرسالة للإرسال الجماعي'); return; }
+            const val = document.getElementById('bulkSelectHomeworkLesson').value;
+            if(!val) { alert('الرجاء اختيار الدرس لتحديد الواجب المراد إرساله'); return; }
 
             let targetStudents = students;
             if(targetClass !== 'ALL') {
@@ -1679,7 +1692,7 @@
             targetStudents = targetStudents.filter(s => s.phone && s.phone.trim() !== '');
             if(targetStudents.length === 0) { alert('لا توجد أرقام جوالات مسجلة للطالبات المستهدفات'); return; }
 
-            let msg = document.getElementById('bulkMsgPreview').textContent;
+            let msg = document.getElementById('bulkHomeworkMsgPreview').textContent;
             
             targetStudents.forEach((s, i) => {
                 setTimeout(() => {
@@ -1695,7 +1708,7 @@
             localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
             render();
             if(selectedStudentIndex !== '') selectStudentForDetails(selectedStudentIndex);
-            showToast('🚀 جاري فتح رسائل الواتساب الجماعية...');
+            showToast('🚀 جاري فتح رسائل الواجب الجماعية عبر الواتساب...');
         }
 
         function setTheme(themeName) {
