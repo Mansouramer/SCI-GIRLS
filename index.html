@@ -1370,8 +1370,8 @@
                 tr.innerHTML = `
                     <td><strong>${s.name}</strong></td>
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
-                    <td><input type="text" maxlength="2" value="${s.exam1 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
-                    <td><input type="text" maxlength="2" value="${s.exam2 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
+                    <td><input type="number" min="0" max="20" value="${s.exam1 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
+                    <td><input type="number" min="0" max="20" value="${s.exam2 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
                     <td class="no-print">
                         <a href="https://wa.me/966${s.phone ? s.phone.replace(/^0+/, '') : ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 10px; font-size:12px;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال عبر واتساب</a>
                     </td>
@@ -1688,6 +1688,7 @@
             preview.textContent = msg;
         }
 
+        // تم تعديل نظام الإرسال الجماعي لتوليد قائمة أزرار آمنة تمنع حظر المتصفح وتضمن إرسالها لكل أولياء الأمور دون استثناء
         function prepareBulkHomeworkBatch() {
             const targetClass = document.getElementById('bulkTargetClass').value;
             const val = document.getElementById('bulkSelectHomeworkLesson').value;
