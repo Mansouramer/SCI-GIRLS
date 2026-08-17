@@ -208,6 +208,36 @@
         .btn-print { background: #4b5563; }
         .btn-action { padding: 4px 8px; font-size: 12px; margin: 0 2px; }
 
+        /* تنسيق أزرار العداد (زيادة ونقصان) */
+        .counter-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .counter-val {
+            font-weight: bold;
+            min-width: 25px;
+            text-align: center;
+            font-size: 15px;
+        }
+        .btn-counter {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 26px;
+            height: 26px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .btn-counter:hover { opacity: 0.8; }
+
         .classes-query-grid {
             display: flex;
             flex-wrap: wrap;
@@ -528,7 +558,12 @@
         .float-whatsapp { background: #25D366; }
         .float-top { background: var(--primary); display: none; }
 
+        /* تنسيق وضبط ألوان الطباعة بدقة */
         @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
             body * {
                 visibility: hidden !important;
             }
@@ -541,17 +576,28 @@
                 top: 0 !important;
                 width: 100% !important;
                 background: white !important;
+                color: black !important;
                 box-shadow: none !important;
                 margin: 0 !important;
                 padding: 10px !important;
             }
-            .printing-section input {
+            .printing-section input, .printing-section select {
                 border: none !important;
                 background: transparent !important;
                 text-align: center !important;
                 font-weight: bold !important;
+                color: black !important;
             }
-            .no-print, button, select, textarea, .pagination-bar, .backup-controls, .form-row, .classes-query-grid, .floating-action-buttons, .top-banner {
+            .printing-section th {
+                background-color: #f3f4f6 !important;
+                color: black !important;
+                border: 1px solid #d1d5db !important;
+            }
+            .printing-section td {
+                border: 1px solid #d1d5db !important;
+                color: black !important;
+            }
+            .no-print, button, select, textarea, .pagination-bar, .backup-controls, .form-row, .classes-query-grid, .floating-action-buttons, .top-banner, .btn-counter {
                 display: none !important;
             }
         }
@@ -696,7 +742,7 @@
             </div>
         </div>
 
-        <!-- رصد اختبارات الفترة الأولى والثانية -->
+        <!-- رصد اختبارات الفترة الأولى والثانية والتحليل الإحصائي المرئي -->
         <div class="section-card" id="examsSection">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
                 <h3 style="margin: 0; border: none; padding: 0;">📊 رصد وتحليل اختبارات الفترة الأولى والفترة الثانية (من ٢٠) 📝</h3>
@@ -710,7 +756,7 @@
             </div>
 
             <div id="examsAnalysisBox" class="sub-box" style="display: none; margin-bottom: 15px;">
-                <h5>📈 مؤشرات التحليل الإحصائي لنتائج الصف المحدد</h5>
+                <h5>📈 مؤشرات التحليل الإحصائي والرسم البياني لنتائج الصف المحدد</h5>
                 <div class="student-details" style="margin: 10px 0;">
                     <div class="detail-item">
                         <span>متوسط اختبار الفترة 1 (من 20)</span>
@@ -719,6 +765,31 @@
                     <div class="detail-item">
                         <span>متوسط اختبار الفترة 2 (من 20)</span>
                         <strong id="avgExam2">0</strong>
+                    </div>
+                </div>
+
+                <!-- الرسم البياني المبسط لتحليل النتائج -->
+                <div style="margin-top: 15px; background: var(--card-bg); padding: 15px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);">
+                    <div style="font-size: 13px; font-weight: bold; margin-bottom: 10px; color: var(--secondary);">📊 تمثيل بياني لمقارنة متوسطات الفترات:</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 2px;">
+                                <span>اختبار الفترة الأولى</span>
+                                <span id="barVal1">0%</span>
+                            </div>
+                            <div style="width: 100%; background: rgba(0,0,0,0.08); height: 16px; border-radius: 8px; overflow: hidden;">
+                                <div id="chartBar1" style="width: 0%; background: var(--secondary); height: 100%; transition: width 0.4s ease;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 2px;">
+                                <span>اختبار الفترة الثانية</span>
+                                <span id="barVal2">0%</span>
+                            </div>
+                            <div style="width: 100%; background: rgba(0,0,0,0.08); height: 16px; border-radius: 8px; overflow: hidden;">
+                                <div id="chartBar2" style="width: 0%; background: var(--primary); height: 100%; transition: width 0.4s ease;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1230,8 +1301,20 @@
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
                     <td><input type="text" maxlength="10" value="${s.phone || ''}" style="width:110px; text-align:center;" oninput="updateStudentPhone(${globalIndex}, this.value)" placeholder="05xxxxxxxx"></td>
                     <td><input type="number" value="${s.absence}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'absence', this.value)"></td>
-                    <td><input type="number" value="${s.participation}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'participation', this.value)"></td>
-                    <td><input type="number" value="${s.homework}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'homework', this.value)"></td>
+                    <td>
+                        <div class="counter-cell">
+                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'participation', -1)">-</button>
+                            <span class="counter-val">${s.participation || 0}</span>
+                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'participation', 1)">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="counter-cell">
+                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'homework', -1)">-</button>
+                            <span class="counter-val">${s.homework || 0}</span>
+                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'homework', 1)">+</button>
+                        </div>
+                    </td>
                     <td><input type="number" value="${s.skills}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'skills', this.value)"></td>
                     <td><input type="number" value="${s.projects}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'projects', this.value)"></td>
                     <td>${s.messages || 0}</td>
@@ -1242,6 +1325,15 @@
 
             document.getElementById('paginationInfo').textContent = `عرض من ${startIdx + 1} إلى ${Math.min(startIdx + rowsPerPage, totalRows)} من أصل ${totalRows} طالبة`;
             document.getElementById('pageIndicator').textContent = `${currentPage} / ${totalPages}`;
+        }
+
+        function adjustCounter(index, field, amount) {
+            let currentVal = Number(students[index][field]) || 0;
+            currentVal += amount;
+            if (currentVal < 0) currentVal = 0;
+            students[index][field] = currentVal;
+            localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
+            render();
         }
 
         function updateStudentPhone(index, val) {
@@ -1378,15 +1470,27 @@
                 tbody.appendChild(tr);
             });
 
-            document.getElementById('avgExam1').textContent = (sum1 / classStudents.length).toFixed(1) + ' / 20';
-            document.getElementById('avgExam2').textContent = (sum2 / classStudents.length).toFixed(1) + ' / 20';
+            const avg1 = sum1 / classStudents.length;
+            const avg2 = sum2 / classStudents.length;
+
+            document.getElementById('avgExam1').textContent = avg1.toFixed(1) + ' / 20';
+            document.getElementById('avgExam2').textContent = avg2.toFixed(1) + ' / 20';
+
+            // تحديث الرسم البياني للتحليل الإحصائي
+            const pct1 = Math.min(Math.round((avg1 / 20) * 100), 100);
+            const pct2 = Math.min(Math.round((avg2 / 20) * 100), 100);
+
+            document.getElementById('chartBar1').style.width = pct1 + '%';
+            document.getElementById('barVal1').textContent = pct1 + '%';
+
+            document.getElementById('chartBar2').style.width = pct2 + '%';
+            document.getElementById('barVal2').textContent = pct2 + '%';
         }
 
         function updateExamScore(index, field, val) {
             students[index][field] = val === "" ? 0 : Number(val);
             localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
             
-            // تحديث المتوسطات الحسابية فوراً دون إعادة رسم كامل الجدول لضمان استقرار الكتابة من الكيبورد
             const selectedClass = document.getElementById('examClassSelect').value;
             if(selectedClass) {
                 const classStudents = students.filter(s => (s.classCustom || currentGrade) === selectedClass);
@@ -1395,8 +1499,20 @@
                     sum1 += Number(s.exam1) || 0;
                     sum2 += Number(s.exam2) || 0;
                 });
-                document.getElementById('avgExam1').textContent = (sum1 / classStudents.length).toFixed(1) + ' / 20';
-                document.getElementById('avgExam2').textContent = (sum2 / classStudents.length).toFixed(1) + ' / 20';
+                const avg1 = sum1 / classStudents.length;
+                const avg2 = sum2 / classStudents.length;
+
+                document.getElementById('avgExam1').textContent = avg1.toFixed(1) + ' / 20';
+                document.getElementById('avgExam2').textContent = avg2.toFixed(1) + ' / 20';
+
+                const pct1 = Math.min(Math.round((avg1 / 20) * 100), 100);
+                const pct2 = Math.min(Math.round((avg2 / 20) * 100), 100);
+
+                document.getElementById('chartBar1').style.width = pct1 + '%';
+                document.getElementById('barVal1').textContent = pct1 + '%';
+
+                document.getElementById('chartBar2').style.width = pct2 + '%';
+                document.getElementById('barVal2').textContent = pct2 + '%';
             }
         }
 
