@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المعلمة فلانة - مدرسة الابتدائية الأولى طالبات (لوحة تحكم مادة العلوم)</title>
+    <title>المعلمة منصور - مدرسة داوود (لوحة تحكم مادة العلوم)</title>
     <!-- مكتبة SheetJS لتصدير واستيراد ملفات إكسل Excel -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
         :root {
-            --primary: #be185d;
-            --secondary: #db2777;
-            --accent: #fbcfe8;
-            --bg: #fdf2f8;
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --accent: #bfdbfe;
+            --bg: #eff6ff;
             --card-bg: #ffffff;
-            --text: #831843;
+            --text: #1e3a8a;
             --danger: #ef4444;
             --warning: #f59e0b;
             --info: #06b6d4;
             --excel: #1d6f42;
+            --success: #10b981;
         }
 
         body.theme-default { 
-            --bg: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 100%); 
+            --bg: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%); 
             --card-bg: #ffffff; 
-            --text: #831843; 
+            --text: #1e3a8a; 
         }
         body.theme-royal { 
             --bg: linear-gradient(135deg, #3b0764 0%, #581c87 100%); 
@@ -47,7 +48,7 @@
             --primary: #b45309;
         }
         body.theme-blue { 
-            --bg: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%); 
+            --bg: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
             --card-bg: #ffffff; 
             --text: #1e3a8a; 
             --secondary: #2563eb;
@@ -205,38 +206,9 @@
         .btn-info { background: var(--info); }
         .btn-warning { background: var(--warning); }
         .btn-excel { background: var(--excel); }
+        .btn-success { background: var(--success); }
         .btn-print { background: #4b5563; }
         .btn-action { padding: 4px 8px; font-size: 12px; margin: 0 2px; }
-
-        /* تنسيق أزرار العداد (زيادة ونقصان) */
-        .counter-cell {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-        .counter-val {
-            font-weight: bold;
-            min-width: 25px;
-            text-align: center;
-            font-size: 15px;
-        }
-        .btn-counter {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            width: 26px;
-            height: 26px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-        .btn-counter:hover { opacity: 0.8; }
 
         .classes-query-grid {
             display: flex;
@@ -357,7 +329,7 @@
         .sub-box h5 { margin-top: 0; color: var(--secondary); font-size: 16px; }
 
         .preview-msg {
-            background: rgba(219, 39, 119, 0.08);
+            background: rgba(37, 99, 235, 0.08);
             border-right: 4px solid var(--secondary);
             padding: 12px;
             margin: 10px 0;
@@ -402,7 +374,7 @@
 
         .lesson-card.executed {
             border-right: 5px solid var(--secondary);
-            background: rgba(219, 39, 119, 0.04);
+            background: rgba(37, 99, 235, 0.04);
         }
 
         .lesson-card.not-executed {
@@ -474,6 +446,17 @@
             font-weight: bold;
         }
 
+        .mastery-btn {
+            padding: 4px 10px;
+            font-size: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+        .mastery-btn.mastered { background-color: var(--success); color: white; }
+        .mastery-btn.review { background-color: var(--danger); color: white; }
+
         .searchable-dropdown-container {
             position: relative;
             width: 100%;
@@ -514,7 +497,7 @@
         }
 
         .searchable-item:hover {
-            background: rgba(219, 39, 119, 0.1);
+            background: rgba(37, 99, 235, 0.1);
             color: var(--secondary);
             font-weight: bold;
         }
@@ -558,46 +541,37 @@
         .float-whatsapp { background: #25D366; }
         .float-top { background: var(--primary); display: none; }
 
-        /* تنسيق وضبط ألوان الطباعة بدقة */
         @media print {
-            body {
-                background: white !important;
-                color: black !important;
-            }
             body * {
                 visibility: hidden !important;
             }
             .printing-section, .printing-section * {
                 visibility: visible !important;
+                color: #000000 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             .printing-section {
                 position: absolute !important;
                 left: 0 !important;
                 top: 0 !important;
                 width: 100% !important;
-                background: white !important;
-                color: black !important;
+                background: #ffffff !important;
                 box-shadow: none !important;
                 margin: 0 !important;
                 padding: 10px !important;
             }
-            .printing-section input, .printing-section select {
-                border: none !important;
-                background: transparent !important;
-                text-align: center !important;
-                font-weight: bold !important;
-                color: black !important;
+            .printing-section table, 
+            .printing-section th, 
+            .printing-section td {
+                border: 2px solid #000000 !important;
+                color: #000000 !important;
             }
             .printing-section th {
-                background-color: #f3f4f6 !important;
-                color: black !important;
-                border: 1px solid #d1d5db !important;
+                background-color: #d1d5db !important;
+                font-weight: bold !important;
             }
-            .printing-section td {
-                border: 1px solid #d1d5db !important;
-                color: black !important;
-            }
-            .no-print, button, select, textarea, .pagination-bar, .backup-controls, .form-row, .classes-query-grid, .floating-action-buttons, .top-banner, .btn-counter {
+            .no-print, button, select, textarea, .pagination-bar, .backup-controls, .form-row, .classes-query-grid, .floating-action-buttons, .top-banner {
                 display: none !important;
             }
         }
@@ -611,24 +585,24 @@
     </div>
 
     <div class="header">
-        <h1>الابتدائية الأولى (طالبات)</h1>
-        <div>إعداد المعلمة: فلانه</div>
+        <h1>مدرسة داوود (طالبات)</h1>
+        <div>إعداد المعلمة: منصور</div>
         <p>لوحة تحكم معلمة مادة العلوم للمرحلة الابتدائية (وفق المنهج السعودي)</p>
         <div class="subscription-badge">⏳ نهاية الاشتراك: 2027/07/01</div>
 
         <div class="theme-switcher">
             <span style="font-size: 12px; margin-left: 5px;">🎨 المظهر:</span>
-            <button class="theme-btn" onclick="setTheme('theme-default')">🌸</button>
+            <button class="theme-btn" onclick="setTheme('theme-default')">📘</button>
             <button class="theme-btn" onclick="setTheme('theme-royal')">👑</button>
             <button class="theme-btn" onclick="setTheme('theme-emerald')">🌲</button>
             <button class="theme-btn" onclick="setTheme('theme-amber')">⭐</button>
-            <button class="theme-btn" onclick="setTheme('theme-blue')">📘</button>
+            <button class="theme-btn" onclick="setTheme('theme-blue')">🌊</button>
         </div>
     </div>
 
     <div class="container">
         <!-- اختيار الصف الدراسي -->
-        <div class="section-card no-print" style="background: linear-gradient(135deg, rgba(219,39,119,0.05), rgba(190,24,93,0.1)); border: 2px solid var(--secondary);">
+        <div class="section-card no-print" style="background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(30,58,138,0.1)); border: 2px solid var(--secondary);">
             <h3 style="margin-bottom: 10px;">📌 اختر الصف الدراسي للمتابعة</h3>
             <div class="form-row" style="margin-bottom: 0;">
                 <select id="globalGradeSelect" onchange="changeGradeLevel(this.value)" style="font-weight: bold; font-size: 16px; color: var(--secondary);">
@@ -649,8 +623,8 @@
                 <p id="totalStudents">0</p>
             </div>
             <div class="stat-card">
-                <h3>⭐ المهارات العلمية</h3>
-                <p id="totalSkills">0</p>
+                <h3>⭐ إتقان الدروس</h3>
+                <p id="totalSkills">0%</p>
             </div>
             <div class="stat-card">
                 <h3>✋ مجموع المشاركات</h3>
@@ -712,7 +686,6 @@
                             <th>🔴 الغياب</th>
                             <th>✋ المشاركة</th>
                             <th>📚 الواجبات</th>
-                            <th>⭐ المهارات</th>
                             <th>🛠️ التجارب</th>
                             <th>💬 الرسائل</th>
                             <th class="no-print">حذف</th>
@@ -736,13 +709,61 @@
                 <button class="btn-warning" onclick="document.getElementById('importExcelFile').click()">📂 استيراد من إكسل (Excel)</button>
                 <input type="file" id="importExcelFile" accept=".xlsx, .xls" style="display: none;" onchange="importExcel(event)">
 
+                <button class="btn-success" onclick="exportToGoogleSheetsCSV()">☁️ تصدير لـ Google Sheets (CSV)</button>
                 <button class="btn-info" onclick="exportData()" style="margin-right: auto;">💾 تصدير JSON</button>
                 <button class="btn-warning" onclick="document.getElementById('importFile').click()">📂 استرجاع JSON</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
             </div>
         </div>
 
-        <!-- رصد اختبارات الفترة الأولى والثانية والتحليل الإحصائي المرئي -->
+        <!-- نظام تتبع إتقان الدروس لكل طالبة -->
+        <div class="section-card" id="lessonMasterySection">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                <h3 style="margin: 0; border: none; padding: 0;">🎯 تتبع إتقان كل درس لكل طالبة (متقنة / بحاجة مراجعة)</h3>
+                <button class="btn-print" onclick="printSection('lessonMasterySection')">🖨️ طباعة تقرير إتقان الدروس</button>
+            </div>
+
+            <div class="form-row no-print">
+                <select id="masteryLessonSelect" onchange="renderMasteryTable()">
+                    <option value="">-- اختر الدرس لتحديد حالة الإتقان للطالبات --</option>
+                </select>
+                <select id="masteryClassSelect" onchange="renderMasteryTable()">
+                    <option value="">-- جميع الصفوف --</option>
+                </select>
+            </div>
+
+            <div id="masterySummaryBox" class="sub-box" style="display: none; margin-bottom: 15px;">
+                <h5>📊 إحصائية إتقان الدرس المحدد</h5>
+                <div class="student-details" style="margin: 10px 0;">
+                    <div class="detail-item">
+                        <span>عدد الطالبات المتقنات</span>
+                        <strong id="countMastered" style="color: var(--success);">0</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>بحاجة لإعادة شرح / مراجعة</span>
+                        <strong id="countReview" style="color: var(--danger);">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اسم الطالبة</th>
+                            <th>🏫 الصف</th>
+                            <th>حالة الإتقان للدرس المختصر</th>
+                            <th class="no-print">تبديل الحالة بنقرة واحدة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="masteryTbody">
+                        <tr><td colspan="4" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الدرس من القائمة أعلاه لعرض حالات إتقان الطالبات.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- رصد اختبارات الفترة الأولى والثانية -->
         <div class="section-card" id="examsSection">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
                 <h3 style="margin: 0; border: none; padding: 0;">📊 رصد وتحليل اختبارات الفترة الأولى والفترة الثانية (من ٢٠) 📝</h3>
@@ -756,7 +777,7 @@
             </div>
 
             <div id="examsAnalysisBox" class="sub-box" style="display: none; margin-bottom: 15px;">
-                <h5>📈 مؤشرات التحليل الإحصائي والرسم البياني لنتائج الصف المحدد</h5>
+                <h5>📈 مؤشرات التحليل الإحصائي لنتائج الصف المحدد</h5>
                 <div class="student-details" style="margin: 10px 0;">
                     <div class="detail-item">
                         <span>متوسط اختبار الفترة 1 (من 20)</span>
@@ -765,31 +786,6 @@
                     <div class="detail-item">
                         <span>متوسط اختبار الفترة 2 (من 20)</span>
                         <strong id="avgExam2">0</strong>
-                    </div>
-                </div>
-
-                <!-- الرسم البياني المبسط لتحليل النتائج -->
-                <div style="margin-top: 15px; background: var(--card-bg); padding: 15px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);">
-                    <div style="font-size: 13px; font-weight: bold; margin-bottom: 10px; color: var(--secondary);">📊 تمثيل بياني لمقارنة متوسطات الفترات:</div>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
-                        <div>
-                            <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 2px;">
-                                <span>اختبار الفترة الأولى</span>
-                                <span id="barVal1">0%</span>
-                            </div>
-                            <div style="width: 100%; background: rgba(0,0,0,0.08); height: 16px; border-radius: 8px; overflow: hidden;">
-                                <div id="chartBar1" style="width: 0%; background: var(--secondary); height: 100%; transition: width 0.4s ease;"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 2px;">
-                                <span>اختبار الفترة الثانية</span>
-                                <span id="barVal2">0%</span>
-                            </div>
-                            <div style="width: 100%; background: rgba(0,0,0,0.08); height: 16px; border-radius: 8px; overflow: hidden;">
-                                <div id="chartBar2" style="width: 0%; background: var(--primary); height: 100%; transition: width 0.4s ease;"></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -832,7 +828,7 @@
                         <div class="detail-item"><span>المشاركات</span><strong id="sdParticipation">0</strong></div>
                         <div class="detail-item"><span>الواجبات</span><strong id="sdHomework">0</strong></div>
                         <div class="detail-item"><span>أيام الغياب</span><strong id="sdAbsence">0</strong></div>
-                        <div class="detail-item"><span>المهارات</span><strong id="sdSkills">0</strong></div>
+                        <div class="detail-item"><span>الدروس المتقنة</span><strong id="sdSkills">0</strong></div>
                         <div class="detail-item"><span>التجارب</span><strong id="sdProjects">0</strong></div>
                         <div class="detail-item"><span>رسائل الواتس</span><strong id="sdMessages">0</strong></div>
                     </div>
@@ -863,7 +859,7 @@
                         </select>
                     </div>
                     
-                    <div class="form-row no-print" style="margin-top: 10px; background: rgba(219, 39, 119, 0.05); padding: 10px; border-radius: 6px;">
+                    <div class="form-row no-print" style="margin-top: 10px; background: rgba(37, 99, 235, 0.05); padding: 10px; border-radius: 6px;">
                         <input type="text" id="newMotivationTitle" placeholder="عنوان الرسالة..." style="max-width: 220px;">
                         <input type="text" id="newMotivationText" placeholder="اكتب نص الرسالة التشجيعية الجديدة هنا...">
                         <button onclick="addNewMotivation()">➕ إضافة رسالة تشجيعية</button>
@@ -923,7 +919,7 @@
                 </div>
             </div>
 
-            <div class="sub-box" style="background: rgba(219,39,119,0.03); border: 1px solid var(--secondary);">
+            <div class="sub-box" style="background: rgba(37,99,235,0.03); border: 1px solid var(--secondary);">
                 <h5 style="color: var(--secondary);">📑 القائمة المنسدلة لدليل مقرر العلوم والوحدات الدراسية</h5>
                 <div class="form-row" style="margin-bottom: 10px;">
                     <select id="curriculumDropdownSelect" onchange="onCurriculumDropdownChange(this.value)" style="font-weight: bold; font-size: 15px; color: var(--secondary);">
@@ -954,10 +950,10 @@
     <div id="toast" class="toast">✅ تم حفظ البيانات تلقائياً!</div>
 
     <script>
-        const TEACHER_NAME = "فلانه";
-        const SCHOOL_NAME = "الابتدائية الأولى (طالبات)";
+        const TEACHER_NAME = "منصور";
+        const SCHOOL_NAME = "مدرسة داوود (طالبات)";
 
-        let currentGrade = localStorage.getItem('awwal_current_grade_science_v4') || 'الأول الابتدائي';
+        let currentGrade = localStorage.getItem('mansour_current_grade_science_v5') || 'الأول الابتدائي';
         document.getElementById('globalGradeSelect').value = currentGrade;
 
         let activeQueryClass = '';
@@ -966,19 +962,19 @@
         const rowsPerPage = 20;
 
         const defaultMotivations = [
-            { id: "1", title: "1. عالمة المستقبل المتميزة", text: "🌟 **عالمة المستقبل المتميزة** 🌟\nعزيزتي ولي الأمر، نفخر اليوم بتميز ابنتكم وتألقها في حصة العلوم ومشاركتها في التجارب العملية بحماس ونشاط. بوركت جهودكم!" },
-            { id: "2", title: "2. تفوق ملحوظ في الملاحظة والاستنتاج", text: "🔬 **تفوق ملحوظ في الملاحظة العلمية** 🔬\nعزيزتي ولي الأمر، أظهرت ابنتكم اليوم مهارات دقيقة في الملاحظة والتجريب واستنباط النتائج. أحسنت صنعاً!" },
-            { id: "3", title: "3. دقة وإتقان في المفاهيم العلمية", text: "🌱 **دقة وإتقان في المفاهيم والعلوم** 🌱\nعزيزتي ولي الأمر، تميزت ابنتكم اليوم باستيعابها العميق للحقائق العلمية وتوظيفها بذكاء. بارك الله في جهودها!" },
-            { id: "4", title: "4. مشاركة نشطة وفعالة في حصة العلوم", text: "✋ **مشاركة نشطة وتفاعل علمي متميز** ✋\nعزيزتي ولي الأمر، تميزت ابنتكم اليوم بحرصها العالي ومشاركتها النشطة وإجاباتها العلمية الموفقة داخل الصف." },
-            { id: "5", title: "5. حصيلة استكشافية وتجارب ممتازة", text: "🧠 **حصيلة استكشافية وتجارب ممتازة** 🧠\nعزيزتي ولي الأمر، أبدعت ابنتكم اليوم في تنفيذ التجارب الاستهلالية والاستكشافية بمهارة عالية. مبروك لها!" },
-            { id: "6", title: "6. تنظيم رائع للدفتر وواجبات مرتبة بدقة", text: "📝 **تنظيم رائع للواجبات والأنشطة** 📝\nعزيزتي ولي الأمر، نشكر لكم متابعتكم المنزلية الواعية. لقد كان واجب ابنتكم اليوم منظماً، دقيقاً، ومرتباً للغاية." },
-            { id: "7", title: "7. حل ممتاز للتدريبات والتقويم التكويني", text: "✍️ **حل ممتاز للتدريبات والتقويم**\nعزيزتي ولي الأمر، تميز أداء ابنتكم اليوم بحل أسئلة التقويم والتدريبات العلمية بدقة عالية. دمت متميزة يا بطلة!" },
-            { id: "8", title: "8. اهتمام رائع بالبيئة ومخلوقات الله", text: "🌍 **اهتمام رائع بالبيئة والمحيط**\nعزيزتي ولي الأمر، أظهرت ابنتكم اليوم شغفاً واهتماماً لافتاً بدراسة الكائنات الحية وعناصر البيئة من حولها." },
-            { id: "9", title: "9. مشروع علمي متميز ومبتكر ومتقن", text: "🛠️ **مشروع علمي متميز ومبتكر ومتقن**\nعزيزتي ولي الأمر، قدمت ابنتكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية." },
-            { id: "10", title: "10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم", text: "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم**\nعزيزتي ولي الأمر، إن حرص ابنتكم المستمر على الاستكشاف والتعلم في مادة العلوم محل تقديرنا الدائم." }
+            { id: "1", title: "1. عالمة المستقبل المتميزة", text: "🌟 **عالمة المستقبل المتميزة** 🌟\nعزيزي ولي الأمر، نفخر اليوم بتميز ابنتكم وتألقها في حصة العلوم ومشاركتها في التجارب العملية بحماس ونشاط. بوركت جهودكم!" },
+            { id: "2", title: "2. تفوق ملحوظ في الملاحظة والاستنتاج", text: "🔬 **تفوق ملحوظ في الملاحظة العلمية** 🔬\nعزيزي ولي الأمر، أظهرت ابنتكم اليوم مهارات دقيقة في الملاحظة والتجريب واستنباط النتائج. أحسنت صنعاً!" },
+            { id: "3", title: "3. دقة وإتقان في المفاهيم العلمية", text: "🌱 **دقة وإتقان في المفاهيم والعلوم** 🌱\nعزيزي ولي الأمر، تميزت ابنتكم اليوم باستيعابها العميق للحقائق العلمية وتوظيفها بذكاء. بارك الله في جهودها!" },
+            { id: "4", title: "4. مشاركة نشطة وفعالة في حصة العلوم", text: "✋ **مشاركة نشطة وتفاعل علمي متميز** ✋\nعزيزي ولي الأمر، تميزت ابنتكم اليوم بحرصها العالي ومشاركتها النشطة وإجاباتها العلمية الموفقة داخل الصف." },
+            { id: "5", title: "5. حصيلة استكشافية وتجارب ممتازة", text: "🧠 **حصيلة استكشافية وتجارب ممتازة** 🧠\nعزيزي ولي الأمر، أبدعت ابنتكم اليوم في تنفيذ التجارب الاستهلالية والاستكشافية بمهارة عالية. مبروك لها!" },
+            { id: "6", title: "6. تنظيم رائع للدفتر وواجبات مرتبة بدقة", text: "📝 **تنظيم رائع للواجبات والأنشطة** 📝\nعزيزي ولي الأمر، نشكر لكم متابعتكم المنزلية الواعية. لقد كان واجب ابنتكم اليوم منظماً، دقيقاً، ومرتباً للغاية." },
+            { id: "7", title: "7. حل ممتاز للتدريبات والتقويم التكويني", text: "✍️ **حل ممتاز للتقويم والتدريبات**\nعزيزي ولي الأمر، تميز أداء ابنتكم اليوم بحل أسئلة التقويم والتدريبات العلمية بدقة عالية. دمت متميزة يا بطلة!" },
+            { id: "8", title: "8. اهتمام رائع بالبيئة ومخلوقات الله", text: "🌍 **اهتمام رائع بالبيئة والمحيط**\nعزيزي ولي الأمر، أظهرت ابنتكم اليوم شغفاً واهتماماً لافتاً بدراسة الكائنات الحية وعناصر البيئة من حولها." },
+            { id: "9", title: "9. مشروع علمي متميز ومبتكر ومتقن", text: "🛠️ **مشروع علمي متميز ومبتكر ومتقن**\nعزيزي ولي الأمر، قدمت ابنتكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية." },
+            { id: "10", title: "10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم", text: "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم**\nعزيزي ولي الأمر، إن حرص ابنتكم المستمر على الاستكشاف والتعلم في مادة العلوم محل تقديرنا الدائم." }
         ];
 
-        let customMotivations = JSON.parse(localStorage.getItem('awwal_custom_motivations_science_v4')) || defaultMotivations;
+        let customMotivations = JSON.parse(localStorage.getItem('mansour_custom_motivations_science_v5')) || defaultMotivations;
 
         const gradeScienceData = {
             "الأول الابتدائي": [
@@ -1036,21 +1032,35 @@
             ]
         };
 
-        function getStorageKeyForLessons() { return 'awwal_custom_lessons_science_' + currentGrade + '_v4'; }
-        function getStorageKeyForStudents() { return 'awwal_students_science_' + currentGrade + '_v4'; }
-        function getStorageKeyForStatus() { return 'awwal_lesson_status_science_' + currentGrade + '_v4'; }
+        function getStorageKeyForLessons() { return 'mansour_custom_lessons_science_' + currentGrade + '_v5'; }
+        function getStorageKeyForStudents() { return 'mansour_students_science_' + currentGrade + '_v5'; }
+        function getStorageKeyForStatus() { return 'mansour_lesson_status_science_' + currentGrade + '_v5'; }
+        function getStorageKeyForMastery() { return 'mansour_lesson_mastery_science_' + currentGrade + '_v5'; }
 
         let lessons = JSON.parse(localStorage.getItem(getStorageKeyForLessons())) || gradeScienceData[currentGrade];
         let students = JSON.parse(localStorage.getItem(getStorageKeyForStudents())) || [];
         let lessonStatus = JSON.parse(localStorage.getItem(getStorageKeyForStatus())) || {};
+        let lessonMastery = JSON.parse(localStorage.getItem(getStorageKeyForMastery())) || {}; // { studentIndex: { lessonIndex: true/false } }
+
+        function checkBackupReminder() {
+            const lastBackup = localStorage.getItem('mansour_last_backup_date');
+            const now = Date.now();
+            if (!lastBackup || (now - Number(lastBackup) > 7 * 24 * 60 * 60 * 1000)) {
+                setTimeout(() => {
+                    alert('📌 تذكير دوري لحماية بياناتك:\nمرت فترة على آخر نسختك الاحتياطية. يوصى بالنقر على زر (تصدير JSON) أو (تصدير لـ Google Sheets) لحفظ بياناتك وتجنب ضياعها حال تم مسح متصفحك.');
+                    localStorage.setItem('mansour_last_backup_date', now.toString());
+                }, 3000);
+            }
+        }
 
         function changeGradeLevel(grade) {
             currentGrade = grade;
-            localStorage.setItem('awwal_current_grade_science_v4', currentGrade);
+            localStorage.setItem('mansour_current_grade_science_v5', currentGrade);
             
             lessons = JSON.parse(localStorage.getItem(getStorageKeyForLessons())) || gradeScienceData[currentGrade];
             students = JSON.parse(localStorage.getItem(getStorageKeyForStudents())) || [];
             lessonStatus = JSON.parse(localStorage.getItem(getStorageKeyForStatus())) || {};
+            lessonMastery = JSON.parse(localStorage.getItem(getStorageKeyForMastery())) || {};
 
             activeQueryClass = '';
             selectedStudentIndex = '';
@@ -1061,6 +1071,7 @@
             document.getElementById('curriculumTitle').textContent = `📚 دليل مقرر العلوم - ${currentGrade} (المنهج السعودي المعتمد) وتتبع التنفيذ`;
 
             renderLessons();
+            renderMasteryDropdowns();
             render();
             showToast(`🔄 تم الانتقال إلى بيانات ${currentGrade}`);
         }
@@ -1130,6 +1141,18 @@
             motivGroup += '</optgroup>';
 
             document.getElementById('totalExecutedLessons').textContent = `${executedCount} / ${lessons.length}`;
+            renderMasteryDropdowns();
+        }
+
+        function renderMasteryDropdowns() {
+            const masterySelect = document.getElementById('masteryLessonSelect');
+            const currentVal = masterySelect.value;
+            masterySelect.innerHTML = '<option value="">-- اختر الدرس لتحديد حالة الإتقان للطالبات --</option>';
+            lessons.forEach((l, idx) => {
+                masterySelect.innerHTML += `<option value="${idx}">[${l.chapter}] ${l.title}</option>`;
+            });
+            if(lessons[currentVal]) masterySelect.value = currentVal;
+            renderMasteryTable();
         }
 
         function toggleLessonStatus(index) {
@@ -1192,7 +1215,7 @@
         }
 
         function deleteLesson(index) {
-            if (confirm('هل أنت متأكد من حذف هذا الدرس من المنهج؟')) {
+            if (confirm('هل أنت متأكدة من حذف هذا الدرس من المنهج؟')) {
                 lessons.splice(index, 1);
                 localStorage.setItem(getStorageKeyForLessons(), JSON.stringify(lessons));
                 renderLessons();
@@ -1208,15 +1231,26 @@
         }
 
         function render() {
-            let sumSkills = 0;
+            let totalPossibleMastery = students.length * lessons.length;
+            let achievedMastery = 0;
+
+            students.forEach((s, sIdx) => {
+                lessons.forEach((l, lIdx) => {
+                    if (lessonMastery[sIdx] && lessonMastery[sIdx][lIdx]) {
+                        achievedMastery++;
+                    }
+                });
+            });
+
+            let masteryPercentage = totalPossibleMastery > 0 ? Math.round((achievedMastery / totalPossibleMastery) * 100) : 0;
+
             let sumPart = 0;
             let sumHw = 0;
             let sumAbs = 0;
             let sumProj = 0;
             let sumMsg = 0;
 
-            students.forEach(s => {
-                sumSkills += Number(s.skills) || 0;
+            students.forEach((s, sIdx) => {
                 sumPart += Number(s.participation) || 0;
                 sumHw += Number(s.homework) || 0;
                 sumAbs += Number(s.absence) || 0;
@@ -1225,7 +1259,7 @@
             });
 
             document.getElementById('totalStudents').textContent = students.length;
-            document.getElementById('totalSkills').textContent = sumSkills;
+            document.getElementById('totalSkills').textContent = masteryPercentage + '%';
             document.getElementById('totalParticipation').textContent = sumPart;
             document.getElementById('totalHomework').textContent = sumHw;
             document.getElementById('totalAbsence').textContent = sumAbs;
@@ -1234,6 +1268,7 @@
 
             renderStudentsTable();
             renderClassesQuery();
+            renderMasteryTable();
         }
 
         function addStudent() {
@@ -1251,7 +1286,6 @@
                 absence: 0,
                 participation: 0,
                 homework: 0,
-                skills: 0,
                 projects: 0,
                 messages: 0,
                 exam1: 0,
@@ -1287,7 +1321,7 @@
             const pageData = filtered.slice(startIdx, startIdx + rowsPerPage);
 
             if(pageData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" style="padding: 20px; opacity: 0.7;">لا توجد بيانات طالبات مسجلة حالياً.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="9" style="padding: 20px; opacity: 0.7;">لا توجد بيانات طالبات مسجلة حالياً.</td></tr>`;
                 document.getElementById('paginationInfo').textContent = `عرض 0 من 0`;
                 document.getElementById('pageIndicator').textContent = `1 / 1`;
                 return;
@@ -1301,21 +1335,8 @@
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
                     <td><input type="text" maxlength="10" value="${s.phone || ''}" style="width:110px; text-align:center;" oninput="updateStudentPhone(${globalIndex}, this.value)" placeholder="05xxxxxxxx"></td>
                     <td><input type="number" value="${s.absence}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'absence', this.value)"></td>
-                    <td>
-                        <div class="counter-cell">
-                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'participation', -1)">-</button>
-                            <span class="counter-val">${s.participation || 0}</span>
-                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'participation', 1)">+</button>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="counter-cell">
-                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'homework', -1)">-</button>
-                            <span class="counter-val">${s.homework || 0}</span>
-                            <button class="btn-counter" onclick="adjustCounter(${globalIndex}, 'homework', 1)">+</button>
-                        </div>
-                    </td>
-                    <td><input type="number" value="${s.skills}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'skills', this.value)"></td>
+                    <td><input type="number" value="${s.participation}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'participation', this.value)"></td>
+                    <td><input type="number" value="${s.homework}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'homework', this.value)"></td>
                     <td><input type="number" value="${s.projects}" min="0" style="width:50px; text-align:center;" oninput="updateStudentField(${globalIndex}, 'projects', this.value)"></td>
                     <td>${s.messages || 0}</td>
                     <td class="no-print"><button class="btn-action btn-danger" onclick="deleteStudent(${globalIndex})">حذف</button></td>
@@ -1325,15 +1346,6 @@
 
             document.getElementById('paginationInfo').textContent = `عرض من ${startIdx + 1} إلى ${Math.min(startIdx + rowsPerPage, totalRows)} من أصل ${totalRows} طالبة`;
             document.getElementById('pageIndicator').textContent = `${currentPage} / ${totalPages}`;
-        }
-
-        function adjustCounter(index, field, amount) {
-            let currentVal = Number(students[index][field]) || 0;
-            currentVal += amount;
-            if (currentVal < 0) currentVal = 0;
-            students[index][field] = currentVal;
-            localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
-            render();
         }
 
         function updateStudentPhone(index, val) {
@@ -1348,9 +1360,25 @@
         }
 
         function deleteStudent(index) {
-            if(confirm('هل أنت متأكد من حذف هذه الطالبة؟')) {
+            if(confirm('هل أنت متأكدة من حذف هذه الطالبة؟')) {
                 students.splice(index, 1);
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
+                delete lessonMastery[index];
+                let newMastery = {};
+                Object.keys(lessonMastery).keys().forEach(k => { // fixed syntax mapping below properly
+                });
+                // Correcting the object keys shifting logic securely:
+                let correctedMastery = {};
+                Object.keys(lessonMastery).forEach(k => {
+                    let oldIdx = Number(k);
+                    if(oldIdx > index) {
+                        correctedMastery[oldIdx - 1] = lessonMastery[k];
+                    } else if(oldIdx < index) {
+                        correctedMastery[oldIdx] = lessonMastery[k];
+                    }
+                });
+                lessonMastery = correctedMastery;
+                localStorage.setItem(getStorageKeyForMastery(), JSON.stringify(lessonMastery));
                 render();
                 showToast('🗑️ تم حذف الطالبة بنجاح!');
             }
@@ -1390,6 +1418,7 @@
             });
             
             updateExamClassSelect(classesSet);
+            updateMasteryClassSelect(classesSet);
             updateBulkTargetSelect(classesSet);
         }
 
@@ -1402,7 +1431,7 @@
 
         function deleteEntireClass(cName, event) {
             event.stopPropagation();
-            if(confirm(`هل أنت متأكد من حذف جميع طالبات الصف (${cName})؟`)) {
+            if(confirm(`هل أنت متأكدة من حذف جميع طالبات الصف (${cName})؟`)) {
                 students = students.filter(s => (s.classCustom || currentGrade) !== cName);
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
                 if(activeQueryClass === cName) activeQueryClass = '';
@@ -1422,12 +1451,91 @@
             renderExamsTable();
         }
 
+        function updateMasteryClassSelect(classesSet) {
+            const select = document.getElementById('masteryClassSelect');
+            const currentVal = select.value;
+            select.innerHTML = '<option value="">-- جميع الصفوف --</option>';
+            classesSet.forEach(cName => {
+                select.innerHTML += `<option value="${cName}">${cName}</option>`;
+            });
+            if(classesSet.has(currentVal)) select.value = currentVal;
+        }
+
         function updateBulkTargetSelect(classesSet) {
             const select = document.getElementById('bulkTargetClass');
             select.innerHTML = '<option value="ALL">جميع الصفوف</option>';
             classesSet.forEach(cName => {
                 select.innerHTML += `<option value="${cName}">${cName}</option>`;
             });
+        }
+
+        // دوال نظام إتقان الدروس لكل طالبة
+        function renderMasteryTable() {
+            const lessonIdx = document.getElementById('masteryLessonSelect').value;
+            const selectedClass = document.getElementById('masteryClassSelect').value;
+            const tbody = document.getElementById('masteryTbody');
+            const summaryBox = document.getElementById('masterySummaryBox');
+            tbody.innerHTML = '';
+
+            if(lessonIdx === "") {
+                tbody.innerHTML = `<tr><td colspan="4" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الدرس من القائمة أعلاه لعرض حالات إتقان الطالبات.</td></tr>`;
+                summaryBox.style.display = 'none';
+                return;
+            }
+
+            let filteredStudents = students;
+            if(selectedClass) {
+                filteredStudents = students.filter(s => (s.classCustom || currentGrade) === selectedClass);
+            }
+
+            if(filteredStudents.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" style="padding: 20px; opacity: 0.7;">لا توجد بيانات طالبات مسجلة.</td></tr>`;
+                summaryBox.style.display = 'none';
+                return;
+            }
+
+            summaryBox.style.display = 'block';
+            let masteredCount = 0;
+            let reviewCount = 0;
+
+            filteredStudents.forEach(s => {
+                const globalIdx = students.indexOf(s);
+                const isMastered = lessonMastery[globalIdx] && lessonMastery[globalIdx][lessonIdx];
+
+                if(isMastered) masteredCount++;
+                else reviewCount++;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${s.name}</strong></td>
+                    <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
+                    <td>
+                        <span style="font-weight:bold; color: ${isMastered ? 'var(--success)' : 'var(--danger)'};">
+                            ${isMastered ? '✅ متقنة' : '⚠️ بحاجة مراجعة'}
+                        </span>
+                    </td>
+                    <td class="no-print">
+                        <button class="mastery-btn ${isMastered ? 'mastered' : 'review'}" onclick="toggleStudentMastery(${globalIdx}, ${lessonIdx})">
+                            ${isMastered ? 'تحويل إلى: بحاجة مراجعة' : 'تحويل إلى: متقنة'}
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('countMastered').textContent = masteredCount;
+            document.getElementById('countReview').textContent = reviewCount;
+        }
+
+        function toggleStudentMastery(studentIdx, lessonIdx) {
+            if(!lessonMastery[studentIdx]) {
+                lessonMastery[studentIdx] = {};
+            }
+            lessonMastery[studentIdx][lessonIdx] = !lessonMastery[studentIdx][lessonIdx];
+            localStorage.setItem(getStorageKeyForMastery(), JSON.stringify(lessonMastery));
+            renderMasteryTable();
+            render();
+            showToast('🎯 تم تحديث حالة الإتقان بنجاح!');
         }
 
         function renderExamsTable() {
@@ -1470,21 +1578,8 @@
                 tbody.appendChild(tr);
             });
 
-            const avg1 = sum1 / classStudents.length;
-            const avg2 = sum2 / classStudents.length;
-
-            document.getElementById('avgExam1').textContent = avg1.toFixed(1) + ' / 20';
-            document.getElementById('avgExam2').textContent = avg2.toFixed(1) + ' / 20';
-
-            // تحديث الرسم البياني للتحليل الإحصائي
-            const pct1 = Math.min(Math.round((avg1 / 20) * 100), 100);
-            const pct2 = Math.min(Math.round((avg2 / 20) * 100), 100);
-
-            document.getElementById('chartBar1').style.width = pct1 + '%';
-            document.getElementById('barVal1').textContent = pct1 + '%';
-
-            document.getElementById('chartBar2').style.width = pct2 + '%';
-            document.getElementById('barVal2').textContent = pct2 + '%';
+            document.getElementById('avgExam1').textContent = (sum1 / classStudents.length).toFixed(1) + ' / 20';
+            document.getElementById('avgExam2').textContent = (sum2 / classStudents.length).toFixed(1) + ' / 20';
         }
 
         function updateExamScore(index, field, val) {
@@ -1499,20 +1594,8 @@
                     sum1 += Number(s.exam1) || 0;
                     sum2 += Number(s.exam2) || 0;
                 });
-                const avg1 = sum1 / classStudents.length;
-                const avg2 = sum2 / classStudents.length;
-
-                document.getElementById('avgExam1').textContent = avg1.toFixed(1) + ' / 20';
-                document.getElementById('avgExam2').textContent = avg2.toFixed(1) + ' / 20';
-
-                const pct1 = Math.min(Math.round((avg1 / 20) * 100), 100);
-                const pct2 = Math.min(Math.round((avg2 / 20) * 100), 100);
-
-                document.getElementById('chartBar1').style.width = pct1 + '%';
-                document.getElementById('barVal1').textContent = pct1 + '%';
-
-                document.getElementById('chartBar2').style.width = pct2 + '%';
-                document.getElementById('barVal2').textContent = pct2 + '%';
+                document.getElementById('avgExam1').textContent = (sum1 / classStudents.length).toFixed(1) + ' / 20';
+                document.getElementById('avgExam2').textContent = (sum2 / classStudents.length).toFixed(1) + ' / 20';
             }
         }
 
@@ -1539,7 +1622,6 @@
                 "الغياب": s.absence || 0,
                 "المشاركة": s.participation || 0,
                 "الواجبات": s.homework || 0,
-                "المهارات": s.skills || 0,
                 "التجارب": s.projects || 0,
                 "اختبار الفترة الأولى": s.exam1 || 0,
                 "اختبار الفترة الثانية": s.exam2 || 0
@@ -1553,6 +1635,23 @@
             XLSX.utils.book_append_sheet(wb, ws, "سجل طالبات العلوم");
             XLSX.writeFile(wb, `سجل_العلوم_${currentGrade}.xlsx`);
             showToast('📊 تم تصدير ملف الإكسل بنجاح!');
+        }
+
+        function exportToGoogleSheetsCSV() {
+            if(students.length === 0) { alert('لا توجد بيانات طالبات لتصديرها!'); return; }
+            let csvContent = "\uFEFFاسم الطالبة,الصف,رقم الجوال,الغياب,المشاركة,الواجبات,التجارب,اختبار 1,اختبار 2\n";
+            students.forEach(s => {
+                csvContent += `"${s.name}","${s.classCustom || currentGrade}","${s.phone || ''}",${s.absence || 0},${s.participation || 0},${s.homework || 0},${s.projects || 0},${s.exam1 || 0},${s.exam2 || 0}\n`;
+            });
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', `GoogleSheets_Backup_${currentGrade}.csv`);
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            showToast('☁️ تم تصدير ملف متوافق مع Google Sheets بنجاح!');
         }
 
         function importExcel(event) {
@@ -1587,7 +1686,6 @@
                                 absence: Number(row["الغياب"] || 0),
                                 participation: Number(row["المشاركة"] || row["المشاركات"] || 0),
                                 homework: Number(row["الواجبات"] || 0),
-                                skills: Number(row["المهارات"] || 0),
                                 projects: Number(row["التجارب"] || 0),
                                 messages: Number(row["الرسائل"] || 0),
                                 exam1: Number(row["اختبار الفترة الأولى"] || 0),
@@ -1611,14 +1709,22 @@
         }
 
         function exportData() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(students));
+            const backupPackage = {
+                students: students,
+                lessons: lessons,
+                lessonStatus: lessonStatus,
+                lessonMastery: lessonMastery,
+                customMotivations: customMotivations
+            };
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPackage));
             const dlAnchor = document.createElement('a');
             dlAnchor.setAttribute("href", dataStr);
-            dlAnchor.setAttribute("download", `سجل_العلوم_${currentGrade}_backup.json`);
+            dlAnchor.setAttribute("download", `سجل_العلوم_${currentGrade}_full_backup.json`);
             document.body.appendChild(dlAnchor);
             dlAnchor.click();
             dlAnchor.remove();
-            showToast('💾 تم تصدير النسخة الاحتياطية بنجاح!');
+            localStorage.setItem('mansour_last_backup_date', Date.now().toString());
+            showToast('💾 تم تصدير النسخة الاحتياطية الشاملة بنجاح!');
         }
 
         function importData(event) {
@@ -1631,11 +1737,27 @@
                     if(Array.isArray(imported)) {
                         students = imported;
                         localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
-                        render();
-                        showToast('📂 تم استرجاع البيانات بنجاح!');
-                    } else {
-                        alert('ملف النسخة الاحتياطية غير صالح.');
+                    } else if(imported && typeof imported === 'object') {
+                        if(imported.students) {
+                            students = imported.students;
+                            localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
+                        }
+                        if(imported.lessons) {
+                            lessons = imported.lessons;
+                            localStorage.setItem(getStorageKeyForLessons(), JSON.stringify(lessons));
+                        }
+                        if(imported.lessonStatus) {
+                            lessonStatus = imported.lessonStatus;
+                            localStorage.setItem(getStorageKeyForStatus(), JSON.stringify(lessonStatus));
+                        }
+                        if(imported.lessonMastery) {
+                            lessonMastery = imported.lessonMastery;
+                            localStorage.setItem(getStorageKeyForMastery(), JSON.stringify(lessonMastery));
+                        }
                     }
+                    renderLessons();
+                    render();
+                    showToast('📂 تم استرجاع كافة البيانات بنجاح!');
                 } catch(err) {
                     alert('خطأ في قراءة ملف JSON.');
                 } finally {
@@ -1691,7 +1813,12 @@
             document.getElementById('sdParticipation').textContent = s.participation || 0;
             document.getElementById('sdHomework').textContent = s.homework || 0;
             document.getElementById('sdAbsence').textContent = s.absence || 0;
-            document.getElementById('sdSkills').textContent = s.skills || 0;
+            
+            let studentMasteredCount = 0;
+            lessons.forEach((l, lIdx) => {
+                if (lessonMastery[index] && lessonMastery[index][lIdx]) studentMasteredCount++;
+            });
+            document.getElementById('sdSkills').textContent = studentMasteredCount;
             document.getElementById('sdProjects').textContent = s.projects || 0;
             document.getElementById('sdMessages').textContent = s.messages || 0;
             document.getElementById('sdPhone').textContent = s.phone || 'لا يوجد رقم جوال مسجل';
@@ -1749,7 +1876,13 @@
         function sendFullReportWhatsApp() {
             if(selectedStudentIndex === '') return;
             const s = students[selectedStudentIndex];
-            const msg = `عزيزي ولي أمر الطالبة / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنتكم وتقييمها في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- المهارات: ${s.skills || 0}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر ودعمكم الدائم.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            
+            let studentMasteredCount = 0;
+            lessons.forEach((l, lIdx) => {
+                if (lessonMastery[selectedStudentIndex] && lessonMastery[selectedStudentIndex][lIdx]) studentMasteredCount++;
+            });
+
+            const msg = `عزيزي ولي أمر الطالبة / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنتكم وتقييمها في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- الدروس المتقنة: ${studentMasteredCount} من ${lessons.length}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر ودعمكم الدائم.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             
             incrementMessageCount(selectedStudentIndex);
             const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
@@ -1762,7 +1895,7 @@
             if(!title || !text) { alert('الرجاء كتابة عنوان ونصح الرسالة التشجيعية'); return; }
 
             customMotivations.push({ id: Date.now().toString(), title: title, text: text });
-            localStorage.setItem('awwal_custom_motivations_science_v4', JSON.stringify(customMotivations));
+            localStorage.setItem('mansour_custom_motivations_science_v5', JSON.stringify(customMotivations));
             
             document.getElementById('newMotivationTitle').value = '';
             document.getElementById('newMotivationText').value = '';
@@ -1874,15 +2007,16 @@
 
         function setTheme(themeName) {
             document.body.className = themeName;
-            localStorage.setItem('awwal_science_theme_v4', themeName);
+            localStorage.setItem('mansour_science_theme_v5', themeName);
         }
 
-        const savedTheme = localStorage.getItem('awwal_science_theme_v4');
+        const savedTheme = localStorage.getItem('mansour_science_theme_v5');
         if(savedTheme) document.body.className = savedTheme;
 
         window.onload = function() {
             renderLessons();
             render();
+            checkBackupReminder();
         };
     </script>
 </body>
