@@ -824,7 +824,7 @@
                 </div>
                 <div id="bulkHomeworkMsgPreview" class="preview-msg">اختر الصف والدرس وأدخل تفاصيل الواجب لعرض نموذج رسالة الواجب الجماعية...</div>
                 
-                <!-- لوحة التحكم الجماعية المعدلة باتجاه صحيح ومتناسق -->
+                <!-- لوحة التحكم الجماعية الجديدة لتفادي حظر المتصفح لفتح النوافذ المنبثقة المتعددة -->
                 <div id="bulkSendPanel" style="display: none; margin-top: 15px; background: rgba(0,0,0,0.04); padding: 15px; border-radius: 8px; border: 1px solid var(--secondary);">
                     <h5 style="margin-top: 0; color: var(--secondary);">📤 قائمة إرسال الواجب الجماعي (انقر فوق زر كل ولي أمر للإرسال الفردي بأمان):</h5>
                     <div id="bulkSendListContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; margin-top: 10px;"></div>
@@ -1370,8 +1370,8 @@
                 tr.innerHTML = `
                     <td><strong>${s.name}</strong></td>
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
-                    <td><input type="number" min="0" max="20" value="${s.exam1 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
-                    <td><input type="number" min="0" max="20" value="${s.exam2 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
+                    <td><input type="text" maxlength="2" value="${s.exam1 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
+                    <td><input type="text" maxlength="2" value="${s.exam2 || 0}" style="width:70px; text-align:center;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
                     <td class="no-print">
                         <a href="https://wa.me/966${s.phone ? s.phone.replace(/^0+/, '') : ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 10px; font-size:12px;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال عبر واتساب</a>
                     </td>
@@ -1723,14 +1723,9 @@
                 itemDiv.style.padding = '8px 12px';
                 itemDiv.style.borderRadius = '6px';
                 itemDiv.style.border = '1px solid rgba(0,0,0,0.1)';
-                itemDiv.style.direction = 'rtl'; // ضمان اتجاه اليمين لليسار
 
-                // الترتيب الصحيح داخل العنصر: اسم الطالبة والشارة يميناً، وزر الإرسال يساراً
                 itemDiv.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <strong>${s.name}</strong> 
-                        <span class="class-badge" style="font-size:10px;">${s.classCustom || currentGrade}</span>
-                    </div>
+                    <div><strong>${s.name}</strong> <span class="class-badge" style="font-size:10px;">${s.classCustom || currentGrade}</span></div>
                     <a href="${link}" target="_blank" class="whatsapp-btn" style="margin-top:0; padding:6px 12px; font-size:12px;" onclick="markMessageSentFromBulk(${globalIdx}, this)">📤 إرسال لولي الأمر</a>
                 `;
                 listContainer.appendChild(itemDiv);
