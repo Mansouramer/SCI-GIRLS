@@ -2,8 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المعلمة منصور - مدرسة داوود (لوحة تحكم مادة العلوم)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>الابتدائية الأولى - لوحة تحكم مادة العلوم</title>
+    <!-- رابط ملف الـ Manifest لتثبيت التطبيق -->
+    <link rel="manifest" href="manifest.json">
     <!-- مكتبة SheetJS لتصدير واستيراد ملفات إكسل Excel -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
@@ -61,45 +63,56 @@
             background-attachment: fixed;
             color: var(--text);
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             transition: background 0.3s ease, color 0.3s ease;
-            user-select: none;
             min-height: 100vh;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 20px; }
         }
 
         .top-banner {
             text-align: center;
             background: linear-gradient(135deg, var(--secondary), var(--primary));
             color: white;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             margin-bottom: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
         .header {
             text-align: center;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 25px;
+            padding: 20px 10px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .header h1 { margin: 0 0 10px 0; font-size: 24px; }
-        .header div { font-size: 18px; opacity: 0.9; }
-        .header p { margin: 5px 0 0 0; font-size: 14px; opacity: 0.8; }
+        .header h1 { margin: 0 0 10px 0; font-size: 20px; }
+        .header div { font-size: 16px; opacity: 0.9; }
+        .header p { margin: 5px 0 0 0; font-size: 13px; opacity: 0.8; }
+
+        @media (min-width: 768px) {
+            .header { padding: 25px; }
+            .header h1 { font-size: 24px; }
+            .header div { font-size: 18px; }
+            .header p { font-size: 14px; }
+        }
 
         .subscription-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.25);
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 12px;
             margin-top: 10px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             font-weight: bold;
@@ -108,11 +121,11 @@
         .theme-switcher {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             margin-top: 15px;
             align-items: center;
             background: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 20px;
             width: fit-content;
             margin-left: auto;
@@ -122,47 +135,65 @@
         .theme-btn {
             border: 2px solid white;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             cursor: pointer;
             padding: 0;
             transition: transform 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .theme-btn:hover { transform: scale(1.2); }
-
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 640px) {
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        }
+
+        @media (min-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         .stat-card {
             background: var(--card-bg);
-            padding: 15px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 10px;
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             border-bottom: 4px solid var(--secondary);
         }
 
-        .stat-card h3 { margin: 0; font-size: 13px; opacity: 0.8; }
-        .stat-card p { margin: 10px 0 0 0; font-size: 22px; font-weight: bold; color: var(--secondary); }
+        .stat-card h3 { margin: 0; font-size: 12px; opacity: 0.8; }
+        .stat-card p { margin: 8px 0 0 0; font-size: 18px; font-weight: bold; color: var(--secondary); }
+
+        @media (min-width: 768px) {
+            .stat-card { padding: 15px; }
+            .stat-card h3 { font-size: 13px; }
+            .stat-card p { font-size: 22px; }
+        }
 
         .section-card {
             background: var(--card-bg);
-            padding: 20px;
+            padding: 15px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .section-card { padding: 20px; margin-bottom: 25px; }
         }
 
         .section-card h3 {
@@ -170,6 +201,11 @@
             color: var(--secondary);
             border-bottom: 2px solid rgba(0,0,0,0.1);
             padding-bottom: 10px;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .section-card h3 { font-size: 18px; }
         }
 
         .form-row {
@@ -181,24 +217,36 @@
 
         .form-row input, .form-row select, .form-row textarea {
             flex: 1;
-            min-width: 160px;
-            padding: 10px;
+            min-width: 100%;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 16px;
             background-color: var(--card-bg);
             color: var(--text);
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        @media (min-width: 640px) {
+            .form-row input, .form-row select, .form-row textarea { min-width: 160px; font-size: 14px; }
         }
 
         button {
             background: var(--secondary);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 18px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.2s;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            button { width: auto; }
         }
 
         button:hover { opacity: 0.9; }
@@ -208,12 +256,12 @@
         .btn-excel { background: var(--excel); }
         .btn-success { background: var(--success); }
         .btn-print { background: #4b5563; }
-        .btn-action { padding: 4px 8px; font-size: 12px; margin: 0 2px; }
+        .btn-action { padding: 6px 10px; font-size: 12px; margin: 2px; width: auto; }
 
         .classes-query-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin: 15px 0;
             align-items: center;
         }
@@ -225,20 +273,24 @@
             overflow: hidden;
             border: 2px solid var(--secondary);
             background: rgba(0, 0, 0, 0.04);
-            flex: 1;
-            min-width: 150px;
+            flex: 1 1 140px;
         }
 
         .class-query-btn {
             background: transparent;
             border: none;
             color: var(--text);
-            padding: 10px 15px;
+            padding: 10px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
             flex: 1;
-            text-align: right;
+            text-align: center;
+            width: auto;
+        }
+
+        @media (min-width: 768px) {
+            .class-query-btn { text-align: right; padding: 10px 15px; font-size: 14px; }
         }
 
         .class-btn-wrapper.active {
@@ -254,12 +306,13 @@
             background: rgba(239, 68, 68, 0.15);
             border: none;
             color: var(--danger);
-            padding: 0 12px;
+            padding: 0 10px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: auto;
         }
 
         .class-delete-btn:hover {
@@ -267,16 +320,30 @@
             color: white;
         }
 
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 15px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            white-space: nowrap;
         }
 
         th, td {
             border: 1px solid rgba(0,0,0,0.1);
-            padding: 10px;
+            padding: 10px 8px;
             text-align: center;
+            font-size: 13px;
+        }
+
+        @media (min-width: 768px) {
+            th, td { padding: 10px; font-size: 14px; }
         }
 
         th { background-color: rgba(0,0,0,0.05); color: var(--secondary); }
@@ -297,69 +364,107 @@
             display: flex;
             gap: 5px;
             align-items: center;
+            width: 100%;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .pagination-btns { width: auto; }
         }
 
         .pagination-btns button {
             padding: 6px 12px;
             font-size: 13px;
+            width: auto;
         }
 
         .student-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin: 15px 0;
             background: rgba(0,0,0,0.03);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
         }
 
+        @media (min-width: 640px) {
+            .student-details { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); padding: 15px; }
+        }
+
         .detail-item { text-align: center; }
-        .detail-item span { display: block; font-size: 12px; opacity: 0.8; }
-        .detail-item strong { font-size: 18px; color: var(--secondary); }
+        .detail-item span { display: block; font-size: 11px; opacity: 0.8; }
+        .detail-item strong { font-size: 16px; color: var(--secondary); }
+
+        @media (min-width: 768px) {
+            .detail-item span { font-size: 12px; }
+            .detail-item strong { font-size: 18px; }
+        }
 
         .sub-box {
             background: rgba(0,0,0,0.02);
             border: 1px solid rgba(0,0,0,0.1);
             border-radius: 8px;
-            padding: 15px;
+            padding: 12px;
             margin-top: 15px;
         }
 
-        .sub-box h5 { margin-top: 0; color: var(--secondary); font-size: 16px; }
+        @media (min-width: 768px) {
+            .sub-box { padding: 15px; }
+        }
+
+        .sub-box h5 { margin-top: 0; color: var(--secondary); font-size: 15px; }
 
         .preview-msg {
             background: rgba(37, 99, 235, 0.08);
             border-right: 4px solid var(--secondary);
-            padding: 12px;
+            padding: 10px;
             margin: 10px 0;
             border-radius: 4px;
             white-space: pre-wrap;
-            font-size: 14px;
+            font-size: 13px;
             direction: rtl;
             text-align: right;
+            word-break: break-word;
+        }
+
+        @media (min-width: 768px) {
+            .preview-msg { padding: 12px; font-size: 14px; }
         }
 
         .whatsapp-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: #25D366;
             color: white;
             text-decoration: none;
             padding: 10px 15px;
             border-radius: 6px;
             font-weight: bold;
-            margin-top: 5px;
+            font-size: 13px;
             text-align: center;
+            border: none;
+            cursor: pointer;
+            gap: 5px;
+            width: 100%;
+            box-sizing: border-box;
         }
+
+        .whatsapp-btn:hover { opacity: 0.9; }
 
         .lessons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr;
             gap: 12px;
             margin-top: 15px;
             max-height: 520px;
             overflow-y: auto;
             padding: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .lessons-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
         }
 
         .lesson-card {
@@ -400,6 +505,7 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 10px;
+            gap: 5px;
         }
 
         .status-toggle-btn {
@@ -409,6 +515,7 @@
             cursor: pointer;
             border: none;
             font-weight: bold;
+            width: auto;
         }
 
         .status-toggle-btn.done { background-color: var(--secondary); color: white; }
@@ -426,15 +533,59 @@
             display: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 1000;
+            font-size: 13px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .backup-controls,
+        .stacked-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 480px;
+            margin: 15px auto 0 auto;
+            box-sizing: border-box;
         }
 
         .backup-controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed #ccc;
-            flex-wrap: wrap;
+        }
+
+        .backup-controls button,
+        .stacked-controls button,
+        .stacked-controls select,
+        .stacked-controls input {
+            width: 100% !important;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 !important;
+        }
+
+        .section-header-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .section-header-row h3 {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .section-header-row button {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
         }
 
         .class-badge {
@@ -442,17 +593,18 @@
             color: white;
             padding: 3px 8px;
             border-radius: 12px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
         }
 
         .mastery-btn {
-            padding: 4px 10px;
+            padding: 6px 12px;
             font-size: 12px;
             border-radius: 20px;
             cursor: pointer;
             border: none;
             font-weight: bold;
+            width: auto;
         }
         .mastery-btn.mastered { background-color: var(--success); color: white; }
         .mastery-btn.review { background-color: var(--danger); color: white; }
@@ -467,7 +619,7 @@
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 15px;
+            font-size: 16px;
             background-color: var(--card-bg);
             color: var(--text);
             box-sizing: border-box;
@@ -478,7 +630,7 @@
             top: 100%;
             left: 0;
             right: 0;
-            max-height: 250px;
+            max-height: 220px;
             overflow-y: auto;
             background: var(--card-bg);
             border: 1px solid var(--secondary);
@@ -504,9 +656,9 @@
 
         .footer-note {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 25px;
             padding: 15px;
-            font-size: 14px;
+            font-size: 13px;
             opacity: 0.75;
             border-top: 1px solid rgba(0,0,0,0.1);
             line-height: 1.8;
@@ -514,17 +666,17 @@
 
         .floating-action-buttons {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 20px;
+            right: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             z-index: 999;
         }
 
         .float-btn {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: var(--secondary);
             color: white;
@@ -534,8 +686,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .float-btn { width: 50px; height: 50px; font-size: 20px; }
         }
 
         .float-whatsapp { background: #25D366; }
@@ -585,10 +741,16 @@
     </div>
 
     <div class="header">
-        <h1>مدرسة داوود (طالبات)</h1>
-        <div>إعداد المعلمة: منصور</div>
+        <h1>الابتدائية الأولى</h1>
+        <div>إعداد المعلمة: فلانة</div>
         <p>لوحة تحكم معلمة مادة العلوم للمرحلة الابتدائية (وفق المنهج السعودي)</p>
         <div class="subscription-badge">⏳ نهاية الاشتراك: 2027/07/01</div>
+
+        <div style="margin-top: 15px;">
+            <button onclick="installApp()" id="installBtn" style="background-color: #7c3aed; display: none; margin: 0 auto; width: auto; padding: 8px 16px; border-radius: 12px; font-size: 12px; font-weight: bold;">
+                📱 تثبيت التطبيق كبرنامج مستقل
+            </button>
+        </div>
 
         <div class="theme-switcher">
             <span style="font-size: 12px; margin-left: 5px;">🎨 المظهر:</span>
@@ -654,8 +816,8 @@
 
         <!-- تسجيل الطالبات والصفوف والجدول -->
         <div class="section-card" id="studentsTableSection">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
-                <h3 style="margin: 0; border: none; padding: 0;">✏️ تسجيل الطالبات والصفوف ومتابعتهن</h3>
+            <div class="section-header-row">
+                <h3 style="margin: 0; border: none; padding: 0;">✏️ تسجيل الطالبات والصفوف ومتابعة السجل</h3>
                 <button class="btn-print no-print" onclick="printSection('studentsTableSection')" title="طباعة جدول الطالبات والصفوف">🖨️ طباعة الجدول</button>
             </div>
             
@@ -672,11 +834,11 @@
             </div>
 
             <div class="form-row no-print" style="align-items: center; background: rgba(0,0,0,0.03); padding: 8px; border-radius: 6px; margin-top: 15px;">
-                <span style="font-weight: bold; font-size: 14px;">🔍 بحث عن طالبة محددة بالاسم:</span>
-                <input type="text" id="filterStudentNameInput" placeholder="اكتب اسم الطالبة للبحث..." oninput="filterTableByStudentInput()" style="max-width: 320px;">
+                <span style="font-weight: bold; font-size: 14px; width: 100%;">🔍 بحث عن طالبة محددة بالاسم:</span>
+                <input type="text" id="filterStudentNameInput" placeholder="اكتب اسم الطالبة للبحث..." oninput="filterTableByStudentInput()" style="width: 100%;">
             </div>
 
-            <div style="overflow-x: auto;">
+            <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
@@ -710,7 +872,7 @@
                 <input type="file" id="importExcelFile" accept=".xlsx, .xls" style="display: none;" onchange="importExcel(event)">
 
                 <button class="btn-success" onclick="exportToGoogleSheetsCSV()">☁️ تصدير لـ Google Sheets (CSV)</button>
-                <button class="btn-info" onclick="exportData()" style="margin-right: auto;">💾 تصدير JSON</button>
+                <button class="btn-info" onclick="exportData()">💾 تصدير JSON</button>
                 <button class="btn-warning" onclick="document.getElementById('importFile').click()">📂 استرجاع JSON</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
             </div>
@@ -718,12 +880,12 @@
 
         <!-- نظام تتبع إتقان الدروس لكل طالبة -->
         <div class="section-card" id="lessonMasterySection">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+            <div class="section-header-row">
                 <h3 style="margin: 0; border: none; padding: 0;">🎯 تتبع إتقان كل درس لكل طالبة (متقنة / بحاجة مراجعة)</h3>
                 <button class="btn-print" onclick="printSection('lessonMasterySection')">🖨️ طباعة تقرير إتقان الدروس</button>
             </div>
 
-            <div class="form-row no-print">
+            <div class="stacked-controls no-print">
                 <select id="masteryLessonSelect" onchange="renderMasteryTable()">
                     <option value="">-- اختر الدرس لتحديد حالة الإتقان للطالبات --</option>
                 </select>
@@ -746,7 +908,7 @@
                 </div>
             </div>
 
-            <div style="overflow-x: auto;">
+            <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
@@ -765,12 +927,12 @@
 
         <!-- رصد اختبارات الفترة الأولى والثانية -->
         <div class="section-card" id="examsSection">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+            <div class="section-header-row">
                 <h3 style="margin: 0; border: none; padding: 0;">📊 رصد وتحليل اختبارات الفترة الأولى والفترة الثانية (من ٢٠) 📝</h3>
                 <button class="btn-print" onclick="printSection('examsSection')">🖨️ طباعة تقرير رصد وتحليل الاختبارات</button>
             </div>
             
-            <div class="form-row no-print">
+            <div class="stacked-controls no-print">
                 <select id="examClassSelect" onchange="renderExamsTable()">
                     <option value="">-- اختر الصف لعرض وسجل الاختبارات --</option>
                 </select>
@@ -790,7 +952,7 @@
                 </div>
             </div>
 
-            <div style="overflow-x: auto;">
+            <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
@@ -802,7 +964,7 @@
                         </tr>
                     </thead>
                     <tbody id="examsTbody">
-                        <tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الصف الدراسي من القائمة أعلاه لعرض رصد واختبارات الطالبات.</td></tr>
+                        <tr><td colspan="5" style="padding: 20px; opacity: 0.7;">الرجاء اختيار الصف الدراسي من القائمة أعلاه لعرض رصد وااختبارات الطالبات.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -810,7 +972,7 @@
 
         <!-- استعلام عن طالبة -->
         <div class="section-card" id="studentReportSection">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+            <div class="section-header-row">
                 <h3 style="margin: 0; border: none; padding: 0;">🔍 استعلام وتتبع طالبة محددة</h3>
                 <button class="btn-print no-print" onclick="printSection('studentReportSection')">🖨️ طباعة تقرير الطالبة</button>
             </div>
@@ -834,9 +996,9 @@
                     </div>
                 </div>
 
-                <div class="form-row no-print" style="margin-top: 15px;">
+                <div class="stacked-controls no-print" style="margin-top: 15px;">
                     <button class="btn-print" onclick="printStudentReport()">🖨️ طباعة تقرير الطالبة الرسمي</button>
-                    <button class="whatsapp-btn" onclick="sendFullReportWhatsApp()" style="border: none; cursor: pointer; margin-top: 0; width: 100%;">📤 إرسال التقرير الشامل لولي الأمر عبر واتساب</button>
+                    <button class="whatsapp-btn" onclick="sendFullReportWhatsApp()">📤 إرسال التقرير الشامل لولي الأمر عبر واتساب</button>
                 </div>
 
                 <div class="sub-box">
@@ -848,7 +1010,7 @@
                         </select>
                     </div>
                     <div id="lessonMsgPreview" class="preview-msg">اختر موضوع الدرس والمهارة أعلاه لتوليد نص الرسالة تلقائياً...</div>
-                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()" style="display: block;">📲 إرسال مباشر لولي الأمر</a>
+                    <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">📲 إرسال مباشر لولي الأمر</a>
                 </div>
 
                 <div class="sub-box">
@@ -860,13 +1022,13 @@
                     </div>
                     
                     <div class="form-row no-print" style="margin-top: 10px; background: rgba(37, 99, 235, 0.05); padding: 10px; border-radius: 6px;">
-                        <input type="text" id="newMotivationTitle" placeholder="عنوان الرسالة..." style="max-width: 220px;">
+                        <input type="text" id="newMotivationTitle" placeholder="عنوان الرسالة...">
                         <input type="text" id="newMotivationText" placeholder="اكتب نص الرسالة التشجيعية الجديدة هنا...">
                         <button onclick="addNewMotivation()">➕ إضافة رسالة تشجيعية</button>
                     </div>
 
                     <div id="motivationMsgPreview" class="preview-msg">اختر الرسالة لعرض نص الشكر والتحفيز...</div>
-                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()" style="display: block;">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
+                    <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع المختارة لولي الأمر</a>
                 </div>
             </div>
         </div>
@@ -896,7 +1058,7 @@
                     <div id="bulkSendListContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; margin-top: 10px;"></div>
                 </div>
 
-                <button class="whatsapp-btn" onclick="prepareBulkHomeworkBatch()" style="border: none; cursor: pointer; font-size: 15px; width: 100%;">🚀 تجهيز روابط إرسال الواجب الجماعي</button>
+                <button class="whatsapp-btn" onclick="prepareBulkHomeworkBatch()" style="font-size: 15px; margin-top: 10px;">🚀 تجهيز روابط إرسال الواجب الجماعي</button>
             </div>
         </div>
 
@@ -940,18 +1102,20 @@
         </div>
 
     </div>
-<div class="section-card" style="text-align: center; background: #ffffff; margin: 20px auto; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 20px;">
-    <h4 style="color: var(--secondary, #2563eb); margin: 0 0 15px 0; font-size: 16px;">💾 النسخ الاحتياطي وإدارة البيانات</h4>
-    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-        <button class="btn-info" onclick="backupAllData()" style="background: #e11d48; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; color: white; border: none; width: auto; font-weight: bold;">
-            💾 حفظ نسخة كاملة
-        </button>
-        <input type="file" id="importBackupFile" accept=".json" style="display: none;" onchange="restoreDashboardData(event)">
-        <button class="btn-warning" onclick="document.getElementById('importBackupFile').click()" style="background: #f59e0b; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; color: white; border: none; width: auto; font-weight: bold;">
-            📂 استرجاع النسخة
-        </button>
+
+    <div class="section-card" style="text-align: center; background: #ffffff; margin: 20px auto; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 20px;">
+        <h4 style="color: var(--secondary, #2563eb); margin: 0 0 15px 0; font-size: 16px;">💾 النسخ الاحتياطي وإدارة البيانات</h4>
+        <div class="stacked-controls">
+            <button class="btn-info" onclick="backupAllData()" style="background: #e11d48; padding: 12px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; color: white; border: none; font-weight: bold;">
+                💾 حفظ نسخة كاملة
+            </button>
+            <input type="file" id="importBackupFile" accept=".json" style="display: none;" onchange="restoreDashboardData(event)">
+            <button class="btn-warning" onclick="document.getElementById('importBackupFile').click()" style="background: #f59e0b; padding: 12px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; color: white; border: none; font-weight: bold;">
+                📂 استرجاع النسخة
+            </button>
+        </div>
     </div>
-</div>
+
     <!-- الأزرار العائمة -->
     <div class="floating-action-buttons no-print">
         <a href="https://wa.me/966581015002" target="_blank" class="float-btn float-whatsapp" title="تواصل الدعم الفني عبر واتساب">💬</a>
@@ -961,8 +1125,30 @@
     <div id="toast" class="toast">✅ تم حفظ البيانات تلقائياً!</div>
 
     <script>
-        const TEACHER_NAME = "منصور";
-        const SCHOOL_NAME = "مدرسة داوود (طالبات)";
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('installBtn');
+            if (installBtn) {
+                installBtn.style.display = 'inline-block';
+            }
+        });
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('تم قبول تثبيت التطبيق');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        const TEACHER_NAME = "فلانة";
+        const SCHOOL_NAME = "الابتدائية الأولى";
 
         let currentGrade = localStorage.getItem('mansour_current_grade_science_v5') || 'الأول الابتدائي';
         document.getElementById('globalGradeSelect').value = currentGrade;
@@ -1051,14 +1237,27 @@
         let lessons = JSON.parse(localStorage.getItem(getStorageKeyForLessons())) || gradeScienceData[currentGrade];
         let students = JSON.parse(localStorage.getItem(getStorageKeyForStudents())) || [];
         let lessonStatus = JSON.parse(localStorage.getItem(getStorageKeyForStatus())) || {};
-        let lessonMastery = JSON.parse(localStorage.getItem(getStorageKeyForMastery())) || {}; // { studentIndex: { lessonIndex: true/false } }
+        let lessonMastery = JSON.parse(localStorage.getItem(getStorageKeyForMastery())) || {};
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('scrollToTopBtn');
+            if (window.scrollY > 300) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
 
         function checkBackupReminder() {
             const lastBackup = localStorage.getItem('mansour_last_backup_date');
             const now = Date.now();
             if (!lastBackup || (now - Number(lastBackup) > 7 * 24 * 60 * 60 * 1000)) {
                 setTimeout(() => {
-                    alert('📌 تذكير دوري لحماية بياناتك:\nمرت فترة على آخر نسختك الاحتياطية. يوصى بالنقر على زر (تصدير JSON) أو (تصدير لـ Google Sheets) لحفظ بياناتك وتجنب ضياعها حال تم مسح متصفحك.');
+                    alert('📌 تذكير دوري لحماية بياناتك:\nمرت فترة على آخر نسختك الاحتياطية. يوصى بالنقر على زر (تصدير JSON) أو (تصدير لـ Google Sheets) لحفظ بياناتك وتجنب ضياعها.');
                     localStorage.setItem('mansour_last_backup_date', now.toString());
                 }, 3000);
             }
@@ -1261,7 +1460,7 @@
             let sumProj = 0;
             let sumMsg = 0;
 
-            students.forEach((s, sIdx) => {
+            students.forEach((s) => {
                 sumPart += Number(s.participation) || 0;
                 sumHw += Number(s.homework) || 0;
                 sumAbs += Number(s.absence) || 0;
@@ -1374,11 +1573,7 @@
             if(confirm('هل أنت متأكدة من حذف هذه الطالبة؟')) {
                 students.splice(index, 1);
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
-                delete lessonMastery[index];
-                let newMastery = {};
-                Object.keys(lessonMastery).keys().forEach(k => { // fixed syntax mapping below properly
-                });
-                // Correcting the object keys shifting logic securely:
+                
                 let correctedMastery = {};
                 Object.keys(lessonMastery).forEach(k => {
                     let oldIdx = Number(k);
@@ -1480,7 +1675,6 @@
             });
         }
 
-        // دوال نظام إتقان الدروس لكل طالبة
         function renderMasteryTable() {
             const lessonIdx = document.getElementById('masteryLessonSelect').value;
             const selectedClass = document.getElementById('masteryClassSelect').value;
@@ -1997,7 +2191,7 @@
 
                 itemDiv.innerHTML = `
                     <div><strong>${s.name}</strong> <span class="class-badge" style="font-size:10px;">${s.classCustom || currentGrade}</span></div>
-                    <a href="${link}" target="_blank" class="whatsapp-btn" style="margin-top:0; padding:6px 12px; font-size:12px;" onclick="markMessageSentFromBulk(${globalIdx}, this)">📤 إرسال لولي الأمر</a>
+                    <a href="${link}" target="_blank" class="whatsapp-btn" style="margin-top:0; padding:6px 12px; font-size:12px; width:auto;" onclick="markMessageSentFromBulk(${globalIdx}, this)">📤 إرسال لولي الأمر</a>
                 `;
                 listContainer.appendChild(itemDiv);
             });
@@ -2028,51 +2222,53 @@
             renderLessons();
             render();
             checkBackupReminder();
-        };// دالة حفظ النسخة الاحتياطية الكاملة
-function backupAllData() {
-    const fullBackup = {
-        students: typeof students !== 'undefined' ? students : [],
-        lessons: typeof lessons !== 'undefined' ? lessons : [],
-        timestamp: new Date().toLocaleString('ar-SA')
-    };
+        };
 
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fullBackup));
-    const dlAnchor = document.createElement('a');
-    dlAnchor.setAttribute("href", dataStr);
-    dlAnchor.setAttribute("download", `نسخة_احتياطية_الداش_بورد_${new Date().toISOString().slice(0,10)}.json`);
-    document.body.appendChild(dlAnchor);
-    dlAnchor.click();
-    dlAnchor.remove();
-    
-    if (typeof showToast === 'function') {
-        showToast('💾 تم حفظ النسخة الاحتياطية على جهازك بنجاح!');
-    } else {
-        alert('تم حفظ النسخة الاحتياطية على جهازك بنجاح.');
-    }
-}// دالة استرجاع النسخة الاحتياطية
-function restoreDashboardData(event) {
-    const file = event.target.files[0];
-    if(!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        try {
-            const imported = JSON.parse(e.target.result);
-            if(imported) {
-                if(imported.students) localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(imported.students));
-                if(imported.lessons) localStorage.setItem(getStorageKeyForLessons(), JSON.stringify(imported.lessons));
-                alert('📂 تم استرجاع البيانات بنجاح!');
-                location.reload();
+        function backupAllData() {
+            const fullBackup = {
+                students: typeof students !== 'undefined' ? students : [],
+                lessons: typeof lessons !== 'undefined' ? lessons : [],
+                timestamp: new Date().toLocaleString('ar-SA')
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fullBackup));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `نسخة_احتياطية_الداش_بورد_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+            
+            if (typeof showToast === 'function') {
+                showToast('💾 تم حفظ النسخة الاحتياطية على جهازك بنجاح!');
             } else {
-                alert('ملف النسخة الاحتياطية غير صالح.');
+                alert('تم حفظ النسخة الاحتياطية على جهازك بنجاح.');
             }
-        } catch(err) {
-            alert('خطأ في قراءة ملف JSON.');
-        } finally {
-            event.target.value = '';
         }
-    };
-    reader.readAsText(file);
-}
+
+        function restoreDashboardData(event) {
+            const file = event.target.files[0];
+            if(!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if(imported) {
+                        if(imported.students) localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(imported.students));
+                        if(imported.lessons) localStorage.setItem(getStorageKeyForLessons(), JSON.stringify(imported.lessons));
+                        alert('📂 تم استرجاع البيانات بنجاح!');
+                        location.reload();
+                    } else {
+                        alert('ملف النسخة الاحتياطية غير صالح.');
+                    }
+                } catch(err) {
+                    alert('خطأ في قراءة ملف JSON.');
+                } finally {
+                    event.target.value = '';
+                }
+            };
+            reader.readAsText(file);
+        }
     </script>
 </body>
 </html>
