@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدرسة | نظام الاختبارات والتحليل (بنات)</title>
+    <title>مدرسة داؤود بن عروة الثقفي الابتدائية | نظام الاختبارات والتحليل (بنون)</title>
     <style>
         :root {
             --primary: #1e3a8a;
@@ -152,6 +152,7 @@
         .btn-print { background: var(--print-btn); }
         .btn-success { background: var(--success); }
         .btn-whatsapp { background: #059669; }
+        .btn-warning { background: #d97706; }
 
         .touch-grading-card {
             background: #fff;
@@ -304,14 +305,23 @@
             background: #fff;
         }
 
-        .analysis-box { display: none; background: #fffbeb; border: 1px solid #f59e0b; padding: 15px; border-radius: 10px; margin-top: 15px; overflow-x: auto; font-size: 13px; }
+        .analysis-box { display: none; background: #fffbeb; border: 1px solid #f59e0b; padding: 20px; border-radius: 10px; margin-top: 15px; font-size: 13px; }
         .result-box { display: none; background: #ecfdf5; border: 1px solid #10b981; padding: 15px; border-radius: 10px; margin-top: 15px; font-size: 14px; }
+        .sheet-print-container { display: none; background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #cbd5e1; margin-top: 15px; }
 
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body * { visibility: hidden !important; }
-            .printable-area, .printable-area * { visibility: visible !important; }
-            .printable-area { position: absolute; left: 0; top: 0; width: 100% !important; background: white !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+            
+            .printable-exam-area, .printable-exam-area * { visibility: visible !important; }
+            .printable-exam-area { position: absolute; left: 0; top: 0; width: 100% !important; background: white !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+
+            .printable-sheet-area, .printable-sheet-area * { visibility: visible !important; }
+            .printable-sheet-area { position: absolute; left: 0; top: 0; width: 100% !important; background: white !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+
+            .printable-analysis-area, .printable-analysis-area * { visibility: visible !important; }
+            .printable-analysis-area { position: absolute; left: 0; top: 0; width: 100% !important; background: white !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+
             .no-print { display: none !important; }
             .question-row { break-inside: avoid; page-break-inside: avoid; margin-bottom: 8px; padding: 6px 8px; border: 1px solid #94a3b8; }
         }
@@ -321,7 +331,7 @@
 
     <div class="container">
         <div class="header-nav no-print">
-            <h2 id="mainSchoolTitle">مدرسة  (بنات)</h2>
+            <h2 id="mainSchoolTitle">مدرسة داؤود بن عروة الثقفي الابتدائية (بنون)</h2>
             <a href="index.html" class="back-btn">⬅ لوحة التحكم الرئيسية</a>
         </div>
 
@@ -368,7 +378,7 @@
                         <span style="font-size: 13px; font-weight: bold;">من الأسبوع:</span>
                         <div class="stepper-container">
                             <button type="button" class="stepper-btn" onclick="changeWeek('startWeek', -1)">-</button>
-                            <input type="number" id="inputStartWeek" value="١" min="1" max="18" style="width: 50px;">
+                            <input type="number" id="inputStartWeek" value="1" min="1" max="18" style="width: 50px;">
                             <button type="button" class="stepper-btn" onclick="changeWeek('startWeek', 1)">+</button>
                         </div>
                     </div>
@@ -377,7 +387,7 @@
                         <span style="font-size: 13px; font-weight: bold;">إلى الأسبوع:</span>
                         <div class="stepper-container">
                             <button type="button" class="stepper-btn" onclick="changeWeek('endWeek', -1)">-</button>
-                            <input type="number" id="inputEndWeek" value="٤" min="1" max="18" style="width: 50px;">
+                            <input type="number" id="inputEndWeek" value="4" min="1" max="18" style="width: 50px;">
                             <button type="button" class="stepper-btn" onclick="changeWeek('endWeek', 1)">+</button>
                         </div>
                     </div>
@@ -386,35 +396,35 @@
         </div>
 
         <div class="section-box">
-            <h3>⚙️ ثانياً: توليد ورقة الاختبار المعتمدة (بدون ذكر أسماء الدروس في الورقة)</h3>
+            <h3>⚙️ ثانياً: توليد ورقة الاختبار المعتمدة (10 فقرات ثابتة وعشوائية)</h3>
             <div class="no-print">
                 <button class="action-btn" onclick="generateTestModel()">⚡ توليد ورقة الاختبار المعتمدة</button>
             </div>
 
-            <div id="questionsPreviewBox" class="questions-preview printable-area">
+            <div id="questionsPreviewBox" class="questions-preview printable-exam-area">
                 <div class="exam-header">
                     <h3>المملكة العربية السعودية - وزارة التعليم</h3>
-                    <h4 id="printSchoolTitle">مدرسة </h4>
+                    <h4 id="printSchoolTitle">مدرسة داؤود بن عروة الثقفي الابتدائية</h4>
                     <p id="printTeacherName" style="margin:2px 0; font-size:11.5px; color:#4b5563; font-weight:bold;"></p>
                     <p id="printTestInfo" style="margin:2px 0; font-size:12px; color:#555; font-weight:bold;"></p>
                     <div id="printModelBadge" style="margin:4px 0; font-size:12px; color:#0d9488; font-weight:bold;"></div>
                     <div style="margin-top: 6px; border: 1.2px solid #64748b; padding: 4px 10px; border-radius: 5px; display:inline-block; font-size:11.5px;">
-                        <b>اسم الطالبة:</b> .................................................................... &nbsp;&nbsp; <b>الصف:</b> ................
+                        <b>اسم الطالب:</b> .................................................................... &nbsp;&nbsp; <b>الصف:</b> ................
                     </div>
                 </div>
                 
                 <div id="generatedQuestionsList"></div>
 
                 <div class="no-print" style="margin-top: 15px;">
-                    <button class="action-btn btn-print" onclick="window.print()">🖨️ طباعة الاختبار بملء صفحة A4</button>
+                    <button class="action-btn btn-print" onclick="printExamOnly()">🖨️ طباعة الاختبار بملء صفحة A4</button>
                 </div>
             </div>
         </div>
 
         <div class="section-box no-print">
-            <h3>👤 ثالثاً: لوحة التصحيح السريع باللمس (رصد درجات الطالبات)</h3>
+            <h3>👤 ثالثاً: لوحة التصحيح السريع باللمس (رصد درجات الطلاب)</h3>
             <p style="font-size: 12px; color: #555; margin-bottom: 10px;">
-                انقر على إجابة الطالبة؛ لتتحدث درجتها فوراً وتُرحل لداشبورد المدرسة:
+                انقر على إجابة الطالب؛ لتتحدث درجته فوراً وتُرحل لداشبورد المدرسة:
             </p>
             <button class="action-btn btn-success" onclick="startTouchGradingSession()">🚀 بدء جلسة التصحيح الفوري</button>
 
@@ -423,8 +433,8 @@
                 <div id="touchQuestionsContainer"></div>
                 
                 <div class="navigation-btns">
-                    <button class="action-btn" style="background: #4b5563;" onclick="prevStudent()">⬅ الطالبة السابقة</button>
-                    <button class="action-btn btn-success" onclick="saveAndNextStudent()">حفظ والانتقال للتالية ➡</button>
+                    <button class="action-btn" style="background: #4b5563;" onclick="prevStudent()">⬅ الطالب السابق</button>
+                    <button class="action-btn btn-success" onclick="saveAndNextStudent()">حفظ والانتقال للتالي ➡</button>
                 </div>
             </div>
         </div>
@@ -433,17 +443,50 @@
             <h3 style="margin-top:0; color: var(--primary); font-size: 16px;">📊 سجل درجات الفصل المعتمدة والبحث الفوري عن درجات ولي الأمر</h3>
             
             <div style="margin: 12px 0; display: flex; gap: 10px; align-items: center;">
-                <input type="text" id="searchStudentInput" placeholder="🔍 ابحث عن اسم طالبة لسؤال ولي أمرها..." oninput="filterStudentResults()" style="flex: 1; padding: 8px 12px; border: 1px solid #10b981; border-radius: 6px; font-size: 13px;">
+                <input type="text" id="searchStudentInput" placeholder="🔍 ابحث عن اسم طالب لسؤال ولي أمره..." oninput="filterStudentResults()" style="flex: 1; padding: 8px 12px; border: 1px solid #10b981; border-radius: 6px; font-size: 13px;">
             </div>
 
             <p id="correctionOutputText" style="font-size: 14px; margin: 8px 0;"></p>
+            
+            <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;" class="no-print">
+                <button class="action-btn btn-print" style="flex: 1; min-width: 250px;" onclick="printAllGradesSheet()">🖨️ طباعة كشف درجات الفصل (أسماء ودرجات فقط)</button>
+                <button class="action-btn btn-warning" style="flex: 1; min-width: 250px;" onclick="toggleAnalysisBox()">📈 فتح/طباعة تقرير التحليل الإحصائي المستقل</button>
+            </div>
         </div>
 
-        <div id="analysisContainer" class="analysis-box printable-area">
-            <h3 style="margin-top:0; color: #b45309; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; font-size: 16px;">📈 تقرير تحليل نتائج الطالبات ومهارات نافس</h3>
+        <!-- كشف الدرجات المستقل للطباعة (أسماء ودرجات فقط بدون أي أسئلة) -->
+        <div id="allGradesSheetPrintArea" class="sheet-print-container printable-sheet-area">
+            <div style="text-align: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; margin-bottom: 15px;">
+                <h3 style="margin: 0; color: #1e3a8a; font-size: 15px;">المملكة العربية السعودية - وزارة التعليم</h3>
+                <h4 id="sheetPrintSchoolName" style="margin: 4px 0; font-size: 13px; color: #374151;">مدرسة داؤود بن عروة الثقفي الابتدائية</h4>
+                <p id="sheetPrintMeta" style="margin: 2px 0; font-size: 12px; color: #4b5563; font-weight: bold;"></p>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: center;" border="1">
+                <thead>
+                    <tr style="background: #eff6ff; color: #1e3a8a;">
+                        <th style="padding: 6px; width: 40px;">م</th>
+                        <th style="padding: 6px; text-align: right; padding-right: 10px;">اسم الطالب</th>
+                        <th style="padding: 6px; width: 100px;">الدرجة المستحقة</th>
+                        <th style="padding: 6px; width: 100px;">الدرجة الكبرى</th>
+                        <th style="padding: 6px; width: 120px;">مستوى الإتقان</th>
+                    </tr>
+                </thead>
+                <tbody id="sheetPrintTableBody">
+                    <!-- تعبئة تلقائية بالدرجات -->
+                </tbody>
+            </table>
+            <div style="margin-top: 25px; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold;">
+                <div>ختم المدرسة / الإدارة: ........................</div>
+                <div id="sheetPrintTeacherSign">اسم معلم المادة: ........................</div>
+            </div>
+        </div>
+
+        <!-- تقرير التحليل المستقل -->
+        <div id="analysisContainer" class="analysis-box printable-analysis-area">
+            <h3 style="margin-top:0; color: #b45309; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; font-size: 16px;">📈 تقرير تحليل نتائج الطلاب ومهارات نافس (مستقل)</h3>
             <div id="analysisContentText" style="font-size: 12.5px; line-height: 1.6; color: #1f2937;"></div>
             <div class="no-print" style="margin-top: 15px;">
-                <button class="action-btn btn-print" onclick="window.print()">🖨️ طباعة تقرير التحليل</button>
+                <button class="action-btn btn-print" onclick="printAnalysisBoxOnly()">🖨️ طباعة تقرير التحليل لوحده</button>
             </div>
         </div>
     </div>
@@ -466,15 +509,6 @@
                     node.nodeValue = toArabicDigits(node.nodeValue);
                 }
             }
-        }
-
-        function convertInputValues() {
-            const inputs = document.querySelectorAll('input[type="number"], input[type="text"]');
-            inputs.forEach(input => {
-                if (input.id !== 'searchStudentInput' && input.value) {
-                    input.value = toArabicDigits(input.value);
-                }
-            });
         }
 
         const subjectNames = { 
@@ -507,7 +541,7 @@
                     { q: "ما هو العدد الذي يأتي مباشرة بعد العدد ٩؟", options: ["٨", "١٠", "١١", "٧"], correct: "ب" },
                     { q: "عشرة مضافاً إليها خمسة تساوي:", options: ["١٢", "١٥", "٢٠", "١٠"], correct: "ب" },
                     { q: "أي الأعداد التالية يعتبر عدداً زوجياً؟", options: ["٣", "٥", "٤", "٧"], correct: "ج" },
-                    { q: "مع أمل ٤ تفاحات وأخذت تفاحتان، فكم أصبح معها؟", options: ["٥", "٦", "٣", "٢"], correct: "ب" },
+                    { q: "مع أحمد ٤ تفاحات وأخذ تفاحتان، فكم أصبح معه؟", options: ["٥", "٦", "٣", "٢"], correct: "ب" },
                     { q: "طول قلم رصاص قصير يقاس بـ:", options: ["المتر", "السنتيمتر", "الكيلومتر", "الجرام"], correct: "ب" },
                     { q: "أي الأشكال التالية يمثل دائرة؟", options: ["شكل مربع", "شكل دائري منحني مغلق", "شكل مثلث", "شكل مستطيل"], correct: "ب" }
                 ]
@@ -533,9 +567,9 @@
                     { q: "الشكل الهندسي الذي له ٤ أضلاع متساوية هو:", options: ["المثلث", "المربع", "الدائرة", "المستطيل"], correct: "ب" },
                     { q: "ناتج طرح: ٥٠ - ٢٠ يساوي:", options: ["٢٠", "٣٠", "٤٠", "١٠"], correct: "ب" },
                     { q: "اكتب العدد مائتان وخمسة بالأرقام:", options: ["٢٥٠", "٢٠٥", "٥٠٢", "٢٥"], correct: "ب" },
-                    { q: "إذا كان مع خلود ٣ فئات من نقد ١٠ ريالات، فكم إجمالي المبلغ؟", options: ["١٠ ريالات", "٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً"], correct: "ج" },
+                    { q: "إذا كان خالد يملك ٣ فئات من نقد ١٠ ريالات، فكم إجمالي المبلغ؟", options: ["١٠ ريالات", "٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً"], correct: "ج" },
                     { q: "التقدير الأنسب لطول باب الفصل هو:", options: ["٢ متر", "٢ سنتيمتر", "٢٠٠ كيلومتر", "١٠ مليمتر"], correct: "أ" },
-                    { q: "مع هند ٤٥ قلماً وأعطت زميلتها ١٥ قلماً، كم بقي معها؟", options: ["٣٠ قلماً", "٦٠ قلماً", "٢٠ قلماً", "٢٥ قلماً"], correct: "أ" }
+                    { q: "مع حامد ٤٥ قلماً وأعطى زميله ١٥ قلماً، كم بقي معه؟", options: ["٣٠ قلماً", "٦٠ قلماً", "٢٠ قلماً", "٢٥ قلماً"], correct: "أ" }
                 ]
             },
             "الثالث الابتدائي": {
@@ -611,7 +645,7 @@
                     { q: "ما المضاعف المشترك الأصغر (م.م.أ) للعددين ٣ و ٤؟", options: ["٧", "١٢", "٢٤", "٦"], correct: "ب" },
                     { q: "أوجد القاسم المشترك الأكبر (ق.م.أ) للعددين ١٢ و ١٨:", options: ["٣", "٦", "٢", "٤"], correct: "ب" },
                     { q: "ناتج طرح: ١٥.٨ - ٦.٣ يساوي:", options: ["٩.٥", "٩.٢", "١٠.٥", "٨.٥"], correct: "أ" },
-                    { q: "إذا كانت نسبة الطالبات المفضلات لكرة القدم ٧٠٪، فما هو كسرها الاعتيادي في أبسط صورة؟", options: ["٧/١٠", "٣/٤", "١/٢", "٢/٥"], correct: "أ" },
+                    { q: "إذا كانت نسبة الطلاب المفضلين لكرة القدم ٧٠٪، فما هو كسرها الاعتيادي في أبسط صورة؟", options: ["٧/١٠", "٣/٤", "١/٢", "٢/٥"], correct: "أ" },
                     { q: "ما قياس الزاوية المستقيمة بالدرجات؟", options: ["٩٠ درجة", "١٨٠ درجة", "٢٧٠ درجة", "٣٦٠ درجة"], correct: "ب" },
                     { q: "المضلع الذي مجموع قياسات زواياه الداخلية ٣٦٠ درجة وله ٤ أضلاع يسمى:", options: ["مثلث", "رباعي الأضلاع", "خماسي", "سداسي"], correct: "ب" }
                 ]
@@ -665,7 +699,7 @@
                 { q: "ما مساحة مربع طول ضلعه ٦ سم؟", options: ["١٢ سم مربّع", "٣٦ سم مربّع", "٢٤ سم مربّع", "١٨ سم مربّع"], correct: "ب" },
                 { q: "أي الأعداد التالية يعتبر عدداً أولياً؟", options: ["٤", "٦", "٧", "٩"], correct: "ج" },
                 { q: "كم دقيقة في الساعتين؟", options: ["٦٠ دقيقة", "١٢٠ دقيقة", "٩٠ دقيقة", "١٨٠ دقيقة"], correct: "ب" },
-                { q: "إذا كان مع عائشة ٥٠ ريالاً واشترت لعبة بـ ٢٠ ريالاً، فكم بقي معها؟", options: ["٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً", "١٠ ريالات"], correct: "ب" },
+                { q: "إذا كان مع علي ٥٠ ريالاً واشترى لعبة بـ ٢٠ ريالاً، فكم بقي معه؟", options: ["٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً", "١٠ ريالات"], correct: "ب" },
                 { q: "ما قياس الزاوية القائمة بالدرجات؟", options: ["٤٥ درجة", "٩٠ درجة", "١٨٠ درجة", "٣٦٠ درجة"], correct: "ب" },
                 { q: "الكسر الذي يمثل نصف الكل هو:", options: ["١/٣", "١/٤", "١/٢", "٣/٤"], correct: "ج" }
             ]
@@ -691,30 +725,38 @@
 
         function changeWeek(fieldId, amount) {
             const input = document.getElementById(fieldId === 'startWeek' ? 'inputStartWeek' : 'inputEndWeek');
-            let val = parseInt(input.value.replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))) || 1;
+            if (!input) return;
+            
+            let val = parseInt(input.value) || 1;
             val += amount;
             if (val < 1) val = 1;
             if (val > 18) val = 18;
-            input.value = toArabicDigits(val);
+            
+            input.value = val;
         }
 
         function fetchAllStudentsFromStorage() {
             studentsList = [];
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
-                if (key && (key.includes('students') || key.includes('girls') || key.includes('طالبات'))) {
+                if (key && (key.includes('student') || key.includes('boy') || key.includes('طلاب') || key.includes('كشوف'))) {
                     try {
                         let data = JSON.parse(localStorage.getItem(key));
-                        if (Array.isArray(data)) studentsList = studentsList.concat(data);
+                        if (Array.isArray(data) && data.length > 0) {
+                            studentsList = data.map(item => typeof item === 'string' ? { name: item } : (item.name ? item : null)).filter(Boolean);
+                            if (studentsList.length > 0) break;
+                        }
                     } catch(e) {}
                 }
             }
+
             if (studentsList.length === 0) {
                 studentsList = [
-                    { name: "فاطمة أحمد العتيبي", classCustom: "الصف الأساسي" },
-                    { name: "سارة عبدالله الشمري", classCustom: "الصف الأساسي" },
-                    { name: "نورة فهد القحطاني", classCustom: "الصف الأساسي" },
-                    { name: "هند متعب الحربي", classCustom: "الصف الأساسي" }
+                    { name: "أحمد محمد العتيبي" },
+                    { name: "خالد عبدالله الشمري" },
+                    { name: "سلطان فهد القحطاني" },
+                    { name: "نايف متعب الحربي" },
+                    { name: "بندر تركي المطيري" }
                 ];
             }
         }
@@ -741,19 +783,15 @@
                 rawQuestions = [...fallbackBank["science"]];
             }
 
-            if (examType.includes("الفتري")) {
-                let startWeek = parseInt(document.getElementById('inputStartWeek').value.replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))) || 1;
-                let endWeek = parseInt(document.getElementById('inputEndWeek').value.replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))) || 4;
-                
-                let sliceCount = Math.min(Math.max((endWeek - startWeek + 1) * 2, 4), rawQuestions.length);
-                let startIndex = (startWeek - 1) % rawQuestions.length;
-                
-                activeQuestions = [];
-                for(let i = 0; i < sliceCount; i++) {
-                    activeQuestions.push(rawQuestions[(startIndex + i) % rawQuestions.length]);
-                }
-            } else {
-                activeQuestions = rawQuestions;
+            let shuffled = [...rawQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            activeQuestions = shuffled.slice(0, 10);
+            while(activeQuestions.length < 10 && rawQuestions.length > 0) {
+                activeQuestions.push(rawQuestions[activeQuestions.length % rawQuestions.length]);
             }
 
             globalMaxScore = activeQuestions.length * 2;
@@ -782,13 +820,21 @@
             window.scrollTo({ top: previewBox.offsetTop, behavior: 'smooth' });
         }
 
+        function printExamOnly() {
+            const previewBox = document.getElementById('questionsPreviewBox');
+            previewBox.style.display = 'block';
+            setTimeout(() => {
+                window.print();
+            }, 200);
+        }
+
         function startTouchGradingSession() {
             if (activeQuestions.length === 0) {
                 generateTestModel();
             }
 
             fetchAllStudentsFromStorage();
-            if (studentsList.length === 0) { alert('لا توجد قائمة طالبات مسجلة!'); return; }
+            if (studentsList.length === 0) { alert('لا توجد قائمة طلاب مسجلة!'); return; }
             currentStudentIndex = 0;
             allClassResults = {};
             document.getElementById('touchGradingCard').style.display = 'block';
@@ -800,7 +846,7 @@
             const student = studentsList[currentStudentIndex];
             const maxScore = globalMaxScore;
             document.getElementById('studentHeaderBadge').innerHTML = `
-                <span>👤 الطالبة (${toArabicDigits(currentStudentIndex + 1)}/${toArabicDigits(studentsList.length)}): ${escapeHtml(student.name)} [${currentModelName}]</span>
+                <span>👤 الطالب (${toArabicDigits(currentStudentIndex + 1)}/${toArabicDigits(studentsList.length)}): ${escapeHtml(student.name)} [${currentModelName}]</span>
                 <div id="liveScoreBadge" class="live-score-box">الدرجة: ٠ / ${toArabicDigits(maxScore)}</div>
             `;
             
@@ -915,9 +961,109 @@
             localStorage.setItem('examResultsHistory', JSON.stringify(dashboardRecords));
 
             filterStudentResults();
+            prepareGradesPrintSheet();
+            prepareAnalysisContent();
 
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function filterStudentResults() {
+            const query = document.getElementById('searchStudentInput').value.toLowerCase().trim();
+            const outputText = document.getElementById('correctionOutputText');
+            let maxScore = globalMaxScore || 20;
+
+            let html = `✅ تم رصد الدرجات وترحيلها بنجاح!<br><br>`;
+            let foundAny = false;
+
+            for (let sName in allClassResults) {
+                if (query === '' || sName.toLowerCase().includes(query)) {
+                    foundAny = true;
+                    let data = allClassResults[sName];
+                    let savedTeacher = localStorage.getItem('teacherName') || 'المعلم';
+                    let waText = `مدرسة داؤود بن عروة الثقفي الابتدائية (بنون)%0Aولي الأمر الفاضل، نود إفادتكم بحصول الطالب: *${encodeURIComponent(sName)}* %0Aعلى درجة الاختبار: *${toArabicDigits(data.score)} / ${toArabicDigits(maxScore)}* (${toArabicDigits(data.correct)} إجابات صحيحة).%0Aمع تحيات المعلم: *${encodeURIComponent(savedTeacher)}*`;
+
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 8px 12px; margin-bottom: 6px; border-radius: 6px; border: 1px solid #10b981;">
+                            <span>• <b>${escapeHtml(sName)}</b>: ${toArabicDigits(data.score)} / ${toArabicDigits(maxScore)} (${toArabicDigits(data.correct)} صحيحة)</span>
+                            <a href="https://wa.me/?text=${waText}" target="_blank" class="action-btn btn-whatsapp" style="padding: 4px 10px; font-size: 12px; width: auto; text-decoration: none;">💬 إرسال لولي الأمر</a>
+                        </div>
+                    `;
+                }
+            }
+
+            if (!foundAny) {
+                html += `<p style="color: #ef4444; text-align: center;">لم يتم العثور على طالب بهذا الاسم في نتائج هذا الاختبار.</p>`;
+            }
+
+            outputText.innerHTML = html;
+            convertAllNumbersInDOM();
+        }
+
+        function prepareGradesPrintSheet() {
+            const gradeKey = document.getElementById('selectGrade').value;
+            const subjectKey = document.getElementById('selectSubject').value;
+            const examType = document.getElementById('selectExamType').value;
+            const maxScore = globalMaxScore || 20;
+
+            document.getElementById('sheetPrintMeta').textContent = `الصف: ${gradeKey} | المادة: ${subjectNames[subjectKey]} | نوع الاختبار: ${examType} (${currentModelName})`;
+            
+            const tbody = document.getElementById('sheetPrintTableBody');
+            tbody.innerHTML = '';
+
+            let idx = 1;
+            for (let sName in allClassResults) {
+                let data = allClassResults[sName];
+                let percentage = maxScore > 0 ? (data.score / maxScore) * 100 : 0;
+                let level = "";
+                if (percentage >= 90) level = "متفوق (متقن تماماً)";
+                else if (percentage >= 75) level = "متقن";
+                else if (percentage >= 50) level = "مبكّر / متوسط";
+                else level = "يحتاج تحسين (غير مقتن)";
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="padding: 5px;">${toArabicDigits(idx++)}</td>
+                        <td style="padding: 5px; text-align: right; padding-right: 10px; font-weight: bold;">${escapeHtml(sName)}</td>
+                        <td style="padding: 5px; font-weight: bold; color: #1e3a8a;">${toArabicDigits(data.score)}</td>
+                        <td style="padding: 5px;">${toArabicDigits(maxScore)}</td>
+                        <td style="padding: 5px; color: ${percentage >= 50 ? '#10b981' : '#ef4444'}; font-weight: bold;">${level}</td>
+                    </tr>
+                `;
+            }
+            convertAllNumbersInDOM();
+        }
+
+        function printAllGradesSheet() {
+            // إخفاء صندوق الأسئلة تماماً عند طباعة كشف الدرجات لمنع ظهور الأسئلة في الطباعة
+            const qPreviewBox = document.getElementById('questionsPreviewBox');
+            if (qPreviewBox) {
+                qPreviewBox.style.display = 'none';
+            }
+
+            prepareGradesPrintSheet();
+            const sheetArea = document.getElementById('allGradesSheetPrintArea');
+            sheetArea.style.display = 'block';
+
+            setTimeout(() => {
+                window.print();
+                sheetArea.style.display = 'none';
+            }, 200);
+        }
+
+        function toggleAnalysisBox() {
             const analysisBox = document.getElementById('analysisContainer');
-            analysisBox.style.display = 'block';
+            if (analysisBox.style.display === 'block') {
+                analysisBox.style.display = 'none';
+            } else {
+                analysisBox.style.display = 'block';
+                prepareAnalysisContent();
+                window.scrollTo({ top: analysisBox.offsetTop, behavior: 'smooth' });
+            }
+        }
+
+        function prepareAnalysisContent() {
+            const examType = document.getElementById('selectExamType').value;
+            let maxScore = globalMaxScore || 20;
 
             let totalScoreSum = 0;
             let count = 0;
@@ -935,73 +1081,62 @@
             let classAverage = count > 0 ? (totalScoreSum / count).toFixed(1) : 0;
             let percentageAvg = count > 0 ? ((totalScoreSum / (count * maxScore)) * 100).toFixed(1) : 0;
 
+            let dynamicNafisLevel = "مستوى منخفض (يحتاج دعم وتدخل علاجي)";
+            if (percentageAvg >= 90) {
+                dynamicNafisLevel = "مستوى متقدم (تجاوز المعيار المستهدف للطلاب)";
+            } else if (percentageAvg >= 75) {
+                dynamicNafisLevel = "مستوى متقن";
+            } else if (percentageAvg >= 50) {
+                dynamicNafisLevel = "مستوى متوسط / ملائم";
+            }
+
             document.getElementById('analysisContentText').innerHTML = `
                 <table style="width:100%; border-collapse:collapse; margin-top:5px;" border="1">
                     <tr style="background:#fef3c7; text-align:center;"><th style="padding:6px;">مؤشر القياس الإحصائي</th><th style="padding:6px;">القيمة التقديرية</th></tr>
                     <tr><td style="padding:6px;">نوع الاختبار والنموذج</td><td style="text-align:center; color:var(--primary);"><b>${examType} - ${currentModelName}</b></td></tr>
-                    <tr><td style="padding:6px;">إجمالي الطالبات المختبرات</td><td style="text-align:center;"><b>${toArabicDigits(count)}</b> طالبة</td></tr>
+                    <tr><td style="padding:6px;">إجمالي الطلاب المختبرين</td><td style="text-align:center;"><b>${toArabicDigits(count)}</b> طالب</td></tr>
                     <tr><td style="padding:6px;">متوسط أداء الفصل العام</td><td style="text-align:center;"><b>${toArabicDigits(classAverage)} / ${toArabicDigits(maxScore)}</b> (${toArabicDigits(percentageAvg)}٪)</td></tr>
                     <tr><td style="padding:6px;">أعلى درجة بالفصل</td><td style="text-align:center; color:var(--success);"><b>${toArabicDigits(highestScore)} / ${toArabicDigits(maxScore)}</b></td></tr>
                     <tr><td style="padding:6px;">أقل درجة بالفصل</td><td style="text-align:center; color:var(--danger);"><b>${toArabicDigits(lowestScore)} / ${toArabicDigits(maxScore)}</b></td></tr>
-                    <tr><td style="padding:6px;">مستوى إتقان مهارات نافس</td><td style="text-align:center; color:var(--primary);"><b>مستوى متقدم (تجاوز المعيار المستهدف للطالبات)</b></td></tr>
+                    <tr><td style="padding:6px;">مستوى إتقان مهارات نافس</td><td style="text-align:center; color:var(--primary);"><b>${dynamicNafisLevel}</b></td></tr>
                 </table>
             `;
             convertAllNumbersInDOM();
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
 
-        function filterStudentResults() {
-            const query = document.getElementById('searchStudentInput').value.toLowerCase().trim();
-            const outputText = document.getElementById('correctionOutputText');
-            let maxScore = globalMaxScore || 20;
+        function printAnalysisBoxOnly() {
+            const analysisBox = document.getElementById('analysisContainer');
+            analysisBox.style.display = 'block';
 
-            let html = `✅ تم رصد الدرجات وترحيلها بنجاح!<br><br>`;
-            let foundAny = false;
-
-            for (let sName in allClassResults) {
-                if (query === '' || sName.toLowerCase().includes(query)) {
-                    foundAny = true;
-                    let data = allClassResults[sName];
-                    let savedTeacher = localStorage.getItem('teacherName') || 'المعلمة';
-                    let waText = `مدرسة (بنات)%0Aولي الأمر الفاضل، نود إفادتكم بحصول الطالبة: *${encodeURIComponent(sName)}* %0Aعلى درجة الاختبار: *${toArabicDigits(data.score)} / ${toArabicDigits(maxScore)}* (${toArabicDigits(data.correct)} إجابات صحيحة).%0Aمع تحيات المعلمة: *${encodeURIComponent(savedTeacher)}*`;
-
-                    html += `
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 8px 12px; margin-bottom: 6px; border-radius: 6px; border: 1px solid #10b981;">
-                            <span>• <b>${escapeHtml(sName)}</b>: ${toArabicDigits(data.score)} / ${toArabicDigits(maxScore)} (${toArabicDigits(data.correct)} صحيحة)</span>
-                            <a href="https://wa.me/?text=${waText}" target="_blank" class="action-btn btn-whatsapp" style="padding: 4px 10px; font-size: 12px; width: auto; text-decoration: none;">💬 إرسال لولي الأمر</a>
-                        </div>
-                    `;
-                }
-            }
-
-            if (!foundAny) {
-                html += `<p style="color: #ef4444; text-align: center;">لم يتم العثور على طالبة بهذا الاسم في نتائج هذا الاختبار.</p>`;
-            }
-
-            outputText.innerHTML = html;
-            convertAllNumbersInDOM();
+            setTimeout(() => {
+                window.print();
+            }, 200);
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            // جلب اسم المدرسة والمعلم من الكود الأساسي (localStorage) وتحديثهما آلياً
             const savedSchool = localStorage.getItem('schoolName');
             const savedTeacher = localStorage.getItem('teacherName');
 
             if (savedSchool) {
                 const mainTitle = document.getElementById('mainSchoolTitle');
-                if (mainTitle) mainTitle.textContent = `${savedSchool} (بنات)`;
+                if (mainTitle) mainTitle.textContent = `${savedSchool} (بنون)`;
 
                 const printTitle = document.getElementById('printSchoolTitle');
                 if (printTitle) printTitle.textContent = savedSchool;
+
+                const sheetSchool = document.getElementById('sheetPrintSchoolName');
+                if (sheetSchool) sheetSchool.textContent = savedSchool;
             }
 
             if (savedTeacher) {
                 const printTeacher = document.getElementById('printTeacherName');
-                if (printTeacher) printTeacher.textContent = `معلمة المادة: ${savedTeacher}`;
+                if (printTeacher) printTeacher.textContent = `معلم المادة: ${savedTeacher}`;
+
+                const sheetTeacherSign = document.getElementById('sheetPrintTeacherSign');
+                if (sheetTeacherSign) sheetTeacherSign.textContent = `اسم معلم المادة: ${savedTeacher}`;
             }
 
             convertAllNumbersInDOM();
-            convertInputValues();
         });
     </script>
 </body>
