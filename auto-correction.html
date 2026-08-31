@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدرسة داؤود بن عروة الثقفي الابتدائية | نظام الاختبارات والتحليل (بنون)</title>
+    <title>المدرسة الابتدائية الأولى | نظام الاختبارات والتحليل (بنات)</title>
     <style>
         :root {
             --primary: #1e3a8a;
@@ -331,7 +331,7 @@
 
     <div class="container">
         <div class="header-nav no-print">
-            <h2 id="mainSchoolTitle">مدرسة داؤود بن عروة الثقفي الابتدائية (بنون)</h2>
+            <h2 id="mainSchoolTitle">المدرسة الابتدائية الأولى (بنات)</h2>
             <a href="index.html" class="back-btn">⬅ لوحة التحكم الرئيسية</a>
         </div>
 
@@ -404,12 +404,12 @@
             <div id="questionsPreviewBox" class="questions-preview printable-exam-area">
                 <div class="exam-header">
                     <h3>المملكة العربية السعودية - وزارة التعليم</h3>
-                    <h4 id="printSchoolTitle">مدرسة داؤود بن عروة الثقفي الابتدائية</h4>
+                    <h4 id="printSchoolTitle">المدرسة الابتدائية الأولى</h4>
                     <p id="printTeacherName" style="margin:2px 0; font-size:11.5px; color:#4b5563; font-weight:bold;"></p>
                     <p id="printTestInfo" style="margin:2px 0; font-size:12px; color:#555; font-weight:bold;"></p>
                     <div id="printModelBadge" style="margin:4px 0; font-size:12px; color:#0d9488; font-weight:bold;"></div>
                     <div style="margin-top: 6px; border: 1.2px solid #64748b; padding: 4px 10px; border-radius: 5px; display:inline-block; font-size:11.5px;">
-                        <b>اسم الطالب:</b> .................................................................... &nbsp;&nbsp; <b>الصف:</b> ................
+                        <b>اسم الطالبة:</b> .................................................................... &nbsp;&nbsp; <b>الصف:</b> ................
                     </div>
                 </div>
                 
@@ -422,9 +422,9 @@
         </div>
 
         <div class="section-box no-print">
-            <h3>👤 ثالثاً: لوحة التصحيح السريع باللمس (رصد درجات الطلاب)</h3>
+            <h3>👤 ثالثاً: لوحة التصحيح السريع باللمس (رصد درجات الطالبات)</h3>
             <p style="font-size: 12px; color: #555; margin-bottom: 10px;">
-                انقر على إجابة الطالب؛ لتتحدث درجته فوراً وتُرحل لداشبورد المدرسة:
+                انقر على إجابة الطالبة؛ لتتحدث درجتها فوراً وتُرحل لداشبورد المدرسة:
             </p>
             <button class="action-btn btn-success" onclick="startTouchGradingSession()">🚀 بدء جلسة التصحيح الفوري</button>
 
@@ -433,8 +433,8 @@
                 <div id="touchQuestionsContainer"></div>
                 
                 <div class="navigation-btns">
-                    <button class="action-btn" style="background: #4b5563;" onclick="prevStudent()">⬅ الطالب السابق</button>
-                    <button class="action-btn btn-success" onclick="saveAndNextStudent()">حفظ والانتقال للتالي ➡</button>
+                    <button class="action-btn" style="background: #4b5563;" onclick="prevStudent()">⬅ الطالبة السابقة</button>
+                    <button class="action-btn btn-success" onclick="saveAndNextStudent()">حفظ والانتقال للتالية ➡</button>
                 </div>
             </div>
         </div>
@@ -443,7 +443,7 @@
             <h3 style="margin-top:0; color: var(--primary); font-size: 16px;">📊 سجل درجات الفصل المعتمدة والبحث الفوري عن درجات ولي الأمر</h3>
             
             <div style="margin: 12px 0; display: flex; gap: 10px; align-items: center;">
-                <input type="text" id="searchStudentInput" placeholder="🔍 ابحث عن اسم طالب لسؤال ولي أمره..." oninput="filterStudentResults()" style="flex: 1; padding: 8px 12px; border: 1px solid #10b981; border-radius: 6px; font-size: 13px;">
+                <input type="text" id="searchStudentInput" placeholder="🔍 ابحثي عن اسم طالبة لسؤال ولي أمرها..." oninput="filterStudentResults()" style="flex: 1; padding: 8px 12px; border: 1px solid #10b981; border-radius: 6px; font-size: 13px;">
             </div>
 
             <p id="correctionOutputText" style="font-size: 14px; margin: 8px 0;"></p>
@@ -458,14 +458,14 @@
         <div id="allGradesSheetPrintArea" class="sheet-print-container printable-sheet-area">
             <div style="text-align: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; margin-bottom: 15px;">
                 <h3 style="margin: 0; color: #1e3a8a; font-size: 15px;">المملكة العربية السعودية - وزارة التعليم</h3>
-                <h4 id="sheetPrintSchoolName" style="margin: 4px 0; font-size: 13px; color: #374151;">مدرسة داؤود بن عروة الثقفي الابتدائية</h4>
+                <h4 id="sheetPrintSchoolName" style="margin: 4px 0; font-size: 13px; color: #374151;">المدرسة الابتدائية الأولى</h4>
                 <p id="sheetPrintMeta" style="margin: 2px 0; font-size: 12px; color: #4b5563; font-weight: bold;"></p>
             </div>
             <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: center;" border="1">
                 <thead>
                     <tr style="background: #eff6ff; color: #1e3a8a;">
                         <th style="padding: 6px; width: 40px;">م</th>
-                        <th style="padding: 6px; text-align: right; padding-right: 10px;">اسم الطالب</th>
+                        <th style="padding: 6px; text-align: right; padding-right: 10px;">اسم الطالبة</th>
                         <th style="padding: 6px; width: 100px;">الدرجة المستحقة</th>
                         <th style="padding: 6px; width: 100px;">الدرجة الكبرى</th>
                         <th style="padding: 6px; width: 120px;">مستوى الإتقان</th>
@@ -477,13 +477,13 @@
             </table>
             <div style="margin-top: 25px; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold;">
                 <div>ختم المدرسة / الإدارة: ........................</div>
-                <div id="sheetPrintTeacherSign">اسم معلم المادة: ........................</div>
+                <div id="sheetPrintTeacherSign">اسم معلمة المادة: ........................</div>
             </div>
         </div>
 
         <!-- تقرير التحليل المستقل -->
         <div id="analysisContainer" class="analysis-box printable-analysis-area">
-            <h3 style="margin-top:0; color: #b45309; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; font-size: 16px;">📈 تقرير تحليل نتائج الطلاب ومهارات نافس (مستقل)</h3>
+            <h3 style="margin-top:0; color: #b45309; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; font-size: 16px;">📈 تقرير تحليل نتائج الطالبات ومهارات نافس (مستقل)</h3>
             <div id="analysisContentText" style="font-size: 12.5px; line-height: 1.6; color: #1f2937;"></div>
             <div class="no-print" style="margin-top: 15px;">
                 <button class="action-btn btn-print" onclick="printAnalysisBoxOnly()">🖨️ طباعة تقرير التحليل لوحده</button>
@@ -522,9 +522,9 @@
         const accurateGradeQuestionBank = {
             "الأول الابتدائي": {
                 "science": [
-                    { q: "أي مما يلي يُعد من أجزاء النبات الرئيسية التي تمتص الماء؟", options: ["الرجل", "الجذر", "الید", "الذيل"], correct: "ب" },
+                    { q: "أي مما يلي يُعد من أجزاء النبات الرئيسية التي تمتص الماء؟", options: ["الرجل", "الجذر", "اليد", "الذيل"], correct: "ب" },
                     { q: "ما هو مصدر النور والحرارة الأساسي على سطح الأرض؟", options: ["القمر", "الشمس", "المصباح", "النجوم"], correct: "ب" },
-                    { q: "أي الحيوانات التالية يعيش في الماء؟", options: ["العصفور", "الأسماك", "الجمل", "القط"], correct: "ب" },
+                    { q: "أي الحيوانات التالية يعيش في الماء؟", options: ["العصفور", "الأسماك", "الجمل", "القطة"], correct: "ب" },
                     { q: "ما الحالة الفيزيائية للماء المتجمد (ثلج)؟", options: ["سائلة", "غازية", "صلبة", "بخار"], correct: "ج" },
                     { q: "في أي فصل ترتفع درجة الحرارة وتشتد؟", options: ["الصيف", "الربيع", "الخريف", "الشتاء"], correct: "أ" },
                     { q: "ما هو الحيوان الذي يُغطي جسمه الريش؟", options: ["القطة", "الأسد", "العصفور", "الخروف"], correct: "ج" },
@@ -541,7 +541,7 @@
                     { q: "ما هو العدد الذي يأتي مباشرة بعد العدد ٩؟", options: ["٨", "١٠", "١١", "٧"], correct: "ب" },
                     { q: "عشرة مضافاً إليها خمسة تساوي:", options: ["١٢", "١٥", "٢٠", "١٠"], correct: "ب" },
                     { q: "أي الأعداد التالية يعتبر عدداً زوجياً؟", options: ["٣", "٥", "٤", "٧"], correct: "ج" },
-                    { q: "مع أحمد ٤ تفاحات وأخذ تفاحتان، فكم أصبح معه؟", options: ["٥", "٦", "٣", "٢"], correct: "ب" },
+                    { q: "مع هند ٤ تفاحات وأخذت تفاحتان، فكم أصبح معها؟", options: ["٥", "٦", "٣", "٢"], correct: "ب" },
                     { q: "طول قلم رصاص قصير يقاس بـ:", options: ["المتر", "السنتيمتر", "الكيلومتر", "الجرام"], correct: "ب" },
                     { q: "أي الأشكال التالية يمثل دائرة؟", options: ["شكل مربع", "شكل دائري منحني مغلق", "شكل مثلث", "شكل مستطيل"], correct: "ب" }
                 ]
@@ -567,9 +567,9 @@
                     { q: "الشكل الهندسي الذي له ٤ أضلاع متساوية هو:", options: ["المثلث", "المربع", "الدائرة", "المستطيل"], correct: "ب" },
                     { q: "ناتج طرح: ٥٠ - ٢٠ يساوي:", options: ["٢٠", "٣٠", "٤٠", "١٠"], correct: "ب" },
                     { q: "اكتب العدد مائتان وخمسة بالأرقام:", options: ["٢٥٠", "٢٠٥", "٥٠٢", "٢٥"], correct: "ب" },
-                    { q: "إذا كان خالد يملك ٣ فئات من نقد ١٠ ريالات، فكم إجمالي المبلغ؟", options: ["١٠ ريالات", "٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً"], correct: "ج" },
+                    { q: "إذا كانت فاطمة تملك ٣ فئات من نقد ١٠ ريالات، فكم إجمالي المبلغ؟", options: ["١٠ ريالات", "٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً"], correct: "ج" },
                     { q: "التقدير الأنسب لطول باب الفصل هو:", options: ["٢ متر", "٢ سنتيمتر", "٢٠٠ كيلومتر", "١٠ مليمتر"], correct: "أ" },
-                    { q: "مع حامد ٤٥ قلماً وأعطى زميله ١٥ قلماً، كم بقي معه؟", options: ["٣٠ قلماً", "٦٠ قلماً", "٢٠ قلماً", "٢٥ قلماً"], correct: "أ" }
+                    { q: "مع حمدة ٤٥ قلماً وأعطت زميلتها ١٥ قلماً، كم بقي معها؟", options: ["٣٠ قلماً", "٦٠ قلماً", "٢٠ قلماً", "٢٥ قلماً"], correct: "أ" }
                 ]
             },
             "الثالث الابتدائي": {
@@ -645,7 +645,7 @@
                     { q: "ما المضاعف المشترك الأصغر (م.م.أ) للعددين ٣ و ٤؟", options: ["٧", "١٢", "٢٤", "٦"], correct: "ب" },
                     { q: "أوجد القاسم المشترك الأكبر (ق.م.أ) للعددين ١٢ و ١٨:", options: ["٣", "٦", "٢", "٤"], correct: "ب" },
                     { q: "ناتج طرح: ١٥.٨ - ٦.٣ يساوي:", options: ["٩.٥", "٩.٢", "١٠.٥", "٨.٥"], correct: "أ" },
-                    { q: "إذا كانت نسبة الطلاب المفضلين لكرة القدم ٧٠٪، فما هو كسرها الاعتيادي في أبسط صورة؟", options: ["٧/١٠", "٣/٤", "١/٢", "٢/٥"], correct: "أ" },
+                    { q: "إذا كانت نسبة الطالبات المفضلات لكرة القدم ٧٠٪، فما هو كسرها الاعتيادي في أبسط صورة؟", options: ["٧/١٠", "٣/٤", "١/٢", "٢/٥"], correct: "أ" },
                     { q: "ما قياس الزاوية المستقيمة بالدرجات؟", options: ["٩٠ درجة", "١٨٠ درجة", "٢٧٠ درجة", "٣٦٠ درجة"], correct: "ب" },
                     { q: "المضلع الذي مجموع قياسات زواياه الداخلية ٣٦٠ درجة وله ٤ أضلاع يسمى:", options: ["مثلث", "رباعي الأضلاع", "خماسي", "سداسي"], correct: "ب" }
                 ]
@@ -699,7 +699,7 @@
                 { q: "ما مساحة مربع طول ضلعه ٦ سم؟", options: ["١٢ سم مربّع", "٣٦ سم مربّع", "٢٤ سم مربّع", "١٨ سم مربّع"], correct: "ب" },
                 { q: "أي الأعداد التالية يعتبر عدداً أولياً؟", options: ["٤", "٦", "٧", "٩"], correct: "ج" },
                 { q: "كم دقيقة في الساعتين؟", options: ["٦٠ دقيقة", "١٢٠ دقيقة", "٩٠ دقيقة", "١٨٠ دقيقة"], correct: "ب" },
-                { q: "إذا كان مع علي ٥٠ ريالاً واشترى لعبة بـ ٢٠ ريالاً، فكم بقي معه؟", options: ["٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً", "١٠ ريالات"], correct: "ب" },
+                { q: "إذا كان مع فلانة ٥٠ ريالاً واشترت لعبة بـ ٢٠ ريالاً، فكم بقي معها؟", options: ["٢٠ ريالاً", "٣٠ ريالاً", "٤٠ ريالاً", "١٠ ريالات"], correct: "ب" },
                 { q: "ما قياس الزاوية القائمة بالدرجات؟", options: ["٤٥ درجة", "٩٠ درجة", "١٨٠ درجة", "٣٦٠ درجة"], correct: "ب" },
                 { q: "الكسر الذي يمثل نصف الكل هو:", options: ["١/٣", "١/٤", "١/٢", "٣/٤"], correct: "ج" }
             ]
@@ -739,7 +739,7 @@
             studentsList = [];
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
-                if (key && (key.includes('student') || key.includes('boy') || key.includes('طلاب') || key.includes('كشوف'))) {
+                if (key && (key.includes('student') || key.includes('girl') || key.includes('طالبات') || key.includes('كشوف'))) {
                     try {
                         let data = JSON.parse(localStorage.getItem(key));
                         if (Array.isArray(data) && data.length > 0) {
@@ -752,11 +752,11 @@
 
             if (studentsList.length === 0) {
                 studentsList = [
-                    { name: "أحمد محمد العتيبي" },
-                    { name: "خالد عبدالله الشمري" },
-                    { name: "سلطان فهد القحطاني" },
-                    { name: "نايف متعب الحربي" },
-                    { name: "بندر تركي المطيري" }
+                    { name: "فاطمة محمد العتيبي" },
+                    { name: "عائشة عبدالله الشمري" },
+                    { name: "سارة فهد القحطاني" },
+                    { name: "نورة متعب الحربي" },
+                    { name: "هند تركي المطيري" }
                 ];
             }
         }
@@ -834,7 +834,7 @@
             }
 
             fetchAllStudentsFromStorage();
-            if (studentsList.length === 0) { alert('لا توجد قائمة طلاب مسجلة!'); return; }
+            if (studentsList.length === 0) { alert('لا توجد قائمة طالبات مسجلة!'); return; }
             currentStudentIndex = 0;
             allClassResults = {};
             document.getElementById('touchGradingCard').style.display = 'block';
@@ -846,7 +846,7 @@
             const student = studentsList[currentStudentIndex];
             const maxScore = globalMaxScore;
             document.getElementById('studentHeaderBadge').innerHTML = `
-                <span>👤 الطالب (${toArabicDigits(currentStudentIndex + 1)}/${toArabicDigits(studentsList.length)}): ${escapeHtml(student.name)} [${currentModelName}]</span>
+                <span>👤 الطالبة (${toArabicDigits(currentStudentIndex + 1)}/${toArabicDigits(studentsList.length)}): ${escapeHtml(student.name)} [${currentModelName}]</span>
                 <div id="liveScoreBadge" class="live-score-box">الدرجة: ٠ / ${toArabicDigits(maxScore)}</div>
             `;
             
@@ -979,8 +979,8 @@
                 if (query === '' || sName.toLowerCase().includes(query)) {
                     foundAny = true;
                     let data = allClassResults[sName];
-                    let savedTeacher = localStorage.getItem('teacherName') || 'المعلم';
-                    let waText = `مدرسة داؤود بن عروة الثقفي الابتدائية (بنون)%0Aولي الأمر الفاضل، نود إفادتكم بحصول الطالب: *${encodeURIComponent(sName)}* %0Aعلى درجة الاختبار: *${toArabicDigits(data.score)} / ${toArabicDigits(maxScore)}* (${toArabicDigits(data.correct)} إجابات صحيحة).%0Aمع تحيات المعلم: *${encodeURIComponent(savedTeacher)}*`;
+                    let savedTeacher = localStorage.getItem('teacherName') || 'فلانة';
+                    let waText = `المدرسة الابتدائية الأولى (بنات)%0Aولي الأمر الفاضل، نود إفادتكم بحصول الطالبة: *${encodeURIComponent(sName)}* %0Aعلى درجة الاختبار: *${toArabicDigits(data.score)} / ${toArabicDigits(maxScore)}* (${toArabicDigits(data.correct)} إجابات صحيحة).%0Aمع تحيات المعلمة: *${encodeURIComponent(savedTeacher)}*`;
 
                     html += `
                         <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 8px 12px; margin-bottom: 6px; border-radius: 6px; border: 1px solid #10b981;">
@@ -992,7 +992,7 @@
             }
 
             if (!foundAny) {
-                html += `<p style="color: #ef4444; text-align: center;">لم يتم العثور على طالب بهذا الاسم في نتائج هذا الاختبار.</p>`;
+                html += `<p style="color: #ef4444; text-align: center;">لم يتم العثور على طالبة بهذا الاسم في نتائج هذا الاختبار.</p>`;
             }
 
             outputText.innerHTML = html;
@@ -1015,10 +1015,10 @@
                 let data = allClassResults[sName];
                 let percentage = maxScore > 0 ? (data.score / maxScore) * 100 : 0;
                 let level = "";
-                if (percentage >= 90) level = "متفوق (متقن تماماً)";
-                else if (percentage >= 75) level = "متقن";
-                else if (percentage >= 50) level = "مبكّر / متوسط";
-                else level = "يحتاج تحسين (غير مقتن)";
+                if (percentage >= 90) level = "متفوقة (متقنة تماماً)";
+                else if (percentage >= 75) level = "متقنة";
+                else if (percentage >= 50) level = "مبكرة / متوسطة";
+                else level = "تحتاج تحسين (غير متقنة)";
 
                 tbody.innerHTML += `
                     <tr>
@@ -1034,7 +1034,6 @@
         }
 
         function printAllGradesSheet() {
-            // إخفاء صندوق الأسئلة تماماً عند طباعة كشف الدرجات لمنع ظهور الأسئلة في الطباعة
             const qPreviewBox = document.getElementById('questionsPreviewBox');
             if (qPreviewBox) {
                 qPreviewBox.style.display = 'none';
@@ -1083,7 +1082,7 @@
 
             let dynamicNafisLevel = "مستوى منخفض (يحتاج دعم وتدخل علاجي)";
             if (percentageAvg >= 90) {
-                dynamicNafisLevel = "مستوى متقدم (تجاوز المعيار المستهدف للطلاب)";
+                dynamicNafisLevel = "مستوى متقدم (تجاوز المعيار المستهدف للطالبات)";
             } else if (percentageAvg >= 75) {
                 dynamicNafisLevel = "مستوى متقن";
             } else if (percentageAvg >= 50) {
@@ -1094,7 +1093,7 @@
                 <table style="width:100%; border-collapse:collapse; margin-top:5px;" border="1">
                     <tr style="background:#fef3c7; text-align:center;"><th style="padding:6px;">مؤشر القياس الإحصائي</th><th style="padding:6px;">القيمة التقديرية</th></tr>
                     <tr><td style="padding:6px;">نوع الاختبار والنموذج</td><td style="text-align:center; color:var(--primary);"><b>${examType} - ${currentModelName}</b></td></tr>
-                    <tr><td style="padding:6px;">إجمالي الطلاب المختبرين</td><td style="text-align:center;"><b>${toArabicDigits(count)}</b> طالب</td></tr>
+                    <tr><td style="padding:6px;">إجمالي الطالبات المختبرات</td><td style="text-align:center;"><b>${toArabicDigits(count)}</b> طالبة</td></tr>
                     <tr><td style="padding:6px;">متوسط أداء الفصل العام</td><td style="text-align:center;"><b>${toArabicDigits(classAverage)} / ${toArabicDigits(maxScore)}</b> (${toArabicDigits(percentageAvg)}٪)</td></tr>
                     <tr><td style="padding:6px;">أعلى درجة بالفصل</td><td style="text-align:center; color:var(--success);"><b>${toArabicDigits(highestScore)} / ${toArabicDigits(maxScore)}</b></td></tr>
                     <tr><td style="padding:6px;">أقل درجة بالفصل</td><td style="text-align:center; color:var(--danger);"><b>${toArabicDigits(lowestScore)} / ${toArabicDigits(maxScore)}</b></td></tr>
@@ -1114,12 +1113,12 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            const savedSchool = localStorage.getItem('schoolName');
-            const savedTeacher = localStorage.getItem('teacherName');
+            const savedSchool = localStorage.getItem('schoolName') || 'المدرسة الابتدائية الأولى';
+            const savedTeacher = localStorage.getItem('teacherName') || 'فلانة';
 
             if (savedSchool) {
                 const mainTitle = document.getElementById('mainSchoolTitle');
-                if (mainTitle) mainTitle.textContent = `${savedSchool} (بنون)`;
+                if (mainTitle) mainTitle.textContent = `${savedSchool} (بنات)`;
 
                 const printTitle = document.getElementById('printSchoolTitle');
                 if (printTitle) printTitle.textContent = savedSchool;
@@ -1130,10 +1129,10 @@
 
             if (savedTeacher) {
                 const printTeacher = document.getElementById('printTeacherName');
-                if (printTeacher) printTeacher.textContent = `معلم المادة: ${savedTeacher}`;
+                if (printTeacher) printTeacher.textContent = `معلمة المادة: ${savedTeacher}`;
 
                 const sheetTeacherSign = document.getElementById('sheetPrintTeacherSign');
-                if (sheetTeacherSign) sheetTeacherSign.textContent = `اسم معلم المادة: ${savedTeacher}`;
+                if (sheetTeacherSign) sheetTeacherSign.textContent = `اسم معلمة المادة: ${savedTeacher}`;
             }
 
             convertAllNumbersInDOM();
