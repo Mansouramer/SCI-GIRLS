@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>المعلمة فلانة - المدرسة الأولى (لوحة تحكم مادة العلوم)</title>
+    <title>المعلمة فلانه - مدرسة الابتدائية الأولى (لوحة تحكم مادة العلوم)</title>
     
     <!-- ربط ملف manifest.json والمظهر الخاص بالجوال -->
     <link rel="manifest" href="manifest.json">
@@ -641,9 +641,9 @@
     </div>
 
     <div class="header">
-        <h1>المدرسة الأولى</h1>
-        <div>إعداد المعلمة: فلانة</div>
-        <p>لوحة تحكم معلم مادة العلوم للمرحلة الابتدائية (وفق المنهج السعودي)</p>
+        <h1>مدرسة الابتدائية الأولى (طالبات)</h1>
+        <div>إعداد المعلمة: فلانه</div>
+        <p>لوحة تحكم معلمة مادة العلوم للمرحلة الابتدائية (وفق المنهج السعودي)</p>
         <div class="subscription-badge">⏳ نهاية الاشتراك: 2027/07/01</div>
 
         <div class="theme-switcher">
@@ -677,10 +677,10 @@
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <div>
                     <h3 style="color: var(--success); margin: 0 0 4px 0;">🤖 نظام التصحيح الآلي الذكي والاختبارات</h3>
-                    <p style="margin: 0; font-size: 11px; opacity: 0.85; line-height: 1.4;">يحتوي على 10 نماذج (قبلية/بعدية) و10 نماذج (الفترة 1 و 2) بنسبة خطأ صفر% للاختيارات عبر تصوير نموذج الإجابة.</p>
+                    <p style="margin: 0; font-size: 11px; opacity: 0.85; line-height: 1.4;">.</p>
                 </div>
                 <a href="auto-correction.html" target="_blank" class="whatsapp-btn" style="background: var(--success); text-decoration: none; padding: 10px; font-size: 13px; border-radius: 6px; text-align: center;">
-                    🎯 الانتقال لصفحة التصحيح الآلي (GitHub)
+                    🎯 الانتقال لصفحة التصحيح الآلي 
                 </a>
             </div>
         </div>
@@ -721,18 +721,18 @@
             </div>
         </div>
 
-        <!-- تسجيل الطلاب والصفوف والجدول -->
+        <!-- تسجيل الطالبات والصفوف والجدول -->
         <div class="section-card" id="studentsTableSection">
             <div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 8px; margin-bottom: 10px;">
-                <h3 style="margin: 0; border: none; padding: 0;">✏️ تسجيل الطلاب والصفوف ومتابعتهم</h3>
-                <button class="btn-print no-print" onclick="printSection('studentsTableSection')" title="طباعة جدول الطلاب والصفوف">🖨️ طباعة الجدول</button>
+                <h3 style="margin: 0; border: none; padding: 0;">✏️ تسجيل الطالبات والصفوف ومتابعتهن</h3>
+                <button class="btn-print no-print" onclick="printSection('studentsTableSection')" title="طباعة جدول الطالبات والصفوف">🖨️ طباعة الجدول</button>
             </div>
             
             <div class="form-row no-print">
-                <input type="text" id="studentName" placeholder="اسم الطالبة (Student Name)">
+                <input type="text" id="studentName" placeholder="اسم الطالبه (Student Name)">
                 <input type="text" id="studentClassCustom" placeholder="الصف (مثال: رابع ابتدائي أول)">
                 <input type="tel" id="studentPhone" maxlength="10" placeholder="رقم جوال ولي الأمر (10 أرقام)">
-                <button onclick="addStudent()">➕ إضافة طالبة</button>
+                <button onclick="addStudent()">➕ إضافة طالبه</button>
             </div>
 
             <div style="margin-top: 10px;" class="no-print">
@@ -741,15 +741,15 @@
             </div>
 
             <div class="form-row no-print" style="background: rgba(0,0,0,0.03); padding: 8px; border-radius: 6px; margin-top: 10px;">
-                <span style="font-weight: bold; font-size: 12px; display: block; margin-bottom: 4px;">🔍 بحث عن طالبة بالاسم:</span>
-                <input type="text" id="filterStudentNameInput" placeholder="اكتب اسم الطالبة للبحث..." oninput="filterTableByStudentInput()">
+                <span style="font-weight: bold; font-size: 12px; display: block; margin-bottom: 4px;">🔍 بحث عن طالبه بالاسم:</span>
+                <input type="text" id="filterStudentNameInput" placeholder="اكتب اسم الطالبه للبحث..." oninput="filterTableByStudentInput()">
             </div>
 
             <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                 <table>
                     <thead>
                         <tr>
-                            <th>اسم الطالبة</th>
+                            <th>اسم الطالبه</th>
                             <th>🏫 الصف</th>
                             <th>📱 الجوال</th>
                             <th>🔴 غياب</th>
@@ -785,7 +785,7 @@
             </div>
         </div>
 
-        <!-- تتبع إتقان الدروس لكل طالب -->
+        <!-- تتبع إتقان الدروس لكل طالبه -->
         <div class="section-card" id="lessonMasterySection">
             <div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 8px; margin-bottom: 10px;">
                 <h3 style="margin: 0; border: none; padding: 0;">🎯 تتبع إتقان الدروس (متقن / مراجعة)</h3>
@@ -805,7 +805,7 @@
                 <h5>📊 إحصائية إتقان الدرس المحدد</h5>
                 <div class="student-details" style="margin: 6px 0;">
                     <div class="detail-item">
-                        <span>الطلاب المتقنين</span>
+                        <span>الطالبات المتقنات</span>
                         <strong id="countMastered" style="color: var(--success);">0</strong>
                     </div>
                     <div class="detail-item">
@@ -819,7 +819,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>اسم الطالبة</th>
+                            <th>اسم الطالبه</th>
                             <th>🏫 الصف</th>
                             <th>حالة الإتقان</th>
                             <th class="no-print">تبديل الحالة</th>
@@ -863,7 +863,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>اسم الطالبة</th>
+                            <th>اسم الطالبه</th>
                             <th>🏫 الصف</th>
                             <th>📝 الفترة 1 (20)</th>
                             <th>📝 الفترة 2 (20)</th>
@@ -877,22 +877,22 @@
             </div>
         </div>
 
-        <!-- استعلام عن طالب -->
+        <!-- استعلام عن طالبه -->
         <div class="section-card" id="studentReportSection">
             <div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 8px; margin-bottom: 10px;">
-                <h3 style="margin: 0; border: none; padding: 0;">🔍 استعلام وتتبع طالبة محدد</h3>
+                <h3 style="margin: 0; border: none; padding: 0;">🔍 استعلام وتتبع طالبه محددة</h3>
                 <button class="btn-print no-print" onclick="printSection('studentReportSection')">🖨️ طباعة التقرير</button>
             </div>
             <div class="form-row no-print">
                 <div class="searchable-dropdown-container">
-                    <input type="text" id="studentSearchInput" class="searchable-input" placeholder="اكتب اسم الطالبة للبحث..." oninput="filterStudentDropdown()" onfocus="showStudentDropdown()" autocomplete="off">
+                    <input type="text" id="studentSearchInput" class="searchable-input" placeholder="اكتب اسم الطالبه للبحث..." oninput="filterStudentDropdown()" onfocus="showStudentDropdown()" autocomplete="off">
                     <div id="studentDropdownList" class="searchable-dropdown-list"></div>
                 </div>
             </div>
 
             <div id="studentCard" style="display: none;">
                 <div>
-                    <h4 style="margin: 5px 0 8px 0; font-size: 14px;">سجل الطالب: <span id="selectedName"></span> (<span id="selectedClassBadge" class="class-badge"></span>)</h4>
+                    <h4 style="margin: 5px 0 8px 0; font-size: 14px;">سجل الطالبه: <span id="selectedName"></span> (<span id="selectedClassBadge" class="class-badge"></span>)</h4>
                     <div class="student-details">
                         <div class="detail-item"><span>المشاركات</span><strong id="sdParticipation">0</strong></div>
                         <div class="detail-item"><span>الواجبات</span><strong id="sdHomework">0</strong></div>
@@ -1033,8 +1033,8 @@
     <div id="toast" class="toast">✅ تم حفظ البيانات تلقائياً!</div>
 
     <script>
-        const TEACHER_NAME = "فلانة";
-        const SCHOOL_NAME = "المدرسة الأولى";
+        const TEACHER_NAME = "فلانه";
+        const SCHOOL_NAME = "مدرسة الابتدائية الأولى (طالبات)";
 
         let currentGrade = localStorage.getItem('mansour_current_grade_science_v5') || 'الأول الابتدائي';
         document.getElementById('globalGradeSelect').value = currentGrade;
@@ -1045,16 +1045,16 @@
         const rowsPerPage = 20;
 
         const defaultMotivations = [
-            { id: "1", title: "1. عالم المستقبل المتميز", text: "🌟 **عالم المستقبل المتميز** 🌟\nعزيزي ولي الأمر، نفخر اليوم بتميز ابنكم وتألقه في حصة العلوم ومشاركته في التجارب العملية بحماس ونشاط. بوركت جهودكم!" },
-            { id: "2", title: "2. تفوق ملحوظ في الملاحظة واستنتاج", text: "🔬 **تفوق ملحوظ في الملاحظة العلمية** 🔬\nعزيزي ولي الأمر، أظهر ابنكم اليوم مهارات دقيقة في الملاحظة والتجريب واستنباط النتائج. أحسنت صنعاً!" },
-            { id: "3", title: "3. دقة وإتقان في المفاهيم العلمية", text: "🌱 **دقة وإتقان في المفاهيم والعلوم** 🌱\nعزيزي ولي الأمر، تميز ابنكم اليوم باستيعابه العميق للحقائق العلمية وتوظيفها بذكاء. بارك الله في جهوده!" },
-            { id: "4", title: "4. مشاركة نشطة وفعالة في حصة العلوم", text: "✋ **مشاركة نشطة وتفاعل علمي متميز** ✋\nعزيزي ولي الأمر، تميز ابنكم اليوم بحرصه العالي ومشاركته النشطة وإجاباته العلمية الموفقة داخل الصف." },
-            { id: "5", title: "5. حصيلة استكشافية وتجارب ممتازة", text: "🧠 **حصيلة استكشافية وتجارب ممتازة** 🧠\nعزيزي ولي الأمر، أبدع ابنكم اليوم في تنفيذ التجارب الاستهلالية والاستكشافية بمهارة عالية. مبروك له!" },
-            { id: "6", title: "6. تنظيم رائع للدفتر وواجبات مرتبة بدقة", text: "📝 **تنظيم رائع للواجبات والأنشطة** 📝\nعزيزي ولي الأمر، نشكر لكم متابعتكم المنزلية الواعية. لقد كان واجب ابنكم اليوم منظماً، دقيقاً، ومرتباً للغاية." },
-            { id: "7", title: "7. حل ممتاز للتدريبات والتقويم التكويني", text: "✍️ **حل ممتاز للتقويم والتدريبات**\nعزيزي ولي الأمر، تميز أداء ابنكم اليوم بحل أسئلة التقويم والتدريبات العلمية بدقة عالية. دمت متميزاً يا بطل!" },
-            { id: "8", title: "8. اهتمام رائع بالبيئة ومخلوقات الله", text: "🌍 **اهتمام رائع بالبيئة والمحيط**\nعزيزي ولي الأمر، أظهر ابنكم اليوم شغفاً واهتماماً لافتاً بدراسة الكائنات الحية وعناصر البيئة من حوله." },
-            { id: "9", title: "9. مشروع علمي متميز ومبتكر ومتقن", text: "🛠️ **مشروع علمي متميز ومبتكر ومتقن**\nعزيزي ولي الأمر، قدم ابنكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية." },
-            { id: "10", title: "10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم", text: "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم**\nعزيزي ولي الأمر، إن حرص ابنكم المستمر على الاستكشاف والتعلم في مادة العلوم محل تقديرنا الدائم." }
+            { id: "1", title: "1. عالمة المستقبل المتميزة", text: "🌟 **عالمة المستقبل المتميزة** 🌟\nعزيزي ولي الأمر، نفخر اليوم بتميز ابنتكم وتألقها في حصة العلوم ومشاركتها في التجارب العملية بحماس ونشاط. بوركت جهودكم!" },
+            { id: "2", title: "2. تفوق ملحوظ في الملاحظة واستنتاج", text: "🔬 **تفوق ملحوظ في الملاحظة العلمية** 🔬\nعزيزي ولي الأمر، أظهرت ابنتكم اليوم مهارات دقيقة في الملاحظة والتجريب واستنباط النتائج. أحسنت صنعاً!" },
+            { id: "3", title: "3. دقة وإتقان في المفاهيم العلمية", text: "🌱 **دقة وإتقان في المفاهيم والعلوم** 🌱\nعزيزي ولي الأمر، تميزت ابنتكم اليوم باستيعابها العميق للحقائق العلمية وتوظيفها بذكاء. بارك الله في جهودها!" },
+            { id: "4", title: "4. مشاركة نشطة وفعالة في حصة العلوم", text: "✋ **مشاركة نشطة وتفاعل علمي متميز** ✋\nعزيزي ولي الأمر، تميزت ابنتكم اليوم بحرصها العالي ومشاركتها النشطة وإجاباتها العلمية الموفقة داخل الصف." },
+            { id: "5", title: "5. حصيلة استكشافية وتجارب ممتازة", text: "🧠 **حصيلة استكشافية وتجارب ممتازة** 🧠\nعزيزي ولي الأمر، أبدعت ابنتكم اليوم في تنفيذ التجارب الاستهلالية والاستكشافية بمهارة عالية. مبروك لها!" },
+            { id: "6", title: "6. تنظيم رائع للدفتر وواجبات مرتبة بدقة", text: "📝 **تنظيم رائع للواجبات والأنشطة** 📝\nعزيزي ولي الأمر، نشكر لكم متابعتكم المنزلية الواعية. لقد كان واجب ابنتكم اليوم منظماً، دقيقاً، ومرتباً للغاية." },
+            { id: "7", title: "7. حل ممتاز للتدريبات والتقويم التكويني", text: "✍️ **حل ممتاز للتقويم والتدريبات**\nعزيزي ولي الأمر، تميز أداء ابنتكم اليوم بحل أسئلة التقويم والتدريبات العلمية بدقة عالية. دمت متميزاً يا بطلة!" },
+            { id: "8", title: "8. اهتمام رائع بالبيئة ومخلوقات الله", text: "🌍 **اهتمام رائع بالبيئة والمحيط**\nعزيزي ولي الأمر، أظهرت ابنتكم اليوم شغفاً واهتماماً لافتاً بدراسة الكائنات الحية وعناصر البيئة من حولها." },
+            { id: "9", title: "9. مشروع علمي متميز ومبتكر ومتقن", text: "🛠️ **مشروع علمي متميز ومبتكر ومتقن**\nعزيزي ولي الأمر، قدمت ابنتكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية." },
+            { id: "10", title: "10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم", text: "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم**\nعزيزي ولي الأمر، إن حرص ابنتكم المستمر على الاستكشاف والتعلم في مادة العلوم محل تقديرنا الدائم." }
         ];
 
         let customMotivations = JSON.parse(localStorage.getItem('mansour_custom_motivations_science_v5')) || defaultMotivations;
@@ -1250,7 +1250,7 @@
             const desc = document.getElementById('newLessonDesc').value.trim();
             if (!title) { alert('يرجى كتابة عنوان الوحدة أو الدرس'); return; }
 
-            lessons.push({ chapter: "إضافات المعلم", title: title, desc: desc || 'لا توجد تفاصيل إضافية' });
+            lessons.push({ chapter: "إضافات المعلمة", title: title, desc: desc || 'لا توجد تفاصيل إضافية' });
             localStorage.setItem(getStorageKeyForLessons(), JSON.stringify(lessons));
 
             document.getElementById('newLessonTitle').value = '';
@@ -1355,7 +1355,7 @@
             const sClass = document.getElementById('studentClassCustom').value.trim() || currentGrade;
             const phone = document.getElementById('studentPhone').value.trim();
 
-            if(!name) { alert('الرجاء إدخال اسم الطالبة'); return; }
+            if(!name) { alert('الرجاء إدخال اسم الطالبه'); return; }
             if(phone && phone.length !== 10) { alert('رقم جوال ولي الأمر يجب أن يكون مكوناً من 10 أرقام بالضبط'); return; }
 
             students.push({
@@ -1375,7 +1375,7 @@
             document.getElementById('studentName').value = '';
             document.getElementById('studentPhone').value = '';
             render();
-            showToast('➕ تمت إضافة الطالب بنجاح!');
+            showToast('➕ تمت إضافة الطالبه بنجاح!');
         }
 
         function renderStudentsTable() {
@@ -1400,7 +1400,7 @@
             const pageData = filtered.slice(startIdx, startIdx + rowsPerPage);
 
             if(pageData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="9" style="padding: 15px; opacity: 0.7;">لا توجد بيانات طلاب.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="9" style="padding: 15px; opacity: 0.7;">لا توجد بيانات طالبات.</td></tr>`;
                 document.getElementById('paginationInfo').textContent = `عرض 0 من 0`;
                 document.getElementById('pageIndicator').textContent = `1 / 1`;
                 return;
@@ -1423,7 +1423,7 @@
                 tbody.appendChild(tr);
             });
 
-            document.getElementById('paginationInfo').textContent = `عرض من ${startIdx + 1} إلى ${Math.min(startIdx + rowsPerPage, totalRows)} من أصل ${totalRows} طالبة`;
+            document.getElementById('paginationInfo').textContent = `عرض من ${startIdx + 1} إلى ${Math.min(startIdx + rowsPerPage, totalRows)} من أصل ${totalRows} طالبه`;
             document.getElementById('pageIndicator').textContent = `${currentPage} / ${totalPages}`;
         }
 
@@ -1439,7 +1439,7 @@
         }
 
         function deleteStudent(index) {
-            if(confirm('هل أنت متأكد من حذف هذه الطالبة؟')) {
+            if(confirm('هل أنت متأكد من حذف هذه الطالبه؟')) {
                 students.splice(index, 1);
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
                 delete lessonMastery[index];
@@ -1455,7 +1455,7 @@
                 lessonMastery = newMastery;
                 localStorage.setItem(getStorageKeyForMastery(), JSON.stringify(lessonMastery));
                 render();
-                showToast('🗑️ تم حذف الطالب بنجاح!');
+                showToast('🗑️ تم حذف الطالبه بنجاح!');
             }
         }
 
@@ -1506,7 +1506,7 @@
 
         function deleteEntireClass(cName, event) {
             event.stopPropagation();
-            if(confirm(`هل أنت متأكد من حذف جميع طلاب الصف (${cName})؟`)) {
+            if(confirm(`هل أنت متأكد من حذف جميع طالبات الصف (${cName})؟`)) {
                 students = students.filter(s => (s.classCustom || currentGrade) !== cName);
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
                 if(activeQueryClass === cName) activeQueryClass = '';
@@ -1563,7 +1563,7 @@
             }
 
             if(filteredStudents.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="padding: 15px; opacity: 0.7;">لا توجد بيانات طلاب مسجلة.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" style="padding: 15px; opacity: 0.7;">لا توجد بيانات طالبات مسجلة.</td></tr>`;
                 summaryBox.style.display = 'none';
                 return;
             }
@@ -1626,7 +1626,7 @@
 
             const classStudents = students.filter(s => (s.classCustom || currentGrade) === selectedClass);
             if(classStudents.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="padding: 15px; opacity: 0.7;">لا يوجد طلاب مسجلون في هذا الصف.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="padding: 15px; opacity: 0.7;">لا توجد طالبات مسجلات في هذا الصف.</td></tr>`;
                 analysisBox.style.display = 'none';
                 return;
             }
@@ -1646,7 +1646,7 @@
                     <td><input type="text" inputmode="numeric" pattern="[0-9]*" value="${s.exam1 !== undefined ? s.exam1 : 0}" style="width:40px; text-align:center; padding:2px;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
                     <td><input type="text" inputmode="numeric" pattern="[0-9]*" value="${s.exam2 !== undefined ? s.exam2 : 0}" style="width:40px; text-align:center; padding:2px;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
                     <td class="no-print">
-                        <a href="https://wa.me/966${s.phone ? s.phone.replace(/^0+/, '') : ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا له بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 6px; font-size:11px; margin-top:0;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال</a>
+                        <a href="https://wa.me/966${s.phone ? s.phone.replace(/^0+/, '') : ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبه ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 6px; font-size:11px; margin-top:0;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال</a>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -1687,10 +1687,10 @@
         }
 
         function exportExcel() {
-            if(students.length === 0) { alert('لا توجد بيانات طلاب لتصديرها!'); return; }
+            if(students.length === 0) { alert('لا توجد بيانات طالبات لتصديرها!'); return; }
             const dataToExport = students.map((s, idx) => ({
                 "م": idx + 1,
-                "اسم الطالبة": s.name,
+                "اسم الطالبه": s.name,
                 "الصف": s.classCustom || currentGrade,
                 "رقم الجوال": s.phone || '',
                 "الغياب": s.absence || 0,
@@ -1706,14 +1706,14 @@
             ws['!views'].push({ rightToLeft: true });
 
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "سجل طلاب العلوم");
+            XLSX.utils.book_append_sheet(wb, ws, "سجل طالبات العلوم");
             XLSX.writeFile(wb, `سجل_العلوم_${currentGrade}.xlsx`);
             showToast('📊 تم تصدير ملف الإكسل بنجاح!');
         }
 
         function exportToGoogleSheetsCSV() {
-            if(students.length === 0) { alert('لا توجد بيانات طلاب لتصديرها!'); return; }
-            let csvContent = "\uFEFFاسم الطالبة,الصف,رقم الجوال,الغياب,المشاركة,الواجبات,التجارب,اختبار 1,اختبار 2\n";
+            if(students.length === 0) { alert('لا توجد بيانات طالبات لتصديرها!'); return; }
+            let csvContent = "\uFEFFاسم الطالبه,الصف,رقم الجوال,الغياب,المشاركة,الواجبات,التجارب,اختبار 1,اختبار 2\n";
             students.forEach(s => {
                 csvContent += `"${s.name}","${s.classCustom || currentGrade}","${s.phone || ''}",${s.absence || 0},${s.participation || 0},${s.homework || 0},${s.projects || 0},${s.exam1 || 0},${s.exam2 || 0}\n`;
             });
@@ -1748,7 +1748,7 @@
 
                     let count = 0;
                     jsonData.forEach(row => {
-                        const name = row["اسم الطالبة"] || row["اسم الطالبةة"] || row["الاسم"] || "";
+                        const name = row["اسم الطالبه"] || row["اسم الطالب"] || row["الاسم"] || "";
                         const sClass = row["الصف"] || row["الصف/الشعبة"] || row["Class"] || currentGrade;
                         const phone = row["رقم الجوال"] || row["الجوال"] || row["Phone"] || "";
 
@@ -1771,7 +1771,7 @@
 
                     localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
                     render();
-                    showToast(`📂 تمت استعادة (${count}) طالب بنجاح!`);
+                    showToast(`📂 تمت استعادة (${count}) طالبه بنجاح!`);
                 } catch(err) {
                     console.error(err);
                     alert('حدث خطأ أثناء قراءة ملف الإكسل.');
@@ -1915,7 +1915,7 @@
             }
 
             const l = lessons[lessonIdx];
-            const msg = `عزيزي ولي أمر الطالبة / ${s.name}\nنحيطكم علماً بأننا تناولنا اليوم في مادة العلوم درس:\n📘 (${l.chapter}) - ${l.title}\n💡 المفاهيم والتجارب المرتبطة: ${l.desc}\nنرجو منكم متابعة ابنكم وتعزيز استكشافاته العلمية.\nمع تقديـرنا، المعلم: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            const msg = `عزيزي ولي أمر الطالبه / ${s.name}\nنحيطكم علماً بأننا تناولنا اليوم في مادة العلوم درس:\n📘 (${l.chapter}) - ${l.title}\n💡 المفاهيم والتجارب المرتبطة: ${l.desc}\nنرجو منكم متابعة ابنتكم وتعزيز استكشافاتها العلمية.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             
             preview.textContent = msg;
             const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
@@ -1941,7 +1941,7 @@
                 text = customMotivations[idx].text;
             }
 
-            const finalMsg = `إلى ولي أمر الطالبة / ${s.name}\n\n${text}\n\nمع خالص الشكر، المعلم: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            const finalMsg = `إلى ولي أمر الطالبه / ${s.name}\n\n${text}\n\nمع خالص الشكر، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             preview.textContent = finalMsg;
             const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
             btn.href = `https://wa.me/${formattedPhone}?text=` + encodeURIComponent(finalMsg);
@@ -1956,7 +1956,7 @@
                 if (lessonMastery[selectedStudentIndex] && lessonMastery[selectedStudentIndex][lIdx]) studentMasteredCount++;
             });
 
-            const msg = `عزيزي ولي أمر الطالبة / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنكم وتقييمه في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- الدروس المتقنة: ${studentMasteredCount} من ${lessons.length}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر.\nمع تقديـرنا، المعلم: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            const msg = `عزيزي ولي أمر الطالبه / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنتكم وتقييمها في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- الدروس المتقنة: ${studentMasteredCount} من ${lessons.length}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             
             incrementMessageCount(selectedStudentIndex);
             const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
@@ -2018,7 +2018,7 @@
                 msg += `📌 ملاحظات: ${note}\n`;
             }
 
-            msg += `\nنرجو الحرص على حل الواجب وإرساله في الموعد المحدد.\nمع خالص الشكر، المعلم: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            msg += `\nنرجو الحرص على حل الواجب وإرساله في الموعد المحدد.\nمع خالص الشكر، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             preview.textContent = msg;
         }
 
@@ -2034,7 +2034,7 @@
 
             targetStudents = targetStudents.filter(s => s.phone && s.phone.trim() !== '');
             if(targetStudents.length === 0) { 
-                alert('لا توجد أرقام جوالات مسجلة للطلاب المستهدفين'); 
+                alert('لا توجد أرقام جوالات مسجلة للطالبات المستهدفات'); 
                 return; 
             }
 
@@ -2046,7 +2046,7 @@
             targetStudents.forEach(s => {
                 const globalIdx = students.indexOf(s);
                 const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
-                const finalMsg = `عزيزي ولي أمر الطالبة / ${s.name}\n\n` + baseMsg;
+                const finalMsg = `عزيزي ولي أمر الطالبه / ${s.name}\n\n` + baseMsg;
                 const link = `https://wa.me/${formattedPhone}?text=` + encodeURIComponent(finalMsg);
 
                 const itemDiv = document.createElement('div');
