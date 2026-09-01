@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>المعلمة فلانه - مدرسة الابتدائية الأولى (لوحة تحكم مادة العلوم)</title>
+    <title>المعلمة فلانة- مدرسة الابتدائية الأولى بنات(لوحة تحكم مادة العلوم)</title>
     
     <!-- ربط ملف manifest.json والمظهر الخاص بالجوال -->
     <link rel="manifest" href="manifest.json">
@@ -161,7 +161,6 @@
             gap: 12px;
         }
 
-        /* جعل الإحصائيات تترتب بشكل عمودي للجوال فوق بعضها */
         .stats-grid {
             display: flex;
             flex-direction: column;
@@ -201,7 +200,6 @@
             word-wrap: break-word;
         }
 
-        /* تنسيق جميع النماذج والحقول لتصبح فوق بعضها عمودياً (100%) */
         .form-row {
             display: flex;
             flex-direction: column;
@@ -318,6 +316,46 @@
 
         th { background-color: rgba(0,0,0,0.05); color: var(--secondary); }
 
+        /* تنسيق أزرار الأسهم للزيادة والنقصان */
+        .stepper-control {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            background: rgba(0,0,0,0.03);
+            padding: 2px;
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .stepper-btn {
+            width: 22px !important;
+            height: 22px !important;
+            padding: 0 !important;
+            font-size: 10px !important;
+            line-height: 22px !important;
+            border-radius: 4px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer;
+            background: var(--secondary);
+            color: white;
+            border: none;
+        }
+
+        .stepper-btn.down {
+            background: #6b7280;
+        }
+
+        .stepper-val {
+            font-weight: bold;
+            font-size: 13px;
+            min-width: 20px;
+            text-align: center;
+            display: inline-block;
+        }
+
         .pagination-bar {
             display: flex;
             flex-direction: column;
@@ -404,7 +442,6 @@
             font-size: 13px;
         }
 
-        /* قائمة الدروس تنازلياً ورأسياً */
         .lessons-grid {
             display: flex;
             flex-direction: column;
@@ -489,7 +526,6 @@
             text-align: center;
         }
 
-        /* أزرار التحكم والنسخ الاحتياطي عمودياً */
         .backup-controls {
             display: flex;
             flex-direction: column;
@@ -641,8 +677,8 @@
     </div>
 
     <div class="header">
-        <h1>مدرسة الابتدائية الأولى (طالبات)</h1>
-        <div>إعداد المعلمة: فلانه</div>
+        <h1>مدرسة الابتدائية الأولى بنات</h1>
+        <div>إعداد المعلمة: فلانة</div>
         <p>لوحة تحكم معلمة مادة العلوم للمرحلة الابتدائية (وفق المنهج السعودي)</p>
         <div class="subscription-badge">⏳ نهاية الاشتراك: 2027/07/01</div>
 
@@ -659,7 +695,7 @@
     <div class="container">
         <!-- اختيار الصف الدراسي -->
         <div class="section-card no-print" style="background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(30,58,138,0.1)); border: 2px solid var(--secondary);">
-            <h3 style="margin-bottom: 8px;">📌 اختر الصف الدراسي للمتابعة</h3>
+            <h3 style="margin-bottom: 8px;">📌 اختاري الصف الدراسي للمتابعة</h3>
             <div class="form-row" style="margin-bottom: 0;">
                 <select id="globalGradeSelect" onchange="changeGradeLevel(this.value)" style="font-weight: bold; font-size: 14px; color: var(--secondary);">
                     <option value="الأول الابتدائي">الصف الأول الابتدائي</option>
@@ -729,27 +765,27 @@
             </div>
             
             <div class="form-row no-print">
-                <input type="text" id="studentName" placeholder="اسم الطالبه (Student Name)">
+                <input type="text" id="studentName" placeholder="اسم الطالبة (Student Name)">
                 <input type="text" id="studentClassCustom" placeholder="الصف (مثال: رابع ابتدائي أول)">
                 <input type="tel" id="studentPhone" maxlength="10" placeholder="رقم جوال ولي الأمر (10 أرقام)">
-                <button onclick="addStudent()">➕ إضافة طالبه</button>
+                <button onclick="addStudent()">➕ إضافة طالبة</button>
             </div>
 
             <div style="margin-top: 10px;" class="no-print">
-                <span style="font-weight: bold; font-size: 12px; display: block; margin-bottom: 6px;">🏫 تصفح الصفوف (اضغط على الصف لعرضه):</span>
+                <span style="font-weight: bold; font-size: 12px; display: block; margin-bottom: 6px;">🏫 تصفح الصفوف (اضغطي على الصف لعرضه):</span>
                 <div id="classesQueryContainer" class="classes-query-grid"></div>
             </div>
 
             <div class="form-row no-print" style="background: rgba(0,0,0,0.03); padding: 8px; border-radius: 6px; margin-top: 10px;">
-                <span style="font-weight: bold; font-size: 12px; display: block; margin-bottom: 4px;">🔍 بحث عن طالبه بالاسم:</span>
-                <input type="text" id="filterStudentNameInput" placeholder="اكتب اسم الطالبه للبحث..." oninput="filterTableByStudentInput()">
+                <span style="font-weight: bold; font-size: 12px; display: block; margin-bottom: 4px;">🔍 بحث عن طالبة بالاسم:</span>
+                <input type="text" id="filterStudentNameInput" placeholder="اكتبي اسم الطالبة للبحث..." oninput="filterTableByStudentInput()">
             </div>
 
             <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                 <table>
                     <thead>
                         <tr>
-                            <th>اسم الطالبه</th>
+                            <th>اسم الطالبة</th>
                             <th>🏫 الصف</th>
                             <th>📱 الجوال</th>
                             <th>🔴 غياب</th>
@@ -785,16 +821,16 @@
             </div>
         </div>
 
-        <!-- تتبع إتقان الدروس لكل طالبه -->
+        <!-- تتبع إتقان الدروس لكل طالبة -->
         <div class="section-card" id="lessonMasterySection">
             <div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 8px; margin-bottom: 10px;">
-                <h3 style="margin: 0; border: none; padding: 0;">🎯 تتبع إتقان الدروس (متقن / مراجعة)</h3>
+                <h3 style="margin: 0; border: none; padding: 0;">🎯 تتبع إتقان الدروس (متقنة / مراجعة)</h3>
                 <button class="btn-print" onclick="printSection('lessonMasterySection')">🖨️ طباعة التتقرير</button>
             </div>
 
             <div class="form-row no-print">
                 <select id="masteryLessonSelect" onchange="renderMasteryTable()">
-                    <option value="">-- اختر الدرس لتحديد حالة الإتقان --</option>
+                    <option value="">-- اختاري الدرس لتحديد حالة الإتقان --</option>
                 </select>
                 <select id="masteryClassSelect" onchange="renderMasteryTable()">
                     <option value="">-- جميع الصفوف --</option>
@@ -819,7 +855,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>اسم الطالبه</th>
+                            <th>اسم الطالبة</th>
                             <th>🏫 الصف</th>
                             <th>حالة الإتقان</th>
                             <th class="no-print">تبديل الحالة</th>
@@ -836,12 +872,12 @@
         <div class="section-card" id="examsSection">
             <div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 8px; margin-bottom: 10px;">
                 <h3 style="margin: 0; border: none; padding: 0;">📊 رصد اختبارات الفترة الأولى والثانية (من ٢٠) 📝</h3>
-                <button class="btn-print" onclick="printSection('examsSection')">🖨️ طباعة التقرير</button>
+                <button class="btn-print" onclick="printSection('examsSection')">🖨️ طباعة التتقرير</button>
             </div>
             
             <div class="form-row no-print">
                 <select id="examClassSelect" onchange="renderExamsTable()">
-                    <option value="">-- اختر الصف لعرض وسجل الاختبارات --</option>
+                    <option value="">-- اختاري الصف لعرض سجل الاختبارات --</option>
                 </select>
             </div>
 
@@ -863,7 +899,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>اسم الطالبه</th>
+                            <th>اسم الطالبة</th>
                             <th>🏫 الصف</th>
                             <th>📝 الفترة 1 (20)</th>
                             <th>📝 الفترة 2 (20)</th>
@@ -877,22 +913,22 @@
             </div>
         </div>
 
-        <!-- استعلام عن طالبه -->
+        <!-- استعلام عن طالبة -->
         <div class="section-card" id="studentReportSection">
             <div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 8px; margin-bottom: 10px;">
-                <h3 style="margin: 0; border: none; padding: 0;">🔍 استعلام وتتبع طالبه محددة</h3>
-                <button class="btn-print no-print" onclick="printSection('studentReportSection')">🖨️ طباعة التقرير</button>
+                <h3 style="margin: 0; border: none; padding: 0;">🔍 استعلام وتتبع طالبة محددة</h3>
+                <button class="btn-print no-print" onclick="printSection('studentReportSection')">🖨️ طباعة التتقرير</button>
             </div>
             <div class="form-row no-print">
                 <div class="searchable-dropdown-container">
-                    <input type="text" id="studentSearchInput" class="searchable-input" placeholder="اكتب اسم الطالبه للبحث..." oninput="filterStudentDropdown()" onfocus="showStudentDropdown()" autocomplete="off">
+                    <input type="text" id="studentSearchInput" class="searchable-input" placeholder="اكتبي اسم الطالبة للبحث..." oninput="filterStudentDropdown()" onfocus="showStudentDropdown()" autocomplete="off">
                     <div id="studentDropdownList" class="searchable-dropdown-list"></div>
                 </div>
             </div>
 
             <div id="studentCard" style="display: none;">
                 <div>
-                    <h4 style="margin: 5px 0 8px 0; font-size: 14px;">سجل الطالبه: <span id="selectedName"></span> (<span id="selectedClassBadge" class="class-badge"></span>)</h4>
+                    <h4 style="margin: 5px 0 8px 0; font-size: 14px;">سجل الطالبة: <span id="selectedName"></span> (<span id="selectedClassBadge" class="class-badge"></span>)</h4>
                     <div class="student-details">
                         <div class="detail-item"><span>المشاركات</span><strong id="sdParticipation">0</strong></div>
                         <div class="detail-item"><span>الواجبات</span><strong id="sdHomework">0</strong></div>
@@ -913,10 +949,10 @@
                     <div class="no-print" style="font-size: 11px;">📱 رقم الجوال: <span id="sdPhone">لا يوجد</span></div>
                     <div class="form-row no-print" style="margin-top: 8px;">
                         <select id="selectLesson" onchange="updateLessonMsg()">
-                            <option value="">-- اختر موضوع الدرس والمهارة --</option>
+                            <option value="">-- اختاري موضوع الدرس والمهارة --</option>
                         </select>
                     </div>
-                    <div id="lessonMsgPreview" class="preview-msg">اختر موضوع الدرس والمهارة أعلاه...</div>
+                    <div id="lessonMsgPreview" class="preview-msg">اختاري موضوع الدرس والمهارة أعلاه...</div>
                     <a id="whatsappLessonBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">📲 إرسال مباشر لولي الأمر</a>
                 </div>
 
@@ -924,7 +960,7 @@
                     <h5>✨ إرسال رسائل تشجيعية وشكر وتقدير</h5>
                     <div class="form-row no-print">
                         <select id="selectMotivation" onchange="updateMotivationMsg()">
-                            <option value="">-- اختر الرسالة التشجيعية --</option>
+                            <option value="">-- اختاري الرسالة التشجيعية --</option>
                         </select>
                     </div>
                     
@@ -934,7 +970,7 @@
                         <button onclick="addNewMotivation()">➕ إضافة رسالة</button>
                     </div>
 
-                    <div id="motivationMsgPreview" class="preview-msg">اختر الرسالة لعرض نص الشكر والتحفيز...</div>
+                    <div id="motivationMsgPreview" class="preview-msg">اختاري الرسالة لعرض نص الشكر والتحفيز...</div>
                     <a id="whatsappMotivationBtn" href="#" target="_blank" class="whatsapp-btn no-print" onclick="incrementMessageCount()">🏆 إرسال رسالة التشجيع لولي الأمر</a>
                 </div>
             </div>
@@ -949,7 +985,7 @@
                         <option value="ALL">جميع الصفوف</option>
                     </select>
                     <select id="bulkSelectHomeworkLesson" onchange="updateBulkHomeworkMsgPreview()">
-                        <option value="">-- اختر الدرس لتحديد الواجب --</option>
+                        <option value="">-- اختاري الدرس لتحديد الواجب --</option>
                     </select>
                 </div>
                 <div class="form-row" style="margin-top: 8px;">
@@ -958,7 +994,7 @@
                 <div class="form-row" style="margin-top: 8px;">
                     <input type="text" id="bulkHomeworkExtraNote" placeholder="ملاحظات إضافية (اختياري)..." oninput="updateBulkHomeworkMsgPreview()">
                 </div>
-                <div id="bulkHomeworkMsgPreview" class="preview-msg">اختر الصف والدرس وأدخل تفاصيل الواجب...</div>
+                <div id="bulkHomeworkMsgPreview" class="preview-msg">اختاري الصف والدرس وأدخلي تفاصيل الواجب...</div>
                 
                 <div id="bulkSendPanel" style="display: none; margin-top: 10px; background: rgba(0,0,0,0.04); padding: 8px; border-radius: 8px; border: 1px solid var(--secondary);">
                     <h5 style="margin-top: 0; color: var(--secondary); font-size: 12px;">📤 قائمة إرسال الواجب الجماعي:</h5>
@@ -983,7 +1019,7 @@
                 </div>
 
                 <div class="form-row" style="margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px;">
-                    <textarea id="bulkLessonsInput" rows="3" placeholder="أدخل مجموعة دروس (درس لكل سطر):&#10;اسم الوحدة | عنوان الدرس | الوصف"></textarea>
+                    <textarea id="bulkLessonsInput" rows="3" placeholder="أدخلي مجموعة دروس (درس لكل سطر):&#10;اسم الوحدة | عنوان الدرس | الوصف"></textarea>
                     <button class="btn-info" onclick="addBatchLessons()">📥 إضافة مجموعة دروس</button>
                 </div>
             </div>
@@ -992,11 +1028,11 @@
                 <h5 style="color: var(--secondary);">📑 القائمة المنسدلة لدليل مقرر العلوم</h5>
                 <div class="form-row" style="margin-bottom: 8px;">
                     <select id="curriculumDropdownSelect" onchange="onCurriculumDropdownChange(this.value)" style="font-weight: bold; font-size: 13px; color: var(--secondary);">
-                        <option value="">-- اختر الدرس أو الوحدة للاستعراض --</option>
+                        <option value="">-- اختاري الدرس أو الوحدة للاستعراض --</option>
                     </select>
                 </div>
                 <div id="selectedLessonDetailsBox" class="preview-msg" style="display: none;">
-                    اختر درساً من القائمة المنسدلة أعلاه...
+                    اختاري درساً من القائمة المنسدلة أعلاه...
                 </div>
             </div>
 
@@ -1033,8 +1069,8 @@
     <div id="toast" class="toast">✅ تم حفظ البيانات تلقائياً!</div>
 
     <script>
-        const TEACHER_NAME = "فلانه";
-        const SCHOOL_NAME = "مدرسة الابتدائية الأولى (طالبات)";
+        const TEACHER_NAME = "فلانة";
+        const SCHOOL_NAME = "مدرسة الابتدائية الأولى بنات()";
 
         let currentGrade = localStorage.getItem('mansour_current_grade_science_v5') || 'الأول الابتدائي';
         document.getElementById('globalGradeSelect').value = currentGrade;
@@ -1046,12 +1082,12 @@
 
         const defaultMotivations = [
             { id: "1", title: "1. عالمة المستقبل المتميزة", text: "🌟 **عالمة المستقبل المتميزة** 🌟\nعزيزي ولي الأمر، نفخر اليوم بتميز ابنتكم وتألقها في حصة العلوم ومشاركتها في التجارب العملية بحماس ونشاط. بوركت جهودكم!" },
-            { id: "2", title: "2. تفوق ملحوظ في الملاحظة واستنتاج", text: "🔬 **تفوق ملحوظ في الملاحظة العلمية** 🔬\nعزيزي ولي الأمر، أظهرت ابنتكم اليوم مهارات دقيقة في الملاحظة والتجريب واستنباط النتائج. أحسنت صنعاً!" },
+            { id: "2", title: "2. تفوق ملحوظ في الملاحظة والاستنتاج", text: "🔬 **تفوق ملحوظ في الملاحظة العلمية** 🔬\nعزيزي ولي الأمر، أظهرت ابنتكم اليوم مهارات دقيقة في الملاحظة والتجريب واستنباط النتائج. أحسنت صنعاً!" },
             { id: "3", title: "3. دقة وإتقان في المفاهيم العلمية", text: "🌱 **دقة وإتقان في المفاهيم والعلوم** 🌱\nعزيزي ولي الأمر، تميزت ابنتكم اليوم باستيعابها العميق للحقائق العلمية وتوظيفها بذكاء. بارك الله في جهودها!" },
             { id: "4", title: "4. مشاركة نشطة وفعالة في حصة العلوم", text: "✋ **مشاركة نشطة وتفاعل علمي متميز** ✋\nعزيزي ولي الأمر، تميزت ابنتكم اليوم بحرصها العالي ومشاركتها النشطة وإجاباتها العلمية الموفقة داخل الصف." },
             { id: "5", title: "5. حصيلة استكشافية وتجارب ممتازة", text: "🧠 **حصيلة استكشافية وتجارب ممتازة** 🧠\nعزيزي ولي الأمر، أبدعت ابنتكم اليوم في تنفيذ التجارب الاستهلالية والاستكشافية بمهارة عالية. مبروك لها!" },
             { id: "6", title: "6. تنظيم رائع للدفتر وواجبات مرتبة بدقة", text: "📝 **تنظيم رائع للواجبات والأنشطة** 📝\nعزيزي ولي الأمر، نشكر لكم متابعتكم المنزلية الواعية. لقد كان واجب ابنتكم اليوم منظماً، دقيقاً، ومرتباً للغاية." },
-            { id: "7", title: "7. حل ممتاز للتدريبات والتقويم التكويني", text: "✍️ **حل ممتاز للتقويم والتدريبات**\nعزيزي ولي الأمر، تميز أداء ابنتكم اليوم بحل أسئلة التقويم والتدريبات العلمية بدقة عالية. دمت متميزاً يا بطلة!" },
+            { id: "7", title: "7. حل ممتاز للتدريبات والتقويم التكويني", text: "✍️ **حل ممتاز للتقويم والتدريبات**\nعزيزي ولي الأمر، تميز أداء ابنتكم اليوم بحل أسئلة التقويم والتدريبات العلمية بدقة عالية. دمت متميزة يا بطلة!" },
             { id: "8", title: "8. اهتمام رائع بالبيئة ومخلوقات الله", text: "🌍 **اهتمام رائع بالبيئة والمحيط**\nعزيزي ولي الأمر، أظهرت ابنتكم اليوم شغفاً واهتماماً لافتاً بدراسة الكائنات الحية وعناصر البيئة من حولها." },
             { id: "9", title: "9. مشروع علمي متميز ومبتكر ومتقن", text: "🛠️ **مشروع علمي متميز ومبتكر ومتقن**\nعزيزي ولي الأمر، قدمت ابنتكم اليوم مشروعاً علمياً رائعاً ومنظماً ينم عن تفكير إبداعي ومهارة عالية." },
             { id: "10", title: "10. اجتهاد وحرص عالٍ على إتقان مهارات العلوم", text: "⭐ **اجتهاد وحرص عالٍ على إتقان العلوم**\nعزيزي ولي الأمر، إن حرص ابنتكم المستمر على الاستكشاف والتعلم في مادة العلوم محل تقديرنا الدائم." }
@@ -1172,16 +1208,16 @@
 
         function renderLessons() {
             const selectLesson = document.getElementById('selectLesson');
-            selectLesson.innerHTML = '<option value="">-- اختر موضوع الدرس والمهارة --</option>';
+            selectLesson.innerHTML = '<option value="">-- اختاري موضوع الدرس والمهارة --</option>';
 
             const selectMotivation = document.getElementById('selectMotivation');
-            selectMotivation.innerHTML = '<option value="">-- اختر الرسالة التشجيعية --</option>';
+            selectMotivation.innerHTML = '<option value="">-- اختاري الرسالة التشجيعية --</option>';
 
             const bulkSelectHomeworkLesson = document.getElementById('bulkSelectHomeworkLesson');
-            bulkSelectHomeworkLesson.innerHTML = '<option value="">-- اختر الدرس لتحديد الواجب --</option>';
+            bulkSelectHomeworkLesson.innerHTML = '<option value="">-- اختاري الدرس لتحديد الواجب --</option>';
 
             const curriculumDropdown = document.getElementById('curriculumDropdownSelect');
-            curriculumDropdown.innerHTML = '<option value="">-- اختر الدرس أو الوحدة للاستعراض --</option>';
+            curriculumDropdown.innerHTML = '<option value="">-- اختاري الدرس أو الوحدة للاستعراض --</option>';
 
             let lessonsGroup = '';
             let executedCount = 0;
@@ -1230,7 +1266,7 @@
         function renderMasteryDropdowns() {
             const masterySelect = document.getElementById('masteryLessonSelect');
             const currentVal = masterySelect.value;
-            masterySelect.innerHTML = '<option value="">-- اختر الدرس لتحديد حالة الإتقان --</option>';
+            masterySelect.innerHTML = '<option value="">-- اختاري الدرس لتحديد حالة الإتقان --</option>';
             lessons.forEach((l, idx) => {
                 masterySelect.innerHTML += `<option value="${idx}">[${l.chapter}] ${l.title}</option>`;
             });
@@ -1298,7 +1334,7 @@
         }
 
         function deleteLesson(index) {
-            if (confirm('هل أنت متأكد من حذف هذا الدرس من المنهج؟')) {
+            if (confirm('هل أنت متأكدة من حذف هذا الدرس من المنهج؟')) {
                 lessons.splice(index, 1);
                 localStorage.setItem(getStorageKeyForLessons(), JSON.stringify(lessons));
                 renderLessons();
@@ -1355,7 +1391,7 @@
             const sClass = document.getElementById('studentClassCustom').value.trim() || currentGrade;
             const phone = document.getElementById('studentPhone').value.trim();
 
-            if(!name) { alert('الرجاء إدخال اسم الطالبه'); return; }
+            if(!name) { alert('الرجاء إدخال اسم الطالبة'); return; }
             if(phone && phone.length !== 10) { alert('رقم جوال ولي الأمر يجب أن يكون مكوناً من 10 أرقام بالضبط'); return; }
 
             students.push({
@@ -1375,7 +1411,7 @@
             document.getElementById('studentName').value = '';
             document.getElementById('studentPhone').value = '';
             render();
-            showToast('➕ تمت إضافة الطالبه بنجاح!');
+            showToast('➕ تمت إضافة الطالبة بنجاح!');
         }
 
         function renderStudentsTable() {
@@ -1413,18 +1449,51 @@
                     <td><strong>${s.name}</strong></td>
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
                     <td><input type="text" maxlength="10" value="${s.phone || ''}" style="width:80px; text-align:center; padding:2px;" oninput="updateStudentPhone(${globalIndex}, this.value)" placeholder="05xxxxxxxx"></td>
-                    <td><input type="number" value="${s.absence}" min="0" style="width:35px; text-align:center; padding:2px;" oninput="updateStudentField(${globalIndex}, 'absence', this.value)"></td>
-                    <td><input type="number" value="${s.participation}" min="0" style="width:35px; text-align:center; padding:2px;" oninput="updateStudentField(${globalIndex}, 'participation', this.value)"></td>
-                    <td><input type="number" value="${s.homework}" min="0" style="width:35px; text-align:center; padding:2px;" oninput="updateStudentField(${globalIndex}, 'homework', this.value)"></td>
-                    <td><input type="number" value="${s.projects}" min="0" style="width:35px; text-align:center; padding:2px;" oninput="updateStudentField(${globalIndex}, 'projects', this.value)"></td>
+                    <td>
+                        <div class="stepper-control">
+                            <button class="stepper-btn" onclick="stepStudentField(${globalIndex}, 'absence', 1)">▲</button>
+                            <span class="stepper-val">${s.absence || 0}</span>
+                            <button class="stepper-btn down" onclick="stepStudentField(${globalIndex}, 'absence', -1)">▼</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="stepper-control">
+                            <button class="stepper-btn" onclick="stepStudentField(${globalIndex}, 'participation', 1)">▲</button>
+                            <span class="stepper-val">${s.participation || 0}</span>
+                            <button class="stepper-btn down" onclick="stepStudentField(${globalIndex}, 'participation', -1)">▼</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="stepper-control">
+                            <button class="stepper-btn" onclick="stepStudentField(${globalIndex}, 'homework', 1)">▲</button>
+                            <span class="stepper-val">${s.homework || 0}</span>
+                            <button class="stepper-btn down" onclick="stepStudentField(${globalIndex}, 'homework', -1)">▼</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="stepper-control">
+                            <button class="stepper-btn" onclick="stepStudentField(${globalIndex}, 'projects', 1)">▲</button>
+                            <span class="stepper-val">${s.projects || 0}</span>
+                            <button class="stepper-btn down" onclick="stepStudentField(${globalIndex}, 'projects', -1)">▼</button>
+                        </div>
+                    </td>
                     <td>${s.messages || 0}</td>
                     <td class="no-print"><button class="btn-action btn-danger" onclick="deleteStudent(${globalIndex})">حذف</button></td>
                 `;
                 tbody.appendChild(tr);
             });
 
-            document.getElementById('paginationInfo').textContent = `عرض من ${startIdx + 1} إلى ${Math.min(startIdx + rowsPerPage, totalRows)} من أصل ${totalRows} طالبه`;
+            document.getElementById('paginationInfo').textContent = `عرض من ${startIdx + 1} إلى ${Math.min(startIdx + rowsPerPage, totalRows)} من أصل ${totalRows} طالبة`;
             document.getElementById('pageIndicator').textContent = `${currentPage} / ${totalPages}`;
+        }
+
+        function stepStudentField(index, field, change) {
+            let currentVal = Number(students[index][field]) || 0;
+            let newVal = currentVal + change;
+            if(newVal < 0) newVal = 0;
+            students[index][field] = newVal;
+            localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
+            render();
         }
 
         function updateStudentPhone(index, val) {
@@ -1439,7 +1508,7 @@
         }
 
         function deleteStudent(index) {
-            if(confirm('هل أنت متأكد من حذف هذه الطالبه؟')) {
+            if(confirm('هل أنت متأكدة من حذف هذه الطالبة؟')) {
                 students.splice(index, 1);
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
                 delete lessonMastery[index];
@@ -1455,7 +1524,7 @@
                 lessonMastery = newMastery;
                 localStorage.setItem(getStorageKeyForMastery(), JSON.stringify(lessonMastery));
                 render();
-                showToast('🗑️ تم حذف الطالبه بنجاح!');
+                showToast('🗑️ تم حذف الطالبة بنجاح!');
             }
         }
 
@@ -1506,7 +1575,7 @@
 
         function deleteEntireClass(cName, event) {
             event.stopPropagation();
-            if(confirm(`هل أنت متأكد من حذف جميع طالبات الصف (${cName})؟`)) {
+            if(confirm(`هل أنت متأكدة من حذف جميع طالبات الصف (${cName})؟`)) {
                 students = students.filter(s => (s.classCustom || currentGrade) !== cName);
                 localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
                 if(activeQueryClass === cName) activeQueryClass = '';
@@ -1518,7 +1587,7 @@
         function updateExamClassSelect(classesSet) {
             const select = document.getElementById('examClassSelect');
             const currentVal = select.value;
-            select.innerHTML = '<option value="">-- اختر الصف لعرض وسجل الاختبارات --</option>';
+            select.innerHTML = '<option value="">-- اختاري الصف لعرض سجل الاختبارات --</option>';
             classesSet.forEach(cName => {
                 select.innerHTML += `<option value="${cName}">${cName}</option>`;
             });
@@ -1585,12 +1654,12 @@
                     <td><span class="class-badge">${s.classCustom || currentGrade}</span></td>
                     <td>
                         <span style="font-weight:bold; color: ${isMastered ? 'var(--success)' : 'var(--danger)'};">
-                            ${isMastered ? '✅ متقن' : '⚠️ مراجعة'}
+                            ${isMastered ? '✅ متقنة' : '⚠️ مراجعة'}
                         </span>
                     </td>
                     <td class="no-print">
                         <button class="mastery-btn ${isMastered ? 'mastered' : 'review'}" onclick="toggleStudentMastery(${globalIdx}, ${lessonIdx})">
-                            ${isMastered ? 'تحويل لـ مراجعة' : 'تحويل لـ متقن'}
+                            ${isMastered ? 'تحويل لـ مراجعة' : 'تحويل لـ متقنة'}
                         </button>
                     </td>
                 `;
@@ -1646,7 +1715,7 @@
                     <td><input type="text" inputmode="numeric" pattern="[0-9]*" value="${s.exam1 !== undefined ? s.exam1 : 0}" style="width:40px; text-align:center; padding:2px;" oninput="updateExamScore(${globalIndex}, 'exam1', this.value)"></td>
                     <td><input type="text" inputmode="numeric" pattern="[0-9]*" value="${s.exam2 !== undefined ? s.exam2 : 0}" style="width:40px; text-align:center; padding:2px;" oninput="updateExamScore(${globalIndex}, 'exam2', this.value)"></td>
                     <td class="no-print">
-                        <a href="https://wa.me/966${s.phone ? s.phone.replace(/^0+/, '') : ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبه ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 6px; font-size:11px; margin-top:0;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال</a>
+                        <a href="https://wa.me/966${s.phone ? s.phone.replace(/^0+/, '') : ''}?text=${encodeURIComponent('عزيزي ولي أمر الطالبة ' + s.name + '، نود إفادتكم بدرجات اختبارات مادة العلوم:\n- اختبار الفترة الأولى: ' + (s.exam1 || 0) + '/20\n- اختبار الفترة الثانية: ' + (s.exam2 || 0) + '/20\nمع تمنياتنا لها بدوام التوفيق والنجاح.')}" target="_blank" class="whatsapp-btn" style="padding:4px 6px; font-size:11px; margin-top:0;" onclick="incrementMessageCount(${globalIndex})">📤 إرسال</a>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -1690,7 +1759,7 @@
             if(students.length === 0) { alert('لا توجد بيانات طالبات لتصديرها!'); return; }
             const dataToExport = students.map((s, idx) => ({
                 "م": idx + 1,
-                "اسم الطالبه": s.name,
+                "اسم الطالبة": s.name,
                 "الصف": s.classCustom || currentGrade,
                 "رقم الجوال": s.phone || '',
                 "الغياب": s.absence || 0,
@@ -1713,7 +1782,7 @@
 
         function exportToGoogleSheetsCSV() {
             if(students.length === 0) { alert('لا توجد بيانات طالبات لتصديرها!'); return; }
-            let csvContent = "\uFEFFاسم الطالبه,الصف,رقم الجوال,الغياب,المشاركة,الواجبات,التجارب,اختبار 1,اختبار 2\n";
+            let csvContent = "\uFEFFاسم الطالبة,الصف,رقم الجوال,الغياب,المشاركة,الواجبات,التجارب,اختبار 1,اختبار 2\n";
             students.forEach(s => {
                 csvContent += `"${s.name}","${s.classCustom || currentGrade}","${s.phone || ''}",${s.absence || 0},${s.participation || 0},${s.homework || 0},${s.projects || 0},${s.exam1 || 0},${s.exam2 || 0}\n`;
             });
@@ -1748,7 +1817,7 @@
 
                     let count = 0;
                     jsonData.forEach(row => {
-                        const name = row["اسم الطالبه"] || row["اسم الطالب"] || row["الاسم"] || "";
+                        const name = row["اسم الطالبة"] || row["اسم الطالب"] || row["الاسم"] || "";
                         const sClass = row["الصف"] || row["الصف/الشعبة"] || row["Class"] || currentGrade;
                         const phone = row["رقم الجوال"] || row["الجوال"] || row["Phone"] || "";
 
@@ -1771,7 +1840,7 @@
 
                     localStorage.setItem(getStorageKeyForStudents(), JSON.stringify(students));
                     render();
-                    showToast(`📂 تمت استعادة (${count}) طالبه بنجاح!`);
+                    showToast(`📂 تمت استعادة (${count}) طالبة بنجاح!`);
                 } catch(err) {
                     console.error(err);
                     alert('حدث خطأ أثناء قراءة ملف الإكسل.');
@@ -1909,13 +1978,13 @@
             const btn = document.getElementById('whatsappLessonBtn');
 
             if(lessonIdx === "") {
-                preview.textContent = "اختر موضوع الدرس والمهارة أعلاه...";
+                preview.textContent = "اختاري موضوع الدرس والمهارة أعلاه...";
                 btn.href = "#";
                 return;
             }
 
             const l = lessons[lessonIdx];
-            const msg = `عزيزي ولي أمر الطالبه / ${s.name}\nنحيطكم علماً بأننا تناولنا اليوم في مادة العلوم درس:\n📘 (${l.chapter}) - ${l.title}\n💡 المفاهيم والتجارب المرتبطة: ${l.desc}\nنرجو منكم متابعة ابنتكم وتعزيز استكشافاتها العلمية.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            const msg = `عزيزي ولي أمر الطالبة / ${s.name}\nنحيطكم علماً بأننا تناولنا اليوم في مادة العلوم درس:\n📘 (${l.chapter}) - ${l.title}\n💡 المفاهيم والتجارب المرتبطة: ${l.desc}\nنرجو منكم متابعة ابنتكم وتعزيز استكشافاتها العلمية.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             
             preview.textContent = msg;
             const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
@@ -1930,7 +1999,7 @@
             const btn = document.getElementById('whatsappMotivationBtn');
 
             if(motivVal === "") {
-                preview.textContent = "اختر الرسالة لعرض نص الشكر والتحفيز...";
+                preview.textContent = "اختاري الرسالة لعرض نص الشكر والتحفيز...";
                 btn.href = "#";
                 return;
             }
@@ -1941,7 +2010,7 @@
                 text = customMotivations[idx].text;
             }
 
-            const finalMsg = `إلى ولي أمر الطالبه / ${s.name}\n\n${text}\n\nمع خالص الشكر، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            const finalMsg = `إلى ولي أمر الطالبة / ${s.name}\n\n${text}\n\nمع خالص الشكر، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             preview.textContent = finalMsg;
             const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
             btn.href = `https://wa.me/${formattedPhone}?text=` + encodeURIComponent(finalMsg);
@@ -1956,7 +2025,7 @@
                 if (lessonMastery[selectedStudentIndex] && lessonMastery[selectedStudentIndex][lIdx]) studentMasteredCount++;
             });
 
-            const msg = `عزيزي ولي أمر الطالبه / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنتكم وتقييمها في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- الدروس المتقنة: ${studentMasteredCount} من ${lessons.length}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
+            const msg = `عزيزي ولي أمر الطالبة / ${s.name} (${s.classCustom || currentGrade})\nنحيطكم علماً بمستوى ابنتكم وتقييمها في مادة العلوم حتى تاريخه:\n\n- المشاركات: ${s.participation || 0}\n- الواجبات: ${s.homework || 0}\n- أيام الغياب: ${s.absence || 0}\n- الدروس المتقنة: ${studentMasteredCount} من ${lessons.length}\n- التجارب: ${s.projects || 0}\n- اختبار الفترة الأولى: ${s.exam1 || 0}/20\n- اختبار الفترة الثانية: ${s.exam2 || 0}/20\n\nنشكر تعاونكم المستمر.\nمع تقديـرنا، المعلمة: ${TEACHER_NAME} - ${SCHOOL_NAME}`;
             
             incrementMessageCount(selectedStudentIndex);
             const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
@@ -1994,7 +2063,7 @@
             const preview = document.getElementById('bulkHomeworkMsgPreview');
 
             if(!val) {
-                preview.textContent = "اختر الصف والدرس وأدخل تفاصيل الواجب...";
+                preview.textContent = "اختاري الصف والدرس وأدخلي تفاصيل الواجب...";
                 return;
             }
 
@@ -2046,7 +2115,7 @@
             targetStudents.forEach(s => {
                 const globalIdx = students.indexOf(s);
                 const formattedPhone = s.phone ? `966${s.phone.replace(/^0+/, '')}` : '';
-                const finalMsg = `عزيزي ولي أمر الطالبه / ${s.name}\n\n` + baseMsg;
+                const finalMsg = `عزيزي ولي أمر الطالبة / ${s.name}\n\n` + baseMsg;
                 const link = `https://wa.me/${formattedPhone}?text=` + encodeURIComponent(finalMsg);
 
                 const itemDiv = document.createElement('div');
@@ -2100,9 +2169,6 @@
         const savedTheme = localStorage.getItem('mansour_science_theme_v5');
         if(savedTheme) document.body.className = savedTheme;
 
-        // ==========================================
-        // إدارة تثبيت التطبيق PWA للجوال
-        // ==========================================
         let deferredPrompt;
         const installBtn = document.getElementById('pwaInstallBtn');
 
@@ -2187,3 +2253,4 @@
     </script>
 </body>
 </html>
+```[cite: 1]
